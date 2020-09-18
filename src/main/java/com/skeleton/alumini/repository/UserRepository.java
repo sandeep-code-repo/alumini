@@ -14,7 +14,7 @@ import com.skeleton.alumini.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long>{
 	
-	@Query("FROM User WHERE username=:username")
-	User findByUsername(String username);
+	@Query("FROM User WHERE username=:username and password =:password")
+	User findByUsername(String username,String password);
 
 }

@@ -27,9 +27,9 @@ public class UserController {
 	
 	@GetMapping(value ="/login",produces = MediaType.APPLICATION_JSON_VALUE)
 	
-	public String loginByUserName(@RequestParam("username")String username)
+	public String loginByUserName(@RequestParam("username")String username,@RequestParam("password")String password)
 	{
-		User user = userService.findByUsername(username);
+		User user = userService.findByUsername(username,password);
 		return "success";
 	}
 	

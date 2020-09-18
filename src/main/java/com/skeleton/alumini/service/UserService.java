@@ -9,5 +9,5 @@ import com.skeleton.alumini.entity.User;
 
 public interface UserService {
 	
-	User findByUsername(String username);
+	User findByUsername(String username,String password);
 }
