@@ -1,0 +1,24 @@
+package com.skeleton.alumini.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.skeleton.alumini.entity.Employee;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+
+	@Query("FROM Employee WHERE iName=:iName")
+	Employee getEmpByName(@Param("iName") String iName);
+
+	@Query("FROM Employee WHERE iName=:iName")
+	Employee editByEname(@Param("iName") String iName);
+	
+	@Modifying
+	@Query("UPDATE Employee SET status =:status WHERE iName=:iName")
+	Integer deleteUser(@Param("iName")String iName, @Param("status")String status);
+	
+	
+
+}
