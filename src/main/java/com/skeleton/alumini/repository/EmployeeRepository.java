@@ -17,7 +17,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	
 	@Modifying
 	@Query("UPDATE Employee SET status =:status WHERE iName=:iName")
-	Integer deleteUser(@Param("iName")String iName, @Param("status")String status);
+	Employee deleteUser(@Param("iName")String iName, @Param("status")String status);
 	
 	
 

@@ -21,7 +21,7 @@ import com.skeleton.alumini.entity.Employee;
 import com.skeleton.alumini.service.EmployeeService;
 
 @RestController
-@RequestMapping("/alumini")
+@RequestMapping("/alumini/employees")
 public class EmployeeController {
 	
 	@Autowired
@@ -35,13 +35,13 @@ public class EmployeeController {
 	 * insert employee details
 	 */
 	
-	@PostMapping("/insertemployee")
+	@PostMapping("/")
 	public ResponseEntity<?> insertEmployeeData(@RequestBody Employee emp) {
     	
     		Employee entity = employeeService.insertemp(emp);	
     		
 	        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.CREATED);
-		}
+	}
 	
 	/**
 	 * 
@@ -51,12 +51,12 @@ public class EmployeeController {
 	 * Update employee By Employee Id
 	 */
 	
-	@PutMapping(value ="/editEmployeeName/{iName}",
+	@PutMapping(value ="/{iName}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> editEmployeeData(@RequestBody Employee emp,@PathVariable("iName") String iName) {
     	
-    		Employee entity = employeeService.editByEname(iName);	
-    		
+    		Employee entity = employeeService.editByEname(iName,emp);
+    
 	        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
 		}
 	
@@ -69,7 +69,7 @@ public class EmployeeController {
 	 * Get employee By Employee Name
 	 */
 	
-	@GetMapping(value ="/getemployeebyename/{iName}",
+	@GetMapping(value ="/{iName}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getEmpByName(@PathVariable("iName") String iName) 
                                                     {
@@ -85,7 +85,7 @@ public class EmployeeController {
 	 * @description
 	 * Get employee By Employee details
 	 */
-	@GetMapping(value ="/getemployeelist",
+	@GetMapping(value ="/",
 			produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<?> getEmpDetails() 
                                                     {
@@ -98,14 +98,15 @@ public class EmployeeController {
 	 * Delete employee By Employee Name
 	 */
 	
-	@DeleteMapping(value ="/deleteemployeebyename/{empFName}",
+	@DeleteMapping(value ="/{iName}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<?>  deleteUser(@PathVariable("iName") String iName){
 		
 		String Status="INACTIVE";
-		Integer result = employeeService.deleteUser(iName,Status);
+		Employee result = employeeService.deleteUser(iName,Status);
 		  return new ResponseEntity<Object>(result, HttpStatus.OK);
 	   }
+	
 	
 	
 }

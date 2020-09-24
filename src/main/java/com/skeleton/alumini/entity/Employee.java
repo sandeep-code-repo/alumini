@@ -72,7 +72,7 @@ public class Employee implements Serializable{
 	@Column(name = "station_name")
 	private String stationName;
 	
-	@Column(name = "process attached")
+	@Column(name = "process_attached")
 	private String processAttached;
 	
 	@Column(name = "process_vendor")

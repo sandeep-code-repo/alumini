@@ -12,9 +12,9 @@ public interface EmployeeService {
 
 	List<Employee> getEmployeeList();
 
-	Employee editByEname(String iName);
+	Employee deleteUser(String iName, String status);
 
-	Integer deleteUser(String iName, String status);
+	Employee editByEname(String iName, Employee emp);
 
 	
 
