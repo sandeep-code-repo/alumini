@@ -12,6 +12,7 @@ import com.skeleton.alumini.service.IndustryService;
 import com.skeleton.alumini.util.AbstractMapper;
 import com.skeleton.alumini.util.RequestObject;
 import com.skeleton.alumini.util.ResponseObject;
+import com.skeleton.alumini.util.SecurityKeyUtil;
 
 
 
@@ -26,6 +27,9 @@ public class IndustryController extends AbstractMapper{
 	@Autowired
 	IndustryService industryService;
 	
+	@Autowired
+    private SecurityKeyUtil passwordEncoderDecoder;
+	
 	
 	/**
 	 * @return ResponseObject
@@ -38,9 +42,14 @@ public class IndustryController extends AbstractMapper{
 	
 	/**
 	 * @return ResponseObject
+	 * @throws Exception 
 	 */
 	@GetMapping
-	public ResponseObject getIndustryList() {
+	public ResponseObject getIndustryList() throws Exception {
+		String industryDescEncoded=passwordEncoderDecoder.encrypt("test");
+		System.out.println("industryDesc encoded :"+industryDescEncoded);
+		String industryDescDecoded=passwordEncoderDecoder.decrypt(industryDescEncoded);
+		System.out.println("industryDesc decoded :"+industryDescDecoded);
 		return industryService.getIndustryList();
 	}
 	

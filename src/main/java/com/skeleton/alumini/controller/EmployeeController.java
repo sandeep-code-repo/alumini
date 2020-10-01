@@ -3,6 +3,8 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,11 +20,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skeleton.alumini.entity.Employee;
+import com.skeleton.alumini.helper.UserHelper;
 import com.skeleton.alumini.service.EmployeeService;
 
 @RestController
 @RequestMapping("/alumini/employees")
 public class EmployeeController {
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
 	@Autowired
 	private EmployeeService employeeService;
@@ -36,11 +42,11 @@ public class EmployeeController {
 	 */
 	
 	@PostMapping("/")
-	public ResponseEntity<?> insertEmployeeData(@RequestBody Employee emp) {
+	public ResponseEntity<?> insertEmployeeData(@RequestBody UserHelper emp) {
     	
-    		Employee entity = employeeService.insertemp(emp);	
-    		
-	        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.CREATED);
+		logger.info("REQUEST RECV : " + emp);
+		UserHelper entity = employeeService.insertPlantStationInfo(emp);	    		
+	    return new ResponseEntity<UserHelper>(entity, new HttpHeaders(), HttpStatus.CREATED);
 	}
 	
 	/**
@@ -51,14 +57,16 @@ public class EmployeeController {
 	 * Update employee By Employee Id
 	 */
 	
-	@PutMapping(value ="/{iName}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> editEmployeeData(@RequestBody Employee emp,@PathVariable("iName") String iName) {
-    	
-    		Employee entity = employeeService.editByEname(iName,emp);
-    
-	        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
-		}
+	/*
+	 * @PutMapping(value ="/{iName}", produces = MediaType.APPLICATION_JSON_VALUE)
+	 * public ResponseEntity<?> editEmployeeData(@RequestBody Employee
+	 * emp,@PathVariable("iName") String iName) {
+	 * 
+	 * Employee entity = employeeService.editByEname(iName,emp);
+	 * 
+	 * return new ResponseEntity<Employee>(entity, new HttpHeaders(),
+	 * HttpStatus.OK); }
+	 */
 	
 
 	/**
@@ -69,14 +77,13 @@ public class EmployeeController {
 	 * Get employee By Employee Name
 	 */
 	
-	@GetMapping(value ="/{iName}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getEmpByName(@PathVariable("iName") String iName) 
-                                                    {
-		
-			Employee entity = employeeService.findEmpByName(iName);			 
-	        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
-    }
+	/*
+	 * @GetMapping(value ="/{iName}", produces = MediaType.APPLICATION_JSON_VALUE)
+	 * public ResponseEntity<?> getEmpByName(@PathVariable("iName") String iName) {
+	 * 
+	 * Employee entity = employeeService.findEmpByName(iName); return new
+	 * ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK); }
+	 */
 	
 	/**
 	 * 
@@ -85,27 +92,27 @@ public class EmployeeController {
 	 * @description
 	 * Get employee By Employee details
 	 */
-	@GetMapping(value ="/",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<?> getEmpDetails() 
-                                                    {
-		
-			List<Employee> entity = employeeService.getEmployeeList();
-			return new ResponseEntity<Object>(entity, HttpStatus.OK);
-    }
+	/*
+	 * @GetMapping(value ="/", produces = MediaType.APPLICATION_JSON_VALUE)
+	 * public @ResponseBody ResponseEntity<?> getEmpDetails() {
+	 * 
+	 * List<Employee> entity = employeeService.getEmployeeList(); return new
+	 * ResponseEntity<Object>(entity, HttpStatus.OK); }
+	 */
 	
 	/**
 	 * Delete employee By Employee Name
 	 */
 	
-	@DeleteMapping(value ="/{iName}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<?>  deleteUser(@PathVariable("iName") String iName){
-		
-		String Status="INACTIVE";
-		Employee result = employeeService.deleteUser(iName,Status);
-		  return new ResponseEntity<Object>(result, HttpStatus.OK);
-	   }
+	/*
+	 * @DeleteMapping(value ="/{iName}", produces =
+	 * MediaType.APPLICATION_JSON_VALUE) public ResponseEntity<?>
+	 * deleteUser(@PathVariable("iName") String iName){
+	 * 
+	 * String Status="INACTIVE"; Employee result =
+	 * employeeService.deleteUser(iName,Status); return new
+	 * ResponseEntity<Object>(result, HttpStatus.OK); }
+	 */
 	
 	
 	
