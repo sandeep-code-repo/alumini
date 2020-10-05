@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skeleton.alumini.entity.Employee;
+import com.skeleton.alumini.entity.ParameterInfo;
 import com.skeleton.alumini.entity.PlantInfo;
 import com.skeleton.alumini.entity.StationInfo;
 import com.skeleton.alumini.helper.UserHelper;
 import com.skeleton.alumini.repository.EmployeeRepository;
+import com.skeleton.alumini.repository.ParameterInfoRepository;
 import com.skeleton.alumini.repository.PlantInfoRepository;
 import com.skeleton.alumini.repository.StationInfoRepository;
 
@@ -28,6 +30,9 @@ public class EmployeeServiceImpl  implements EmployeeService{
 	
 	@Autowired
 	StationInfoRepository stationInfoRepository;
+	
+	@Autowired
+	ParameterInfoRepository parameterInfoRepository;
 
 	/*
 	 * @Override public Employee insertemp(Employee employee) {
@@ -135,6 +140,14 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			plantinfo.setPlantSlug(user.getPlantInfo().getPlantSlug());
 			plantinfo.setAuthReq(user.getPlantInfo().getAuthReq());
 			plantinfo.setStationCount(user.getPlantInfo().getStationCount());
+			plantinfo.setPlantVendor(user.getPlantInfo().getPlantVendor());
+			plantinfo.setCaaqmsStation(user.getPlantInfo().getCaaqmsStation());
+			plantinfo.setCemsStation(user.getPlantInfo().getCemsStation());
+			plantinfo.setCeqmsStation(user.getPlantInfo().getCeqmsStation());
+			plantinfo.setSecdPerson(user.getPlantInfo().getSecdPerson());
+			plantinfo.setSecdPersonDesig(user.getPlantInfo().getSecdPersonDesig());
+			plantinfo.setSecdPersonMob(user.getPlantInfo().getSecdPersonMob());
+			plantinfo.setSecdEmail(user.getPlantInfo().getSecdEmail());
 			plantInfoRepository.save(plantinfo);
 			
 			
@@ -153,7 +166,31 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			stationinfo.setHasThresold(user.getStationInfo().getHasThresold());
 			stationinfo.setPid(user.getStationInfo().getPid());
 			stationinfo.setUserId(user.getUserId());
+			stationinfo.setStationVendor(user.getStationInfo().getStationVendor());
+			stationinfo.setCertification(user.getStationInfo().getCertification());
+			stationinfo.setLatitude(user.getStationInfo().getLatitude());
+			stationinfo.setLongitute(user.getStationInfo().getLongitute());
+			stationinfo.setMeasurementPrinciple(user.getStationInfo().getMeasurementPrinciple());
+			stationinfo.setStackHeight(user.getStationInfo().getStackHeight());
+			stationinfo.setStackDiameter(user.getStationInfo().getStackDiameter());
+			stationinfo.setStackVelocity(user.getStationInfo().getStackVelocity());
+			stationinfo.setGasDischargeRate(user.getStationInfo().getGasDischargeRate());
+			stationinfo.setRemarks(user.getStationInfo().getRemarks());
 			stationInfoRepository.save(stationinfo);
+			
+			
+			ParameterInfo parameterinfo = new ParameterInfo();
+			/* parameterinfo.setSid(user.getParameterInfo().getSid()); */
+			parameterinfo.setParamter(user.getParameterInfo().getParamter());
+			parameterinfo.setAnalyserMake(user.getParameterInfo().getAnalyserMake());
+			parameterinfo.setAnalyserModel(user.getParameterInfo().getAnalyserModel());
+			parameterinfo.setAnalyserSerialNo(user.getParameterInfo().getAnalyserSerialNo());
+			parameterinfo.setDevidceIMEINo(user.getParameterInfo().getDevidceIMEINo());
+			parameterinfo.setMeasurmentRange(user.getParameterInfo().getMeasurmentRange());
+			parameterinfo.setMacId(user.getParameterInfo().getMacId());
+			parameterinfo.setUnit(user.getParameterInfo().getUnit());
+			parameterInfoRepository.save(parameterinfo);
+			
 		} catch (Exception e) {
 		}
 		return user;

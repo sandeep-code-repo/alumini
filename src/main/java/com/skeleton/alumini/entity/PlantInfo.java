@@ -139,10 +139,33 @@ public class PlantInfo implements Serializable{
 	
 	@Column(name = "station_count")
 	private Integer  stationCount;
-	
 
 	@Column(name="user_id")
 	private String userId;
+	
+	@Column(name = "plant_vendor")
+	private String  plantVendor;
+	
+	@Column(name = "CAAQMS_Station")
+	private Integer  caaqmsStation;
+	
+	@Column(name = "CEMS_Station")
+	private Integer  cemsStation;
+	
+	@Column(name = "CEQMS_Station")
+	private Integer  ceqmsStation;
+	
+	@Column(name = "secd_person")
+	private String  secdPerson;
+	
+	@Column(name = "secd_person_desig")
+	private String  secdPersonDesig;
+	
+	@Column(name = "secd_person_mob")
+	private Integer  secdPersonMob;
+	
+	@Column(name = "secd_email")
+	private Integer  secdEmail;
 
 	
 
@@ -482,6 +505,70 @@ public class PlantInfo implements Serializable{
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getPlantVendor() {
+		return plantVendor;
+	}
+
+	public void setPlantVendor(String plantVendor) {
+		this.plantVendor = plantVendor;
+	}
+
+	public Integer getCaaqmsStation() {
+		return caaqmsStation;
+	}
+
+	public void setCaaqmsStation(Integer caaqmsStation) {
+		this.caaqmsStation = caaqmsStation;
+	}
+
+	public Integer getCemsStation() {
+		return cemsStation;
+	}
+
+	public void setCemsStation(Integer cemsStation) {
+		this.cemsStation = cemsStation;
+	}
+
+	public Integer getCeqmsStation() {
+		return ceqmsStation;
+	}
+
+	public void setCeqmsStation(Integer ceqmsStation) {
+		this.ceqmsStation = ceqmsStation;
+	}
+
+	public String getSecdPerson() {
+		return secdPerson;
+	}
+
+	public void setSecdPerson(String secdPerson) {
+		this.secdPerson = secdPerson;
+	}
+
+	public String getSecdPersonDesig() {
+		return secdPersonDesig;
+	}
+
+	public void setSecdPersonDesig(String secdPersonDesig) {
+		this.secdPersonDesig = secdPersonDesig;
+	}
+
+	public Integer getSecdPersonMob() {
+		return secdPersonMob;
+	}
+
+	public void setSecdPersonMob(Integer secdPersonMob) {
+		this.secdPersonMob = secdPersonMob;
+	}
+
+	public Integer getSecdEmail() {
+		return secdEmail;
+	}
+
+	public void setSecdEmail(Integer secdEmail) {
+		this.secdEmail = secdEmail;
 	}
 
 	

@@ -69,6 +69,38 @@ public class StationInfo implements Serializable{
 	
 	@Column(name="user_id")
 	private String userId;
+	
+	@Column(name = "station_vendor")
+	private String stationVendor;
+	
+	@Column(name = "certification")
+	private String certification;
+	
+	@Column(name = "latitude")
+	private String latitude;
+	
+	@Column(name = "longitute")
+	private String longitute;
+	
+	@Column(name = "measurement_Principle")
+	private String measurementPrinciple;
+	
+	@Column(name = "stack_Height")
+	private String stackHeight;
+	
+	@Column(name = "stack_Diameter")
+	private String stackDiameter;
+	
+	@Column(name = "stack_Velocity")
+	private String stackVelocity;
+	
+	@Column(name = "flue_gas_discharge_rate")
+	private String gasDischargeRate;
+	
+	@Column(name = "remarks")
+	private String remarks;
+	
+	
 
 	public Integer getSid() {
 		return sid;
@@ -188,6 +220,89 @@ public class StationInfo implements Serializable{
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	
+	
+
+	public String getStationVendor() {
+		return stationVendor;
+	}
+
+	public void setStationVendor(String stationVendor) {
+		this.stationVendor = stationVendor;
+	}
+
+	public String getCertification() {
+		return certification;
+	}
+
+	public void setCertification(String certification) {
+		this.certification = certification;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitute() {
+		return longitute;
+	}
+
+	public void setLongitute(String longitute) {
+		this.longitute = longitute;
+	}
+
+	public String getMeasurementPrinciple() {
+		return measurementPrinciple;
+	}
+
+	public void setMeasurementPrinciple(String measurementPrinciple) {
+		this.measurementPrinciple = measurementPrinciple;
+	}
+
+	public String getStackHeight() {
+		return stackHeight;
+	}
+
+	public void setStackHeight(String stackHeight) {
+		this.stackHeight = stackHeight;
+	}
+
+	public String getStackDiameter() {
+		return stackDiameter;
+	}
+
+	public void setStackDiameter(String stackDiameter) {
+		this.stackDiameter = stackDiameter;
+	}
+
+	public String getStackVelocity() {
+		return stackVelocity;
+	}
+
+	public void setStackVelocity(String stackVelocity) {
+		this.stackVelocity = stackVelocity;
+	}
+
+	public String getGasDischargeRate() {
+		return gasDischargeRate;
+	}
+
+	public void setGasDischargeRate(String gasDischargeRate) {
+		this.gasDischargeRate = gasDischargeRate;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	@Override
