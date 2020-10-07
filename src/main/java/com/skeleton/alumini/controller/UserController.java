@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skeleton.alumini.entity.UseInfo;
 import com.skeleton.alumini.entity.User;
 import com.skeleton.alumini.service.UserService;
 
@@ -27,9 +28,9 @@ public class UserController {
 	
 	@GetMapping(value ="/login",produces = MediaType.APPLICATION_JSON_VALUE)
 	
-	public String loginByUserName(@RequestParam("username")String username,@RequestParam("password")String password)
+	public String loginByUserName(@RequestParam("userName")String userName,@RequestParam("password")String password)
 	{
-		User user = userService.findByUsername(username,password);
+		UseInfo user = userService.findByUsername(userName,password);
 		return "success";
 	}
 	

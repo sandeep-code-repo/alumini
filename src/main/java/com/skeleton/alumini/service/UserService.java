@@ -1,5 +1,6 @@
 package com.skeleton.alumini.service;
 
+import com.skeleton.alumini.entity.UseInfo;
 import com.skeleton.alumini.entity.User;
 
 /**
@@ -9,5 +10,5 @@ import com.skeleton.alumini.entity.User;
 
 public interface UserService {
 	
-	User findByUsername(String username,String password);
+	UseInfo findByUsername(String userName,String password);
 }

@@ -24,6 +24,7 @@ public class ParameterInfo implements Serializable{
 	@Column(name = "para_id")
 	private Integer paraId;
 	
+	
 	@Column(name = "sid")
 	private Integer sid;
 	
@@ -129,6 +130,14 @@ public class ParameterInfo implements Serializable{
 
 	public void setUnit(String unit) {
 		Unit = unit;
+	}
+
+	@Override
+	public String toString() {
+		return "ParameterInfo [paraId=" + paraId + ", sid=" + sid + ", paramter=" + paramter + ", analyserMake="
+				+ analyserMake + ", analyserModel=" + analyserModel + ", analyserSerialNo=" + analyserSerialNo
+				+ ", devidceIMEINo=" + devidceIMEINo + ", macId=" + macId + ", measurmentRange=" + measurmentRange
+				+ ", Unit=" + Unit + "]";
 	}
 	
 	

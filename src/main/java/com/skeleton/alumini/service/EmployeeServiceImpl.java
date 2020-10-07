@@ -100,7 +100,8 @@ public class EmployeeServiceImpl  implements EmployeeService{
 
 	@Override
 	public UserHelper insertPlantStationInfo(UserHelper user) {
-		try {
+//		try {
+		System.out.println("insertPlantStationInfo");
 			PlantInfo plantinfo = new PlantInfo();
 			plantinfo.setPlantId(user.getPlantInfo().getPlantId());
 			plantinfo.setPassword(user.getPlantInfo().getPassword());
@@ -113,7 +114,6 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			plantinfo.setState(user.getPlantInfo().getState());
 			plantinfo.setEmail(user.getPlantInfo().getEmail());
 			plantinfo.setWeb(user.getPlantInfo().getWeb());
-			plantinfo.setUserId(user.getUserId());
 			plantinfo.setZonal(user.getPlantInfo().getZonal());
 			plantinfo.setGrdId(user.getPlantInfo().getGrdId());
 			plantinfo.setTimeStamp(user.getPlantInfo().getTimeStamp());
@@ -148,9 +148,34 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			plantinfo.setSecdPersonDesig(user.getPlantInfo().getSecdPersonDesig());
 			plantinfo.setSecdPersonMob(user.getPlantInfo().getSecdPersonMob());
 			plantinfo.setSecdEmail(user.getPlantInfo().getSecdEmail());
+			plantinfo.setUserName(user.getUserName());
 			plantInfoRepository.save(plantinfo);
 			
 			
+			StationInfo stationinfo = insertStationInfo(user);
+			
+			
+			ParameterInfo parameterinfo = new ParameterInfo();
+			parameterinfo.setSid(stationinfo.getSid());
+			parameterinfo.setParamter(user.getParameterInfo().getParamter());
+			parameterinfo.setAnalyserMake(user.getParameterInfo().getAnalyserMake());
+			parameterinfo.setAnalyserModel(user.getParameterInfo().getAnalyserModel());
+			parameterinfo.setAnalyserSerialNo(user.getParameterInfo().getAnalyserSerialNo());
+			parameterinfo.setDevidceIMEINo(user.getParameterInfo().getDevidceIMEINo());
+			parameterinfo.setMeasurmentRange(user.getParameterInfo().getMeasurmentRange());
+			parameterinfo.setMacId(user.getParameterInfo().getMacId());
+			parameterinfo.setUnit(user.getParameterInfo().getUnit());
+			parameterInfoRepository.save(parameterinfo);
+			
+//		} catch (Exception e) {
+//		}
+		return user;
+	}
+
+
+	public StationInfo insertStationInfo(UserHelper user) {
+//		try {
+		System.out.println("insertStationInfo");
 			StationInfo stationinfo = new StationInfo();
 			stationinfo.setPlantId(user.getStationInfo().getPlantId());
 			stationinfo.setStationId(user.getStationInfo().getStationId());
@@ -165,7 +190,6 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			stationinfo.setStnType(user.getStationInfo().getStnType());
 			stationinfo.setHasThresold(user.getStationInfo().getHasThresold());
 			stationinfo.setPid(user.getStationInfo().getPid());
-			stationinfo.setUserId(user.getUserId());
 			stationinfo.setStationVendor(user.getStationInfo().getStationVendor());
 			stationinfo.setCertification(user.getStationInfo().getCertification());
 			stationinfo.setLatitude(user.getStationInfo().getLatitude());
@@ -176,27 +200,11 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			stationinfo.setStackVelocity(user.getStationInfo().getStackVelocity());
 			stationinfo.setGasDischargeRate(user.getStationInfo().getGasDischargeRate());
 			stationinfo.setRemarks(user.getStationInfo().getRemarks());
-			stationInfoRepository.save(stationinfo);
-			
-			
-			ParameterInfo parameterinfo = new ParameterInfo();
-			/* parameterinfo.setSid(user.getParameterInfo().getSid()); */
-			parameterinfo.setParamter(user.getParameterInfo().getParamter());
-			parameterinfo.setAnalyserMake(user.getParameterInfo().getAnalyserMake());
-			parameterinfo.setAnalyserModel(user.getParameterInfo().getAnalyserModel());
-			parameterinfo.setAnalyserSerialNo(user.getParameterInfo().getAnalyserSerialNo());
-			parameterinfo.setDevidceIMEINo(user.getParameterInfo().getDevidceIMEINo());
-			parameterinfo.setMeasurmentRange(user.getParameterInfo().getMeasurmentRange());
-			parameterinfo.setMacId(user.getParameterInfo().getMacId());
-			parameterinfo.setUnit(user.getParameterInfo().getUnit());
-			parameterInfoRepository.save(parameterinfo);
-			
-		} catch (Exception e) {
-		}
-		return user;
+			return stationInfoRepository.save(stationinfo);
+//		} catch (Exception e) {
+//			return null;
+//		}
 	}
-
-
 	
 
 }

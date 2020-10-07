@@ -66,10 +66,6 @@ public class StationInfo implements Serializable{
 	@Column(name = "pid")
 	private Integer pid;
 	
-	
-	@Column(name="user_id")
-	private String userId;
-	
 	@Column(name = "station_vendor")
 	private String stationVendor;
 	
@@ -214,16 +210,6 @@ public class StationInfo implements Serializable{
 		this.pid = pid;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	
-	
-	
 
 	public String getStationVendor() {
 		return stationVendor;
@@ -310,9 +296,12 @@ public class StationInfo implements Serializable{
 		return "StationInfo [sid=" + sid + ", plantId=" + plantId + ", stationId=" + stationId + ", analyzer="
 				+ analyzer + ", analyzerv2=" + analyzerv2 + ", shortName=" + shortName + ", location=" + location
 				+ ", installDt=" + installDt + ", token=" + token + ", macNo=" + macNo + ", stationNo=" + stationNo
-				+ ", stnType=" + stnType + ", hasThresold=" + hasThresold + ", pid=" + pid + ", userId=" + userId + "]";
+				+ ", stnType=" + stnType + ", hasThresold=" + hasThresold + ", pid=" + pid + ", stationVendor="
+				+ stationVendor + ", certification=" + certification + ", latitude=" + latitude + ", longitute="
+				+ longitute + ", measurementPrinciple=" + measurementPrinciple + ", stackHeight=" + stackHeight
+				+ ", stackDiameter=" + stackDiameter + ", stackVelocity=" + stackVelocity + ", gasDischargeRate="
+				+ gasDischargeRate + ", remarks=" + remarks + "]";
 	}
-
 
 	
 	

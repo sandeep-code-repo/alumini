@@ -139,9 +139,6 @@ public class PlantInfo implements Serializable{
 	
 	@Column(name = "station_count")
 	private Integer  stationCount;
-
-	@Column(name="user_id")
-	private String userId;
 	
 	@Column(name = "plant_vendor")
 	private String  plantVendor;
@@ -166,6 +163,9 @@ public class PlantInfo implements Serializable{
 	
 	@Column(name = "secd_email")
 	private Integer  secdEmail;
+	
+	@Column(name="user_name")
+	private String userName;
 
 	
 
@@ -463,6 +463,7 @@ public class PlantInfo implements Serializable{
 		return plantSlug;
 	}
 
+
 	@Override
 	public String toString() {
 		return "PlantInfo [pid=" + pid + ", plantId=" + plantId + ", password=" + password + ", pin=" + pin
@@ -476,7 +477,10 @@ public class PlantInfo implements Serializable{
 				+ ", analyzerCount=" + analyzerCount + ", HQOEmail=" + HQOEmail + ", inletUrl=" + inletUrl
 				+ ", outletUrl=" + outletUrl + ", roUser=" + roUser + ", roUserEmail=" + roUserEmail + ", roUserMob="
 				+ roUserMob + ", plantSlug=" + plantSlug + ", authReq=" + authReq + ", stationCount=" + stationCount
-				+ ", userId=" + userId + "]";
+				+ ", plantVendor=" + plantVendor + ", caaqmsStation=" + caaqmsStation + ", cemsStation=" + cemsStation
+				+ ", ceqmsStation=" + ceqmsStation + ", secdPerson=" + secdPerson + ", secdPersonDesig="
+				+ secdPersonDesig + ", secdPersonMob=" + secdPersonMob + ", secdEmail=" + secdEmail + ", userName="
+				+ userName + "]";
 	}
 
 	public void setPlantSlug(String plantSlug) {
@@ -497,14 +501,6 @@ public class PlantInfo implements Serializable{
 
 	public void setStationCount(Integer stationCount) {
 		this.stationCount = stationCount;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getPlantVendor() {
@@ -569,6 +565,14 @@ public class PlantInfo implements Serializable{
 
 	public void setSecdEmail(Integer secdEmail) {
 		this.secdEmail = secdEmail;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	
