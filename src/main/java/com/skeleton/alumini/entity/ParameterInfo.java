@@ -24,6 +24,7 @@ public class ParameterInfo implements Serializable{
 	@Column(name = "para_id")
 	private Integer paraId;
 	
+	
 	@Column(name = "sid")
 	private Integer sid;
 	
@@ -45,8 +46,11 @@ public class ParameterInfo implements Serializable{
 	@Column(name = "MAC_ID")
 	private String macId;
 	
-	@Column(name = "measurement_Range")
-	private String measurmentRange;
+	@Column(name = "measurement_MIN")
+	private String measurmentMin;
+	
+	@Column(name = "measurement_MAX")
+	private String measurmentMax;
 	
 	@Column(name = "Unit")
 	private String Unit;
@@ -115,12 +119,22 @@ public class ParameterInfo implements Serializable{
 		this.macId = macId;
 	}
 
-	public String getMeasurmentRange() {
-		return measurmentRange;
+	
+
+	public String getMeasurmentMin() {
+		return measurmentMin;
 	}
 
-	public void setMeasurmentRange(String measurmentRange) {
-		this.measurmentRange = measurmentRange;
+	public void setMeasurmentMin(String measurmentMin) {
+		this.measurmentMin = measurmentMin;
+	}
+
+	public String getMeasurmentMax() {
+		return measurmentMax;
+	}
+
+	public void setMeasurmentMax(String measurmentMax) {
+		this.measurmentMax = measurmentMax;
 	}
 
 	public String getUnit() {
@@ -130,6 +144,15 @@ public class ParameterInfo implements Serializable{
 	public void setUnit(String unit) {
 		Unit = unit;
 	}
+
+	@Override
+	public String toString() {
+		return "ParameterInfo [paraId=" + paraId + ", sid=" + sid + ", paramter=" + paramter + ", analyserMake="
+				+ analyserMake + ", analyserModel=" + analyserModel + ", analyserSerialNo=" + analyserSerialNo
+				+ ", devidceIMEINo=" + devidceIMEINo + ", macId=" + macId + ", measurmentMin=" + measurmentMin
+				+ ", measurmentMax=" + measurmentMax + ", Unit=" + Unit + "]";
+	}
+
 	
 	
 	

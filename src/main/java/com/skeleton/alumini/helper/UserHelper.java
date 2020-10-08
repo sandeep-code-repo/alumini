@@ -1,5 +1,7 @@
 package com.skeleton.alumini.helper;
 
+import java.util.List;
+
 import com.skeleton.alumini.entity.ParameterInfo;
 import com.skeleton.alumini.entity.PlantInfo;
 import com.skeleton.alumini.entity.StationInfo;
@@ -9,9 +11,8 @@ public class UserHelper {
 	
 	private PlantInfo  plantInfo;
 	private StationInfo  stationInfo;
-	private String userId;
-	private ParameterInfo parameterInfo;
-	
+	private List<ParameterInfo> parameterInfo;
+	private String userName;
 	public PlantInfo getPlantInfo() {
 		return plantInfo;
 	}
@@ -24,24 +25,24 @@ public class UserHelper {
 	public void setStationInfo(StationInfo stationInfo) {
 		this.stationInfo = stationInfo;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String useId) {
-		this.userId = useId;
-	}
-	
-	
-	public ParameterInfo getParameterInfo() {
+	public List<ParameterInfo> getParameterInfo() {
 		return parameterInfo;
 	}
-	public void setParameterInfo(ParameterInfo parameterInfo) {
+	public void setParameterInfo(List<ParameterInfo> parameterInfo) {
 		this.parameterInfo = parameterInfo;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	@Override
 	public String toString() {
-		return "UserHelper [plantInfo=" + plantInfo + ", stationInfo=" + stationInfo + ", useId=" + userId + "]";
+		return "UserHelper [plantInfo=" + plantInfo + ", stationInfo=" + stationInfo + ", parameterInfo="
+				+ parameterInfo + ", userName=" + userName + "]";
 	}
+	
 	
 	
 	
