@@ -15,4 +15,8 @@ public interface IndustryCategoryRepository extends JpaRepository<IndustryCatago
 	@Query("FROM IndustryCatagory WHERE category=:category")
 	List<IndustryCatagory> getIndustryDetailsByCategory(@Param("category")String category);
 
+	
+	@Query("FROM IndustryCatagory WHERE name=:name")
+	IndustryCatagory editByname(@Param("name")String name);
+
 }

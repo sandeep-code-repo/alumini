@@ -50,13 +50,13 @@ public class EmployeeController {
 	}
 	
 	
-	@PostMapping(value = "/test", 
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> test(@RequestBody UserHelper emp) {
-    	
-		logger.info("REQUEST RECV : " + emp);
-	    return new ResponseEntity<UserHelper>(emp, new HttpHeaders(), HttpStatus.CREATED);
-	}
+	/*
+	 * @PostMapping(value = "/test", consumes = MediaType.APPLICATION_JSON_VALUE)
+	 * public ResponseEntity<?> test(@RequestBody UserHelper emp) {
+	 * 
+	 * logger.info("REQUEST RECV : " + emp); return new
+	 * ResponseEntity<UserHelper>(emp, new HttpHeaders(), HttpStatus.CREATED); }
+	 */
 	
 	
 	/**

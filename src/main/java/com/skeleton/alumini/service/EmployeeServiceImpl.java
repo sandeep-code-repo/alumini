@@ -210,26 +210,5 @@ public class EmployeeServiceImpl  implements EmployeeService{
 	}
 	
 	
-	public List<ParameterInfo> insertParameternInfo(UserHelper user) {
-		
-		List<ParameterInfo> parameterInfo=new ArrayList<ParameterInfo>();
-		StationInfo stationinfo = insertStationInfo(user);
-		ParameterInfo param = new ParameterInfo();
-		try {
-			for(int i=0;i<user.getParameterInfo().size();i++) 
-			{
-				param.setSid(stationinfo.getSid());
-				param.setParamter(user.getParameterInfo().get(i).getParamter());
-				param.setAnalyserMake(user.getParameterInfo().get(i).getAnalyserMake());
-				parameterInfo.add(parameterInfoRepository.save(param));	
-			}  
-
-			}catch(Exception e) {
-				
-			}
-		return parameterInfo;
-		
-
-	}
-
+	
 }
