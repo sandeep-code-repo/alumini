@@ -1,4 +1,4 @@
-package com.skeleton.alumini.util;
+package com.rest.dataservice.util;
 
 public class ResponseMessage {
 	  private String message;

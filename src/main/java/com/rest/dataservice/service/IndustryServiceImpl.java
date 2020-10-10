@@ -1,12 +1,12 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skeleton.alumini.constants.ApplicationConstants;
-import com.skeleton.alumini.repository.IndustryRepository;
-import com.skeleton.alumini.util.CommonApiStatus;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.constants.ApplicationConstants;
+import com.rest.dataservice.repository.IndustryRepository;
+import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.ResponseObject;
 
 @Service
 public class IndustryServiceImpl implements IndustryService{

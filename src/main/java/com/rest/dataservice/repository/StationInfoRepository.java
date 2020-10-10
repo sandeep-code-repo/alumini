@@ -1,8 +1,8 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skeleton.alumini.entity.StationInfo;
+import com.rest.dataservice.entity.StationInfo;
 
 public interface StationInfoRepository extends JpaRepository<StationInfo, Integer>{
 

@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.skeleton.alumini.entity.SteelPlant;
+import com.rest.dataservice.entity.SteelPlant;
 
 /**
  * @author Kamal
@@ -17,6 +17,6 @@ public interface ExcelService {
 	
 	void store(MultipartFile file);
 	
-	List<SteelPlant> getAllTutorials();
+	List<SteelPlant> getAllPlants();
 
 }

@@ -1,13 +1,22 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
-import com.skeleton.alumini.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.rest.dataservice.entity.UserAuth;
+import com.rest.dataservice.entity.UserInfo;
 
 /**
- * @Jayashree
- * @Date-17/09/2020
+ * @Kamal
+ * @Date-09/10/2020
  */
+
 
 public interface UserService {
 	
-	User findByUsername(String username,String password);
+	public UserAuth findByUsername(String userName);
+
+	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+
+	public Object save(UserAuth user);
 }

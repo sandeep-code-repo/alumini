@@ -1,8 +1,8 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skeleton.alumini.entity.SteelPlant;
+import com.rest.dataservice.entity.SteelPlant;
 
 public interface SteelPlantRepository extends JpaRepository<SteelPlant, Long> {
 	

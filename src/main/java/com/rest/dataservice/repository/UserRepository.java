@@ -1,10 +1,9 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.skeleton.alumini.entity.User;
+import com.rest.dataservice.entity.UserAuth;
 
 /**
  * @Jayashree
@@ -12,9 +11,8 @@ import com.skeleton.alumini.entity.User;
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long>{
+public interface UserRepository extends JpaRepository<UserAuth,Long>{
 	
-	@Query("FROM User WHERE username=:username and password =:password")
-	User findByUsername(String username,String password);
+	UserAuth findByUsername(String uname);
 
 }

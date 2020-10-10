@@ -1,5 +1,5 @@
 
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.skeleton.alumini.entity.SteelPlant;
-import com.skeleton.alumini.repository.SteelPlantRepository;
-import com.skeleton.alumini.util.ExcelUtil;
+import com.rest.dataservice.entity.SteelPlant;
+import com.rest.dataservice.repository.SteelPlantRepository;
+import com.rest.dataservice.util.ExcelUtil;
 
 /**
  * @author Kamal
@@ -31,7 +31,7 @@ public class ExcelServiceImpl  implements ExcelService {
 	    }
 	  }
 
-	  public List<SteelPlant> getAllTutorials() {
+	  public List<SteelPlant> getAllPlants() {
 	    return repository.findAll();
 	  }
 

@@ -1,8 +1,8 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.skeleton.alumini.entity.ParameterInfo;
+import com.rest.dataservice.entity.ParameterInfo;
 
 public interface ParameterInfoRepository extends JpaRepository<ParameterInfo,Integer>{
 

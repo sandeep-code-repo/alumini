@@ -1,4 +1,4 @@
-package com.skeleton.alumini.entity;
+package com.rest.dataservice.entity;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "t_alm_user")
+@Table(name = "user")
 public class User implements Serializable {
 
 	/**
@@ -21,10 +21,10 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
+	@Column(name = "userid")
 	private Integer userId;
 	
-	@Column(name = "user_name")
+	@Column(name = "username")
 	private String username;
 	
 	@Column(name = "password")

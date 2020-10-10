@@ -1,11 +1,13 @@
-package com.skeleton.alumini.util;
+package com.rest.dataservice.util;
 
 import java.io.Serializable;
+
+import org.springframework.http.HttpStatus;
 
 public class CommonApiStatus implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String overallStatus;
-	private int statusCode;
+	private HttpStatus statusCode;
 	private String message;
 
 	public String getMessage() {
@@ -16,7 +18,7 @@ public class CommonApiStatus implements Serializable {
 		this.message = message;
 	}
 
-	public CommonApiStatus(String overallStatus, int statusCode, String message) {
+	public CommonApiStatus(String overallStatus, HttpStatus statusCode, String message) {
 		super();
 		this.overallStatus = overallStatus;
 		this.statusCode = statusCode;
@@ -31,11 +33,11 @@ public class CommonApiStatus implements Serializable {
 		this.overallStatus = overallStatus;
 	}
 
-	public int getStatusCode() {
+	public HttpStatus getStatusCode() {
 		return statusCode;
 	}
 
-	public void setStatusCode(int statusCode) {
+	public void setStatusCode(HttpStatus statusCode) {
 		this.statusCode = statusCode;
 	}
 }

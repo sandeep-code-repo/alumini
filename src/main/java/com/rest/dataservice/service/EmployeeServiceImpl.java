@@ -1,4 +1,4 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 
 
@@ -9,15 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skeleton.alumini.entity.Employee;
-import com.skeleton.alumini.entity.ParameterInfo;
-import com.skeleton.alumini.entity.PlantInfo;
-import com.skeleton.alumini.entity.StationInfo;
-import com.skeleton.alumini.helper.UserHelper;
-import com.skeleton.alumini.repository.EmployeeRepository;
-import com.skeleton.alumini.repository.ParameterInfoRepository;
-import com.skeleton.alumini.repository.PlantInfoRepository;
-import com.skeleton.alumini.repository.StationInfoRepository;
+import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.entity.ParameterInfo;
+import com.rest.dataservice.entity.PlantInfo;
+import com.rest.dataservice.entity.StationInfo;
+import com.rest.dataservice.helper.UserHelper;
+import com.rest.dataservice.repository.EmployeeRepository;
+import com.rest.dataservice.repository.ParameterInfoRepository;
+import com.rest.dataservice.repository.PlantInfoRepository;
+import com.rest.dataservice.repository.StationInfoRepository;
 
 @Service
 public class EmployeeServiceImpl  implements EmployeeService{

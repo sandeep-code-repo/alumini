@@ -1,9 +1,9 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.skeleton.alumini.entity.Industry;
+import com.rest.dataservice.entity.Industry;
 
 @Repository
 public interface IndustryRepository extends CrudRepository<Industry,Long>{

@@ -1,4 +1,4 @@
-package com.skeleton.alumini.controller;
+package com.rest.dataservice.controller;
 import org.springframework.http.MediaType;
 
 import java.util.List;
@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skeleton.alumini.entity.Employee;
-import com.skeleton.alumini.helper.UserHelper;
-import com.skeleton.alumini.service.EmployeeService;
+import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.helper.UserHelper;
+import com.rest.dataservice.service.EmployeeService;
 
 @RestController
-@RequestMapping("/alumini/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 	
 	

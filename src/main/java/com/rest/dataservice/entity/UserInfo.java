@@ -1,4 +1,4 @@
-package com.skeleton.alumini.entity;
+package com.rest.dataservice.entity;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_info")
-public class UseInfo implements Serializable{
+public class UserInfo implements Serializable{
 
 	/**
 	 * @Jayashree
@@ -27,8 +27,8 @@ public class UseInfo implements Serializable{
 	@Column(name = "user_id")
 	private String  userId;
 	
-	@Column(name = "user_name")
-	private String  userName;
+	@Column(name = "username")
+	private String  username;
 	
 	@Column(name = "password")
 	private String  password;
@@ -74,11 +74,11 @@ public class UseInfo implements Serializable{
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

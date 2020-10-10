@@ -1,13 +1,17 @@
 
-package com.skeleton.alumini.util;
+package com.rest.dataservice.util;
 
 
 import java.security.Key;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.springframework.stereotype.Component;
+
 import sun.misc.*;
 
+@Component
 public class SecurityKeyUtil {
 	
 	private static final String ALGORITHM = "AES";
@@ -42,18 +46,16 @@ public class SecurityKeyUtil {
     }
     
     
-    public static void main(String args[]) throws Exception {
-    	String encryptPassword = encrypt("jayashree#");
-		System.out.println("encryptPassword : " +  encryptPassword);
-		
-		String decryptPassword = decrypt(encryptPassword);
-		System.out.println("decryptPassword : " +  decryptPassword);
-		
-		if (decryptPassword.equals("jayashree#1")) {
-			System.out.println("matched");
-		} else {
-			System.out.println("invalid");
-		}
-	}
+	/*
+	 * public static void main(String args[]) throws Exception { String
+	 * encryptPassword = encrypt("jayashree#");
+	 * System.out.println("encryptPassword : " + encryptPassword);
+	 * 
+	 * String decryptPassword = decrypt(encryptPassword);
+	 * System.out.println("decryptPassword : " + decryptPassword);
+	 * 
+	 * if (decryptPassword.equals("jayashree#1")) { System.out.println("matched"); }
+	 * else { System.out.println("invalid"); } }
+	 */
 
 }
