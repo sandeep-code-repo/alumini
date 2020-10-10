@@ -1,7 +1,8 @@
-package com.skeleton.alumini.entity;
+package com.skeleton.alumini.helper;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,103 +13,86 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "station_info")
-public class StationInfo implements Serializable{
+import com.skeleton.alumini.entity.ParameterInfo;
+
+public class StationInfoMapper {
 
 	/**
 	 * @Jayashree
 	 * @Date-29/09/2020
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "sid")
+
 	private long sid;
 	
-	@Column(name = "plant_id")
 	private long plantId;
 	
-	@Column(name = "station_id")
 	private long stationId;
 	
-	@Column(name = "analyzer")
 	private String analyzer;
 	
-	@Column(name = "analyzerv2")
 	private String analyzerv2;
 	
-	@Column(name = "short_name")
 	private String shortName;
 	
-	@Column(name = "LOCATION")
 	private String location;
 	
-	@Column(name = "install_date")
 	private Date installDt;
 	
-	@Column(name = "token")
 	private String token;
 	
-	@Column(name = "imei_mac_number")
 	private String macNo;
 	
-	@Column(name = "station_number")
 	private Integer stationNo;
 	
-	@Column(name = "stn_type")
 	private String stnType;
 	
-	@Column(name = "has_threshold")
 	private Integer hasThresold;
 	
-	@Column(name = "pid")
 	private Integer pid;
 	
-	@Column(name = "station_vendor")
 	private String stationVendor;
 	
-	@Column(name = "certification")
 	private String certification;
 	
-	@Column(name = "latitude")
 	private String latitude;
 	
-	@Column(name = "longitute")
 	private String longitute;
 	
-	@Column(name = "measurement_Principle")
 	private String measurementPrinciple;
 	
-	@Column(name = "stack_Height")
 	private String stackHeight;
 	
-	@Column(name = "stack_Diameter")
 	private String stackDiameter;
 	
-	@Column(name = "stack_Velocity")
 	private String stackVelocity;
 	
-	@Column(name = "flue_gas_discharge_rate")
 	private String gasDischargeRate;
 	
-	@Column(name = "remarks")
 	private String remarks;
 	
-	@Column(name = "created_by")
 	private String  createdBy;
 	
-	@Column(name = "created_dt")
 	private String  createdDt;
 	
-	@Column(name = "last_modified_by")
 	private String  lastModifiedBy;
 	
-	@Column(name="last_modified_dt")
 	private String lastModifiedDt;
 	
-	
+	private List<ParameterInfo> parameterInfo;
+
+	/**
+	 * @return the parameterInfo
+	 */
+	public List<ParameterInfo> getParameterInfo() {
+		return parameterInfo;
+	}
+
+	/**
+	 * @param parameterInfo the parameterInfo to set
+	 */
+	public void setParameterInfo(List<ParameterInfo> parameterInfo) {
+		this.parameterInfo = parameterInfo;
+	}
 
 	public long getSid() {
 		return sid;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.skeleton.alumini.entity.Employee;
 import com.skeleton.alumini.entity.StationInfo;
 import com.skeleton.alumini.helper.UserHelper;
+import com.skeleton.alumini.util.ResponseObject;
 
 public interface EmployeeService {
 
@@ -20,7 +21,7 @@ public interface EmployeeService {
 	 * Employee editByEname(String iName, Employee emp);
 	 */
 
-	UserHelper insertPlantStationInfo(UserHelper userId);
+	ResponseObject insertPlantStationInfo(UserHelper plantReg);
 
 	
 

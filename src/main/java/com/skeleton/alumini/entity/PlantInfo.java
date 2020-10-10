@@ -24,10 +24,10 @@ public class PlantInfo implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pid")
-	private Integer pid;
+	private long pid;
 	
 	@Column(name = "plant_id")
-	private String  plantId;
+	private long  plantId;
 	
 	@Column(name = "password")
 	private String  password;
@@ -99,7 +99,7 @@ public class PlantInfo implements Serializable{
 	private String  latLong;
 
 	@Column(name = "connected")
-	private Integer  connected;
+	private String  connected;
 	
 	@Column(name = "dept_email")
 	private String  deptEmail;
@@ -111,7 +111,7 @@ public class PlantInfo implements Serializable{
 	private String  plantName;
 	
 	@Column(name = "analyzer_count")
-	private Integer  analyzerCount;
+	private String  analyzerCount;
 	
 	@Column(name = "HQO_email")
 	private String  HQOEmail;
@@ -135,22 +135,22 @@ public class PlantInfo implements Serializable{
 	private String  plantSlug;
 	
 	@Column(name = "auth_req")
-	private Integer  authReq;
+	private String  authReq;
 	
 	@Column(name = "station_count")
-	private Integer  stationCount;
+	private String  stationCount;
 	
 	@Column(name = "plant_vendor")
 	private String  plantVendor;
 	
 	@Column(name = "CAAQMS_Station")
-	private Integer  caaqmsStation;
+	private String  caaqmsStation;
 	
 	@Column(name = "CEMS_Station")
-	private Integer  cemsStation;
+	private String  cemsStation;
 	
 	@Column(name = "CEQMS_Station")
-	private Integer  ceqmsStation;
+	private String  ceqmsStation;
 	
 	@Column(name = "secd_person")
 	private String  secdPerson;
@@ -159,31 +159,43 @@ public class PlantInfo implements Serializable{
 	private String  secdPersonDesig;
 	
 	@Column(name = "secd_person_mob")
-	private Integer  secdPersonMob;
+	private String  secdPersonMob;
 	
 	@Column(name = "secd_email")
-	private Integer  secdEmail;
+	private String  secdEmail;
 	
 	@Column(name="user_name")
 	private String userName;
+	
+	@Column(name = "created_by")
+	private String  createdBy;
+	
+	@Column(name = "created_dt")
+	private String  createdDt;
+	
+	@Column(name = "last_modified_by")
+	private String  lastModifiedBy;
+	
+	@Column(name="last_modified_dt")
+	private String lastModifiedDt;
 
 	
 
-	public Integer getPid() {
+	public long getPid() {
 		return pid;
 	}
 
-	public void setPid(Integer pid) {
+	public void setPid(long pid) {
 		this.pid = pid;
 	}
 
 	
 
-	public String getPlantId() {
+	public long getPlantId() {
 		return plantId;
 	}
 
-	public void setPlantId(String plantId) {
+	public void setPlantId(long plantId) {
 		this.plantId = plantId;
 	}
 
@@ -371,11 +383,11 @@ public class PlantInfo implements Serializable{
 		this.latLong = latLong;
 	}
 
-	public Integer getConnected() {
+	public String getConnected() {
 		return connected;
 	}
 
-	public void setConnected(Integer connected) {
+	public void setConnected(String connected) {
 		this.connected = connected;
 	}
 
@@ -403,11 +415,11 @@ public class PlantInfo implements Serializable{
 		this.plantName = plantName;
 	}
 
-	public Integer getAnalyzerCount() {
+	public String getAnalyzerCount() {
 		return analyzerCount;
 	}
 
-	public void setAnalyzerCount(Integer analyzerCount) {
+	public void setAnalyzerCount(String analyzerCount) {
 		this.analyzerCount = analyzerCount;
 	}
 
@@ -463,43 +475,23 @@ public class PlantInfo implements Serializable{
 		return plantSlug;
 	}
 
-
-	@Override
-	public String toString() {
-		return "PlantInfo [pid=" + pid + ", plantId=" + plantId + ", password=" + password + ", pin=" + pin
-				+ ", plantNm=" + plantNm + ", typ=" + typ + ", district=" + district + ", town=" + town + ", street="
-				+ street + ", state=" + state + ", email=" + email + ", web=" + web + ", zonal=" + zonal + ", grdId="
-				+ grdId + ", timeStamp=" + timeStamp + ", authPerson=" + authPerson + ", authoPerMob=" + authoPerMob
-				+ ", authPersonDesig=" + authPersonDesig + ", cpcbUser=" + cpcbUser + ", cpcbUserEmail=" + cpcbUserEmail
-				+ ", cpcbUserMob=" + cpcbUserMob + ", cpcbUsr2=" + cpcbUsr2 + ", cpcbUserEmail2=" + cpcbUserEmail2
-				+ ", cpcbUserMob2=" + cpcbUserMob2 + ", latLong=" + latLong + ", connected=" + connected
-				+ ", deptEmail=" + deptEmail + ", category=" + category + ", plantName=" + plantName
-				+ ", analyzerCount=" + analyzerCount + ", HQOEmail=" + HQOEmail + ", inletUrl=" + inletUrl
-				+ ", outletUrl=" + outletUrl + ", roUser=" + roUser + ", roUserEmail=" + roUserEmail + ", roUserMob="
-				+ roUserMob + ", plantSlug=" + plantSlug + ", authReq=" + authReq + ", stationCount=" + stationCount
-				+ ", plantVendor=" + plantVendor + ", caaqmsStation=" + caaqmsStation + ", cemsStation=" + cemsStation
-				+ ", ceqmsStation=" + ceqmsStation + ", secdPerson=" + secdPerson + ", secdPersonDesig="
-				+ secdPersonDesig + ", secdPersonMob=" + secdPersonMob + ", secdEmail=" + secdEmail + ", userName="
-				+ userName + "]";
-	}
-
 	public void setPlantSlug(String plantSlug) {
 		this.plantSlug = plantSlug;
 	}
 
-	public Integer getAuthReq() {
+	public String getAuthReq() {
 		return authReq;
 	}
 
-	public void setAuthReq(Integer authReq) {
+	public void setAuthReq(String authReq) {
 		this.authReq = authReq;
 	}
 
-	public Integer getStationCount() {
+	public String getStationCount() {
 		return stationCount;
 	}
 
-	public void setStationCount(Integer stationCount) {
+	public void setStationCount(String stationCount) {
 		this.stationCount = stationCount;
 	}
 
@@ -511,27 +503,27 @@ public class PlantInfo implements Serializable{
 		this.plantVendor = plantVendor;
 	}
 
-	public Integer getCaaqmsStation() {
+	public String getCaaqmsStation() {
 		return caaqmsStation;
 	}
 
-	public void setCaaqmsStation(Integer caaqmsStation) {
+	public void setCaaqmsStation(String caaqmsStation) {
 		this.caaqmsStation = caaqmsStation;
 	}
 
-	public Integer getCemsStation() {
+	public String getCemsStation() {
 		return cemsStation;
 	}
 
-	public void setCemsStation(Integer cemsStation) {
+	public void setCemsStation(String cemsStation) {
 		this.cemsStation = cemsStation;
 	}
 
-	public Integer getCeqmsStation() {
+	public String getCeqmsStation() {
 		return ceqmsStation;
 	}
 
-	public void setCeqmsStation(Integer ceqmsStation) {
+	public void setCeqmsStation(String ceqmsStation) {
 		this.ceqmsStation = ceqmsStation;
 	}
 
@@ -551,19 +543,19 @@ public class PlantInfo implements Serializable{
 		this.secdPersonDesig = secdPersonDesig;
 	}
 
-	public Integer getSecdPersonMob() {
+	public String getSecdPersonMob() {
 		return secdPersonMob;
 	}
 
-	public void setSecdPersonMob(Integer secdPersonMob) {
+	public void setSecdPersonMob(String secdPersonMob) {
 		this.secdPersonMob = secdPersonMob;
 	}
 
-	public Integer getSecdEmail() {
+	public String getSecdEmail() {
 		return secdEmail;
 	}
 
-	public void setSecdEmail(Integer secdEmail) {
+	public void setSecdEmail(String secdEmail) {
 		this.secdEmail = secdEmail;
 	}
 
@@ -576,8 +568,81 @@ public class PlantInfo implements Serializable{
 	}
 
 	
-	
-	
+	/**
+	 * @return the createdBy
+	 */
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	/**
+	 * @return the createdDt
+	 */
+	public String getCreatedDt() {
+		return createdDt;
+	}
+
+	/**
+	 * @param createdDt the createdDt to set
+	 */
+	public void setCreatedDt(String createdDt) {
+		this.createdDt = createdDt;
+	}
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	/**
+	 * @return the lastModifiedDt
+	 */
+	public String getLastModifiedDt() {
+		return lastModifiedDt;
+	}
+
+	/**
+	 * @param lastModifiedDt the lastModifiedDt to set
+	 */
+	public void setLastModifiedDt(String lastModifiedDt) {
+		this.lastModifiedDt = lastModifiedDt;
+	}
+
+	@Override
+	public String toString() {
+		return "PlantInfo [pid=" + pid + ", plantId=" + plantId + ", password=" + password + ", pin=" + pin
+				+ ", plantNm=" + plantNm + ", typ=" + typ + ", district=" + district + ", town=" + town + ", street="
+				+ street + ", state=" + state + ", email=" + email + ", web=" + web + ", zonal=" + zonal + ", grdId="
+				+ grdId + ", timeStamp=" + timeStamp + ", authPerson=" + authPerson + ", authoPerMob=" + authoPerMob
+				+ ", authPersonDesig=" + authPersonDesig + ", cpcbUser=" + cpcbUser + ", cpcbUserEmail=" + cpcbUserEmail
+				+ ", cpcbUserMob=" + cpcbUserMob + ", cpcbUsr2=" + cpcbUsr2 + ", cpcbUserEmail2=" + cpcbUserEmail2
+				+ ", cpcbUserMob2=" + cpcbUserMob2 + ", latLong=" + latLong + ", connected=" + connected
+				+ ", deptEmail=" + deptEmail + ", category=" + category + ", plantName=" + plantName
+				+ ", analyzerCount=" + analyzerCount + ", HQOEmail=" + HQOEmail + ", inletUrl=" + inletUrl
+				+ ", outletUrl=" + outletUrl + ", roUser=" + roUser + ", roUserEmail=" + roUserEmail + ", roUserMob="
+				+ roUserMob + ", plantSlug=" + plantSlug + ", authReq=" + authReq + ", stationCount=" + stationCount
+				+ ", plantVendor=" + plantVendor + ", caaqmsStation=" + caaqmsStation + ", cemsStation=" + cemsStation
+				+ ", ceqmsStation=" + ceqmsStation + ", secdPerson=" + secdPerson + ", secdPersonDesig="
+				+ secdPersonDesig + ", secdPersonMob=" + secdPersonMob + ", secdEmail=" + secdEmail + ", userName="
+				+ userName + ", createdBy=" + createdBy + ", createdDt=" + createdDt + ", lastModifiedBy="
+				+ lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + "]";
+	}
 	
 	
 

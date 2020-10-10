@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skeleton.alumini.entity.Employee;
 import com.skeleton.alumini.helper.UserHelper;
 import com.skeleton.alumini.service.EmployeeService;
+import com.skeleton.alumini.util.ResponseObject;
 
 @RestController
 @RequestMapping("/alumini/employees")
@@ -42,11 +43,11 @@ public class EmployeeController {
 	 */
 	
 	@PostMapping("/")
-	public ResponseEntity<?> insertEmployeeData(@RequestBody UserHelper emp) {
+	public ResponseObject insertEmployeeData(@RequestBody UserHelper plantRegistration) {
     	
-		logger.info("REQUEST RECV : " + emp);
-		UserHelper entity = employeeService.insertPlantStationInfo(emp);	    		
-	    return new ResponseEntity<UserHelper>(entity, new HttpHeaders(), HttpStatus.CREATED);
+		logger.info("REQUEST RECV : " + plantRegistration);
+		ResponseObject entity = employeeService.insertPlantStationInfo(plantRegistration);	    		
+	    return entity;
 	}
 	
 	

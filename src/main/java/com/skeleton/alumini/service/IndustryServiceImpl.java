@@ -1,6 +1,7 @@
 package com.skeleton.alumini.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.skeleton.alumini.constants.ApplicationConstants;
@@ -16,7 +17,7 @@ public class IndustryServiceImpl implements IndustryService{
 
 	@Override
 	public ResponseObject getIndustryList() {
-		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, 200,
+		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
 				ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 		return new ResponseObject(industryRepository.findAll(), SuccessApiStatus);
 	}

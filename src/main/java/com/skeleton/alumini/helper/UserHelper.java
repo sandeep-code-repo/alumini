@@ -10,8 +10,8 @@ public class UserHelper {
 
 	
 	private PlantInfo  plantInfo;
-	private StationInfo  stationInfo;
-	private List<ParameterInfo> parameterInfo;
+	private StationInfoMapper  stationInfo;
+	//private List<ParameterInfo> parameterInfo;
 	private String userName;
 	public PlantInfo getPlantInfo() {
 		return plantInfo;
@@ -19,18 +19,18 @@ public class UserHelper {
 	public void setPlantInfo(PlantInfo plantInfo) {
 		this.plantInfo = plantInfo;
 	}
-	public StationInfo getStationInfo() {
+	public StationInfoMapper getStationInfo() {
 		return stationInfo;
 	}
-	public void setStationInfo(StationInfo stationInfo) {
+	public void setStationInfo(StationInfoMapper stationInfo) {
 		this.stationInfo = stationInfo;
 	}
-	public List<ParameterInfo> getParameterInfo() {
-		return parameterInfo;
-	}
-	public void setParameterInfo(List<ParameterInfo> parameterInfo) {
-		this.parameterInfo = parameterInfo;
-	}
+
+	/*
+	 * public List<ParameterInfo> getParameterInfo() { return parameterInfo; }
+	 * public void setParameterInfo(List<ParameterInfo> parameterInfo) {
+	 * this.parameterInfo = parameterInfo; }
+	 */
 	public String getUserName() {
 		return userName;
 	}
@@ -39,8 +39,7 @@ public class UserHelper {
 	}
 	@Override
 	public String toString() {
-		return "UserHelper [plantInfo=" + plantInfo + ", stationInfo=" + stationInfo + ", parameterInfo="
-				+ parameterInfo + ", userName=" + userName + "]";
+		return "UserHelper [plantInfo=" + plantInfo + ", stationInfo=" + stationInfo +", userName=" + userName + "]";
 	}
 	
 	
