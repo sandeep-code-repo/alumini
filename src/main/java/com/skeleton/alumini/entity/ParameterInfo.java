@@ -22,11 +22,11 @@ public class ParameterInfo implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "para_id")
-	private Integer paraId;
+	private long paraId;
 	
 	
 	@Column(name = "sid")
-	private Integer sid;
+	private long sid;
 	
 	@Column(name = "paramter")
 	private String paramter;
@@ -54,20 +54,32 @@ public class ParameterInfo implements Serializable{
 	
 	@Column(name = "Unit")
 	private String Unit;
+	
+	@Column(name = "created_by")
+	private String  createdBy;
+	
+	@Column(name = "created_dt")
+	private String  createdDt;
+	
+	@Column(name = "last_modified_by")
+	private String  lastModifiedBy;
+	
+	@Column(name="last_modified_dt")
+	private String lastModifiedDt;
 
-	public Integer getParaId() {
+	public long getParaId() {
 		return paraId;
 	}
 
-	public void setParaId(Integer paraId) {
+	public void setParaId(long paraId) {
 		this.paraId = paraId;
 	}
 
-	public Integer getSid() {
+	public long getSid() {
 		return sid;
 	}
 
-	public void setSid(Integer sid) {
+	public void setSid(long sid) {
 		this.sid = sid;
 	}
 
@@ -144,20 +156,72 @@ public class ParameterInfo implements Serializable{
 	public void setUnit(String unit) {
 		Unit = unit;
 	}
+	
+	/**
+	 * @return the createdBy
+	 */
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy the createdBy to set
+	 */
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	/**
+	 * @return the createdDt
+	 */
+	public String getCreatedDt() {
+		return createdDt;
+	}
+
+	/**
+	 * @param createdDt the createdDt to set
+	 */
+	public void setCreatedDt(String createdDt) {
+		this.createdDt = createdDt;
+	}
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	/**
+	 * @return the lastModifiedDt
+	 */
+	public String getLastModifiedDt() {
+		return lastModifiedDt;
+	}
+
+	/**
+	 * @param lastModifiedDt the lastModifiedDt to set
+	 */
+	public void setLastModifiedDt(String lastModifiedDt) {
+		this.lastModifiedDt = lastModifiedDt;
+	}
 
 	@Override
 	public String toString() {
 		return "ParameterInfo [paraId=" + paraId + ", sid=" + sid + ", paramter=" + paramter + ", analyserMake="
 				+ analyserMake + ", analyserModel=" + analyserModel + ", analyserSerialNo=" + analyserSerialNo
 				+ ", devidceIMEINo=" + devidceIMEINo + ", macId=" + macId + ", measurmentMin=" + measurmentMin
-				+ ", measurmentMax=" + measurmentMax + ", Unit=" + Unit + "]";
+				+ ", measurmentMax=" + measurmentMax + ", Unit=" + Unit + ", createdBy=" + createdBy + ", createdDt="
+				+ createdDt + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + "]";
 	}
 
-	
-	
-	
-	
-	
 	
 	
 
