@@ -1,4 +1,4 @@
-package com.skeleton.alumini.exception;
+package com.rest.dataservice.exception;
 
 
 

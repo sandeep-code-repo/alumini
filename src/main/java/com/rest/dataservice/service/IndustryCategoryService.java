@@ -1,10 +1,10 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 import java.util.List;
 
-import com.skeleton.alumini.entity.IndustryCatagory;
-import com.skeleton.alumini.util.RequestObject;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.entity.IndustryCatagory;
+import com.rest.dataservice.util.RequestObject;
+import com.rest.dataservice.util.ResponseObject;
 
 public interface IndustryCategoryService {
 	

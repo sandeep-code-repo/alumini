@@ -1,4 +1,4 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.skeleton.alumini.constants.ApplicationConstants;
-import com.skeleton.alumini.entity.IndustryCatagory;
-import com.skeleton.alumini.repository.IndustryCategoryRepository;
-import com.skeleton.alumini.util.CommonApiStatus;
-import com.skeleton.alumini.util.RequestObject;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.constants.ApplicationConstants;
+import com.rest.dataservice.entity.IndustryCatagory;
+import com.rest.dataservice.repository.IndustryCategoryRepository;
+import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.RequestObject;
+import com.rest.dataservice.util.ResponseObject;
 
 @Service
 public class IndustryCategoryServiceImpl implements IndustryCategoryService{

@@ -1,11 +1,11 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 import java.util.List;
 
-import com.skeleton.alumini.entity.Employee;
-import com.skeleton.alumini.entity.StationInfo;
-import com.skeleton.alumini.helper.UserHelper;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.entity.StationInfo;
+import com.rest.dataservice.helper.UserHelper;
+import com.rest.dataservice.util.ResponseObject;
 
 public interface EmployeeService {
 

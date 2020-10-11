@@ -8,10 +8,10 @@
 		<version>2.2.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.skeleton.alumini</groupId>
-	<artifactId>alumini</artifactId>
+	<groupId>com.rest.dataservice</groupId>
+	<artifactId>restService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>alumini</name>
+	<name>restService</name>
 	<description>Alumini project for Spring Boot</description>
 
 	<properties>

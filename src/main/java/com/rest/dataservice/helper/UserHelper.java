@@ -1,10 +1,10 @@
-package com.skeleton.alumini.helper;
+package com.rest.dataservice.helper;
 
 import java.util.List;
 
-import com.skeleton.alumini.entity.ParameterInfo;
-import com.skeleton.alumini.entity.PlantInfo;
-import com.skeleton.alumini.entity.StationInfo;
+import com.rest.dataservice.entity.ParameterInfo;
+import com.rest.dataservice.entity.PlantInfo;
+import com.rest.dataservice.entity.StationInfo;
 
 public class UserHelper {
 

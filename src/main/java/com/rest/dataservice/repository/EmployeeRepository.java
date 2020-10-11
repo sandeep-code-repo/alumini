@@ -1,11 +1,11 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.skeleton.alumini.entity.Employee;
+import com.rest.dataservice.entity.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 

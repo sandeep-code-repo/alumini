@@ -1,4 +1,4 @@
-package com.skeleton.alumini.controller;
+package com.rest.dataservice.controller;
 import org.springframework.http.MediaType;
 
 import java.util.List;
@@ -19,13 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skeleton.alumini.entity.Employee;
-import com.skeleton.alumini.helper.UserHelper;
-import com.skeleton.alumini.service.EmployeeService;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.helper.UserHelper;
+import com.rest.dataservice.service.EmployeeService;
+import com.rest.dataservice.util.ResponseObject;
 
 @RestController
-@RequestMapping("/alumini/employees")
 public class EmployeeController {
 	
 	
@@ -42,7 +41,7 @@ public class EmployeeController {
 	 * insert employee details
 	 */
 	
-	@PostMapping("/")
+	@PostMapping("/register")
 	public ResponseObject insertEmployeeData(@RequestBody UserHelper plantRegistration) {
     	
 		logger.info("REQUEST RECV : " + plantRegistration);

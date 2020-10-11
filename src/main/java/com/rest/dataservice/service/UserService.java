@@ -1,7 +1,7 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
-import com.skeleton.alumini.entity.UseInfo;
-import com.skeleton.alumini.entity.User;
+import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.entity.User;
 
 /**
  * @Jayashree
@@ -10,5 +10,5 @@ import com.skeleton.alumini.entity.User;
 
 public interface UserService {
 	
-	UseInfo findByUsername(String userName,String password);
+	UserInfo findByUsername(String userName,String password);
 }

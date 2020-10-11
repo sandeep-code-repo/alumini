@@ -1,4 +1,4 @@
-package com.skeleton.alumini.controller;
+package com.rest.dataservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skeleton.alumini.entity.Industry;
-import com.skeleton.alumini.service.IndustryService;
-import com.skeleton.alumini.util.AbstractMapper;
-import com.skeleton.alumini.util.RequestObject;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.entity.Industry;
+import com.rest.dataservice.service.IndustryService;
+import com.rest.dataservice.util.AbstractMapper;
+import com.rest.dataservice.util.RequestObject;
+import com.rest.dataservice.util.ResponseObject;
 
 
 
@@ -20,7 +20,6 @@ import com.skeleton.alumini.util.ResponseObject;
  *
  */
 @RestController
-@RequestMapping("/alumini")
 public class IndustryController extends AbstractMapper{
 	
 	@Autowired

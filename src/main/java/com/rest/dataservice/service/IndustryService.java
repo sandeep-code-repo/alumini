@@ -1,6 +1,6 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.util.ResponseObject;
 
 public interface IndustryService {
 

@@ -1,4 +1,4 @@
-package com.skeleton.alumini.exceptionhandler;
+package com.rest.dataservice.exceptionhandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.skeleton.alumini.exception.ErrorResponse;
-import com.skeleton.alumini.exception.SystemException;
+import com.rest.dataservice.exception.ErrorResponse;
+import com.rest.dataservice.exception.SystemException;
 
 
 

@@ -1,4 +1,4 @@
-package com.skeleton.alumini.service;
+package com.rest.dataservice.service;
 
 
 
@@ -11,18 +11,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skeleton.alumini.constants.ApplicationConstants;
-import com.skeleton.alumini.entity.Employee;
-import com.skeleton.alumini.entity.ParameterInfo;
-import com.skeleton.alumini.entity.PlantInfo;
-import com.skeleton.alumini.entity.StationInfo;
-import com.skeleton.alumini.helper.UserHelper;
-import com.skeleton.alumini.repository.EmployeeRepository;
-import com.skeleton.alumini.repository.ParameterInfoRepository;
-import com.skeleton.alumini.repository.PlantInfoRepository;
-import com.skeleton.alumini.repository.StationInfoRepository;
-import com.skeleton.alumini.util.CommonApiStatus;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.constants.ApplicationConstants;
+import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.entity.ParameterInfo;
+import com.rest.dataservice.entity.PlantInfo;
+import com.rest.dataservice.entity.StationInfo;
+import com.rest.dataservice.helper.UserHelper;
+import com.rest.dataservice.repository.EmployeeRepository;
+import com.rest.dataservice.repository.ParameterInfoRepository;
+import com.rest.dataservice.repository.PlantInfoRepository;
+import com.rest.dataservice.repository.StationInfoRepository;
+import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.ResponseObject;
 
 @Service
 public class EmployeeServiceImpl  implements EmployeeService{
@@ -156,9 +156,9 @@ public class EmployeeServiceImpl  implements EmployeeService{
 			//parameterInfoRepository.saveAll(paramInfoList);
 		 
 		  }
-		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
-				ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
-		return new ResponseObject(user,SuccessApiStatus);
+		  CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.CREATED,
+					ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
+			return new ResponseObject("User Registered Successfully",SuccessApiStatus);
 }
 	
 	

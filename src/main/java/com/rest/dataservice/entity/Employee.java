@@ -1,4 +1,4 @@
-package com.skeleton.alumini.entity;
+package com.rest.dataservice.entity;
 
 import java.io.Serializable;
 import java.util.Date;

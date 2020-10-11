@@ -1,4 +1,4 @@
-package com.skeleton.alumini.entity;
+package com.rest.dataservice.entity;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_info")
-public class UseInfo implements Serializable{
+public class UserInfo implements Serializable{
 
 	/**
 	 * @Jayashree

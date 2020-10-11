@@ -1,4 +1,4 @@
-package com.skeleton.alumini.util;
+package com.rest.dataservice.util;
 
 import java.io.File;
 import java.io.FileOutputStream;

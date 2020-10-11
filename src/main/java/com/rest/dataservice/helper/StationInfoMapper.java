@@ -1,4 +1,4 @@
-package com.skeleton.alumini.helper;
+package com.rest.dataservice.helper;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.skeleton.alumini.entity.ParameterInfo;
+import com.rest.dataservice.entity.ParameterInfo;
 
 public class StationInfoMapper {
 

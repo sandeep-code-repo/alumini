@@ -1,4 +1,4 @@
-package com.skeleton.alumini.security;
+package com.rest.dataservice.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.skeleton.alumini.util.SecurityKeyUtil;
+import com.rest.dataservice.util.SecurityKeyUtil;
 
 @Configuration
 @EnableWebSecurity

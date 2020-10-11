@@ -1,4 +1,4 @@
-package com.skeleton.alumini.constants;
+package com.rest.dataservice.constants;
 
 public class ApplicationConstants {
 	

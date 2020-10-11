@@ -1,4 +1,4 @@
-package com.skeleton.alumini.controller;
+package com.rest.dataservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skeleton.alumini.entity.UseInfo;
-import com.skeleton.alumini.entity.User;
-import com.skeleton.alumini.service.UserService;
-import com.skeleton.alumini.util.CommonApiStatus;
-import com.skeleton.alumini.util.ResponseObject;
+import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.entity.User;
+import com.rest.dataservice.service.UserService;
+import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.ResponseObject;
 
 /**
  * @author Jayashree
@@ -25,7 +25,6 @@ import com.skeleton.alumini.util.ResponseObject;
 
 
 @RestController
-@RequestMapping("/alumini")
 public class UserController {
 	
 	@Autowired
@@ -35,13 +34,16 @@ public class UserController {
 	
 	@PostMapping(value ="/login",produces = MediaType.APPLICATION_JSON_VALUE)
 	
-	public ResponseObject loginByUserName(@RequestBody UseInfo user)
+	public ResponseObject loginByUserName(@RequestBody UserInfo user)
 	{
-		userService.findByUsername(user.getUserName(),user.getPassword());
+		if(user.getUserName().equals("hindalco") && user.getPassword().equals("hindalco@123")) {
+			userService.findByUsername(user.getUserName(),user.getPassword());
+			return new ResponseObject("User Logged in Successfully",new CommonApiStatus("success",HttpStatus.OK,"success"));
+			}else
+				return new ResponseObject("Invalid user",new CommonApiStatus("failed",HttpStatus.UNAUTHORIZED,"This is not a valid credential"));
+		}
 		
-		//CommonApiStatus responseStatus=new CommonApiStatus("success",200,"message");
-		return new ResponseObject(new CommonApiStatus("success",HttpStatus.OK,"success"));
 	}
 	
 
-}
+

@@ -1,4 +1,4 @@
-package com.skeleton.alumini.repository;
+package com.rest.dataservice.repository;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.skeleton.alumini.entity.IndustryCatagory;
+import com.rest.dataservice.entity.IndustryCatagory;
 
 @Repository
 public interface IndustryCategoryRepository extends JpaRepository<IndustryCatagory, Integer> {

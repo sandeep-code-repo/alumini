@@ -1,6 +1,6 @@
-package com.skeleton.alumini;
+package com.rest.dataservice;
 /*
- * package com.skeleton.alumini;
+ * package com.rest.dataservice;
  * 
  * import org.junit.jupiter.api.Test; import
  * org.springframework.boot.test.context.SpringBootTest;
