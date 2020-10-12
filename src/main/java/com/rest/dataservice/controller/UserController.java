@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.entity.Role;
 import com.rest.dataservice.entity.User;
 import com.rest.dataservice.service.UserService;
 import com.rest.dataservice.util.CommonApiStatus;
@@ -52,6 +53,24 @@ public class UserController {
 		}else
 			return new ResponseObject("Invalid user",new CommonApiStatus("failed",HttpStatus.UNAUTHORIZED,"This is not a valid credential"));
 	}
+	
+	
+	
+	/**
+	 * 
+	 * @param Role
+	 * @return
+	 * @description
+	 * insert role name
+	 */
+
+	@PostMapping("/addrole")
+	public ResponseObject insertEmployeeData(@RequestBody Role role) {
+		
+		ResponseObject entity = userService.insertRole(role);	   
+	    return entity;
+	}
+	
 
 
 }

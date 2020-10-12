@@ -17,7 +17,7 @@ import com.rest.dataservice.entity.ParameterInfo;
 import com.rest.dataservice.entity.PlantInfo;
 import com.rest.dataservice.entity.StationInfo;
 import com.rest.dataservice.helper.UserHelper;
-import com.rest.dataservice.repository.EmployeeRepository;
+import com.rest.dataservice.repository.PlantRegistrationRepository;
 import com.rest.dataservice.repository.ParameterInfoRepository;
 import com.rest.dataservice.repository.PlantInfoRepository;
 import com.rest.dataservice.repository.StationInfoRepository;
@@ -25,10 +25,10 @@ import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.ResponseObject;
 
 @Service
-public class EmployeeServiceImpl  implements EmployeeService{
+public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 	
 	@Autowired
-	EmployeeRepository employeeRepository;
+	PlantRegistrationRepository employeeRepository;
 	
 	@Autowired
 	PlantInfoRepository plantInfoRepository;

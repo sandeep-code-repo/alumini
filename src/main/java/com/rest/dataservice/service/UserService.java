@@ -1,6 +1,8 @@
 package com.rest.dataservice.service;
 
 import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.util.ResponseObject;
+import com.rest.dataservice.entity.Role;
 import com.rest.dataservice.entity.User;
 
 /**
@@ -11,4 +13,6 @@ import com.rest.dataservice.entity.User;
 public interface UserService {
 	
 	UserInfo findByUsername(String userName,String password);
+	
+	ResponseObject insertRole(Role role);
 }

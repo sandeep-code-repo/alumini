@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.rest.dataservice.entity.Employee;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+public interface PlantRegistrationRepository extends JpaRepository<Employee, Integer> {
 
 	@Query("FROM Employee WHERE iName=:iName")
 	Employee getEmpByName(@Param("iName") String iName);

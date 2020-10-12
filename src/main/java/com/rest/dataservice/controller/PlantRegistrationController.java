@@ -21,24 +21,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.dataservice.entity.Employee;
 import com.rest.dataservice.helper.UserHelper;
-import com.rest.dataservice.service.EmployeeService;
+import com.rest.dataservice.service.PlantRegistrationService;
 import com.rest.dataservice.util.ResponseObject;
 
 @RestController
-public class EmployeeController {
+public class PlantRegistrationController {
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PlantRegistrationController.class);
 	
 	@Autowired
-	private EmployeeService employeeService;
+	private PlantRegistrationService employeeService;
 	
 	/**
 	 * 
-	 * @param employee
+	 * @param Plant
 	 * @return
 	 * @description
-	 * insert employee details
+	 * insert Plant details
 	 */
 	
 	@PostMapping("/register")

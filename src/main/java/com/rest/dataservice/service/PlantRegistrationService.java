@@ -7,7 +7,7 @@ import com.rest.dataservice.entity.StationInfo;
 import com.rest.dataservice.helper.UserHelper;
 import com.rest.dataservice.util.ResponseObject;
 
-public interface EmployeeService {
+public interface PlantRegistrationService {
 
 	/* StationInfo insertemp(StationInfo employee); */
 

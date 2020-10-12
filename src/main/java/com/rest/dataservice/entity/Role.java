@@ -59,6 +59,81 @@ public class Role {
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date  modifiedDt;
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public String getRoleDesc() {
+		return roleDesc;
+	}
+
+	public void setRoleDesc(String roleDesc) {
+		this.roleDesc = roleDesc;
+	}
+
+	public String getRoleType() {
+		return roleType;
+	}
+
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
+	}
+
+	public String getRoleStatus() {
+		return roleStatus;
+	}
+
+	public void setRoleStatus(String roleStatus) {
+		this.roleStatus = roleStatus;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedDt() {
+		return createdDt;
+	}
+
+	public void setCreatedDt(Date createdDt) {
+		this.createdDt = createdDt;
+	}
+
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+
+	public Date getModifiedDt() {
+		return modifiedDt;
+	}
+
+	public void setModifiedDt(Date modifiedDt) {
+		this.modifiedDt = modifiedDt;
+	}
+	
+	
+	
 	
 	
 
