@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +27,9 @@ public class UserInfo implements Serializable{
 	
 	@Column(name = "user_id")
 	private String  userId;
+	
+	@Column(name = "role_id_fk")
+	private String  roleIdFk;
 	
 	@Column(name = "user_name")
 	private String  userName;

@@ -1,7 +1,10 @@
 package com.rest.dataservice.util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -30,7 +33,10 @@ public class RSAKeyPairGenerator {
         fos.write(key);
         fos.flush();
         fos.close();
-    }
+  
+}
+    
+
 
     public PrivateKey getPrivateKey() {
         return privateKey;
@@ -40,11 +46,16 @@ public class RSAKeyPairGenerator {
         return publicKey;
     }
     
-    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
-        RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
-        keyPairGenerator.writeToFile("RSA/publicKey.txt", keyPairGenerator.getPublicKey().getEncoded());
-        keyPairGenerator.writeToFile("RSA/privateKey.txt", keyPairGenerator.getPrivateKey().getEncoded());
-        System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));
-        System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.getPrivateKey().getEncoded()));
-    }
+	/*
+	 * public static void main(String[] args) throws NoSuchAlgorithmException,
+	 * IOException { RSAKeyPairGenerator keyPairGenerator = new
+	 * RSAKeyPairGenerator(); keyPairGenerator.writeToFile("RSA/publicKey.txt",
+	 * keyPairGenerator.getPublicKey().getEncoded());
+	 * keyPairGenerator.writeToFile("RSA/privateKey.txt",
+	 * keyPairGenerator.getPrivateKey().getEncoded());
+	 * System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.
+	 * getPublicKey().getEncoded()));
+	 * System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.
+	 * getPrivateKey().getEncoded())); }
+	 */
 }
