@@ -5,6 +5,8 @@ import java.util.List;
 import com.rest.dataservice.entity.ParameterInfo;
 import com.rest.dataservice.entity.PlantInfo;
 import com.rest.dataservice.entity.StationInfo;
+import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.entity.UserRole;
 
 public class UserHelper {
 
@@ -13,6 +15,9 @@ public class UserHelper {
 	private StationInfoMapper  stationInfo;
 	//private List<ParameterInfo> parameterInfo;
 	private String userName;
+	private UserInfo userinfo;
+	private UserRole userrole;
+	
 	public PlantInfo getPlantInfo() {
 		return plantInfo;
 	}
@@ -37,10 +42,19 @@ public class UserHelper {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	@Override
-	public String toString() {
-		return "UserHelper [plantInfo=" + plantInfo + ", stationInfo=" + stationInfo +", userName=" + userName + "]";
+	public UserInfo getUserinfo() {
+		return userinfo;
 	}
+	public void setUserinfo(UserInfo userinfo) {
+		this.userinfo = userinfo;
+	}
+	public UserRole getUserrole() {
+		return userrole;
+	}
+	public void setUserrole(UserRole userrole) {
+		this.userrole = userrole;
+	}
+	
 	
 	
 	

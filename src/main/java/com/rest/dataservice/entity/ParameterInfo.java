@@ -1,6 +1,7 @@
 package com.rest.dataservice.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,7 +60,7 @@ public class ParameterInfo implements Serializable{
 	private String  createdBy;
 	
 	@Column(name = "created_dt")
-	private String  createdDt;
+	private Date  createdDt;
 	
 	@Column(name = "last_modified_by")
 	private String  lastModifiedBy;
@@ -171,17 +172,13 @@ public class ParameterInfo implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	/**
-	 * @return the createdDt
-	 */
-	public String getCreatedDt() {
+
+
+	public Date getCreatedDt() {
 		return createdDt;
 	}
 
-	/**
-	 * @param createdDt the createdDt to set
-	 */
-	public void setCreatedDt(String createdDt) {
+	public void setCreatedDt(Date createdDt) {
 		this.createdDt = createdDt;
 	}
 
@@ -213,14 +210,7 @@ public class ParameterInfo implements Serializable{
 		this.lastModifiedDt = lastModifiedDt;
 	}
 
-	@Override
-	public String toString() {
-		return "ParameterInfo [paraId=" + paraId + ", sid=" + sid + ", paramter=" + paramter + ", analyserMake="
-				+ analyserMake + ", analyserModel=" + analyserModel + ", analyserSerialNo=" + analyserSerialNo
-				+ ", devidceIMEINo=" + devidceIMEINo + ", macId=" + macId + ", measurmentMin=" + measurmentMin
-				+ ", measurmentMax=" + measurmentMax + ", Unit=" + Unit + ", createdBy=" + createdBy + ", createdDt="
-				+ createdDt + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + "]";
-	}
+	
 
 	
 	

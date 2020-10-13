@@ -25,13 +25,7 @@ public class UserInfo implements Serializable{
 	@Column(name = "uid")
 	private Integer uid;
 	
-	@Column(name = "user_id")
-	private String  userId;
-	
-	@Column(name = "role_id_fk")
-	private String  roleIdFk;
-	
-	@Column(name = "user_name")
+	@Column(name = "user_name", unique = true, nullable=false)
 	private String  userName;
 	
 	@Column(name = "password")
@@ -60,6 +54,14 @@ public class UserInfo implements Serializable{
 	
 	@Column(name = "reportto")
 	private String  reportto;
+	
+	@Column(name = "rsaPublicKey")
+	private String rsaPublicKey;
+	
+	@Column(name = "rsaPrivateKey")
+	private String rsaPrivateKey;
+	
+	
 
 	public Integer getUid() {
 		return uid;
@@ -67,14 +69,6 @@ public class UserInfo implements Serializable{
 
 	public void setUid(Integer uid) {
 		this.uid = uid;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -156,6 +150,24 @@ public class UserInfo implements Serializable{
 	public void setReportto(String reportto) {
 		this.reportto = reportto;
 	}
+
+	public String getRsaPublicKey() {
+		return rsaPublicKey;
+	}
+
+	public void setRsaPublicKey(String rsaPublicKey) {
+		this.rsaPublicKey = rsaPublicKey;
+	}
+
+	public String getRsaPrivateKey() {
+		return rsaPrivateKey;
+	}
+
+	public void setRsaPrivateKey(String rsaPrivateKey) {
+		this.rsaPrivateKey = rsaPrivateKey;
+	}
+	
+	
 	
 	
 	

@@ -13,7 +13,7 @@ import com.rest.dataservice.entity.User;
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long>{
+public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	
 	@Query("FROM UserInfo WHERE username=:username and password =:password")
 	UserInfo findByUsername(String username,String password);

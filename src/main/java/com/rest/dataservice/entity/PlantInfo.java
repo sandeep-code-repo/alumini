@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,17 +24,11 @@ public class PlantInfo implements Serializable{
 	@Column(name = "pid")
 	private long pid;
 	
-	@Column(name = "plant_id")
-	private long  plantId;
-	
-	@Column(name = "password")
-	private String  password;
+	@Column(name = "plant_user_name")
+	private String  plantUserName;
 	
 	@Column(name = "pin")
 	private String  pin;
-	
-	@Column(name = "plant_nm")
-	private String  plantNm;
 	
 	@Column(name = "type")
 	private String  typ;
@@ -164,14 +156,11 @@ public class PlantInfo implements Serializable{
 	@Column(name = "secd_email")
 	private String  secdEmail;
 	
-	@Column(name="user_name")
-	private String userName;
-	
 	@Column(name = "created_by")
 	private String  createdBy;
 	
 	@Column(name = "created_dt")
-	private String  createdDt;
+	private Date  createdDt;
 	
 	@Column(name = "last_modified_by")
 	private String  lastModifiedBy;
@@ -189,22 +178,12 @@ public class PlantInfo implements Serializable{
 		this.pid = pid;
 	}
 
-	
-
-	public long getPlantId() {
-		return plantId;
+	public String getPlantUserName() {
+		return plantUserName;
 	}
 
-	public void setPlantId(long plantId) {
-		this.plantId = plantId;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPlantUserName(String plantUserName) {
+		this.plantUserName = plantUserName;
 	}
 
 	public String getPin() {
@@ -213,14 +192,6 @@ public class PlantInfo implements Serializable{
 
 	public void setPin(String pin) {
 		this.pin = pin;
-	}
-
-	public String getPlantNm() {
-		return plantNm;
-	}
-
-	public void setPlantNm(String plantNm) {
-		this.plantNm = plantNm;
 	}
 
 	public String getTyp() {
@@ -559,14 +530,6 @@ public class PlantInfo implements Serializable{
 		this.secdEmail = secdEmail;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 	
 	/**
 	 * @return the createdBy
@@ -582,17 +545,13 @@ public class PlantInfo implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	/**
-	 * @return the createdDt
-	 */
-	public String getCreatedDt() {
+	
+
+	public Date getCreatedDt() {
 		return createdDt;
 	}
 
-	/**
-	 * @param createdDt the createdDt to set
-	 */
-	public void setCreatedDt(String createdDt) {
+	public void setCreatedDt(Date createdDt) {
 		this.createdDt = createdDt;
 	}
 
@@ -624,25 +583,12 @@ public class PlantInfo implements Serializable{
 		this.lastModifiedDt = lastModifiedDt;
 	}
 
-	@Override
-	public String toString() {
-		return "PlantInfo [pid=" + pid + ", plantId=" + plantId + ", password=" + password + ", pin=" + pin
-				+ ", plantNm=" + plantNm + ", typ=" + typ + ", district=" + district + ", town=" + town + ", street="
-				+ street + ", state=" + state + ", email=" + email + ", web=" + web + ", zonal=" + zonal + ", grdId="
-				+ grdId + ", timeStamp=" + timeStamp + ", authPerson=" + authPerson + ", authoPerMob=" + authoPerMob
-				+ ", authPersonDesig=" + authPersonDesig + ", cpcbUser=" + cpcbUser + ", cpcbUserEmail=" + cpcbUserEmail
-				+ ", cpcbUserMob=" + cpcbUserMob + ", cpcbUsr2=" + cpcbUsr2 + ", cpcbUserEmail2=" + cpcbUserEmail2
-				+ ", cpcbUserMob2=" + cpcbUserMob2 + ", latLong=" + latLong + ", connected=" + connected
-				+ ", deptEmail=" + deptEmail + ", category=" + category + ", plantName=" + plantName
-				+ ", analyzerCount=" + analyzerCount + ", HQOEmail=" + HQOEmail + ", inletUrl=" + inletUrl
-				+ ", outletUrl=" + outletUrl + ", roUser=" + roUser + ", roUserEmail=" + roUserEmail + ", roUserMob="
-				+ roUserMob + ", plantSlug=" + plantSlug + ", authReq=" + authReq + ", stationCount=" + stationCount
-				+ ", plantVendor=" + plantVendor + ", caaqmsStation=" + caaqmsStation + ", cemsStation=" + cemsStation
-				+ ", ceqmsStation=" + ceqmsStation + ", secdPerson=" + secdPerson + ", secdPersonDesig="
-				+ secdPersonDesig + ", secdPersonMob=" + secdPersonMob + ", secdEmail=" + secdEmail + ", userName="
-				+ userName + ", createdBy=" + createdBy + ", createdDt=" + createdDt + ", lastModifiedBy="
-				+ lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + "]";
-	}
+	
+
+
+
+
+
 	
 	
 

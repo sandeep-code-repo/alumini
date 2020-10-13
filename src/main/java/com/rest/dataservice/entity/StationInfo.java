@@ -27,7 +27,7 @@ public class StationInfo implements Serializable{
 	@Column(name = "sid")
 	private long sid;
 	
-	@Column(name = "plant_id")
+	@Column(name = "plant_user_name")
 	private long plantId;
 	
 	@Column(name = "station_id")
@@ -100,7 +100,7 @@ public class StationInfo implements Serializable{
 	private String  createdBy;
 	
 	@Column(name = "created_dt")
-	private String  createdDt;
+	private Date  createdDt;
 	
 	@Column(name = "last_modified_by")
 	private String  lastModifiedBy;
@@ -318,17 +318,13 @@ public class StationInfo implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	/**
-	 * @return the createdDt
-	 */
-	public String getCreatedDt() {
+	
+
+	public Date getCreatedDt() {
 		return createdDt;
 	}
 
-	/**
-	 * @param createdDt the createdDt to set
-	 */
-	public void setCreatedDt(String createdDt) {
+	public void setCreatedDt(Date createdDt) {
 		this.createdDt = createdDt;
 	}
 
@@ -360,18 +356,8 @@ public class StationInfo implements Serializable{
 		this.lastModifiedDt = lastModifiedDt;
 	}
 
-	@Override
-	public String toString() {
-		return "StationInfo [sid=" + sid + ", plantId=" + plantId + ", stationId=" + stationId + ", analyzer="
-				+ analyzer + ", analyzerv2=" + analyzerv2 + ", shortName=" + shortName + ", location=" + location
-				+ ", installDt=" + installDt + ", token=" + token + ", macNo=" + macNo + ", stationNo=" + stationNo
-				+ ", stnType=" + stnType + ", hasThresold=" + hasThresold + ", pid=" + pid + ", stationVendor="
-				+ stationVendor + ", certification=" + certification + ", latitude=" + latitude + ", longitute="
-				+ longitute + ", measurementPrinciple=" + measurementPrinciple + ", stackHeight=" + stackHeight
-				+ ", stackDiameter=" + stackDiameter + ", stackVelocity=" + stackVelocity + ", gasDischargeRate="
-				+ gasDischargeRate + ", remarks=" + remarks + ", createdBy=" + createdBy + ", createdDt=" + createdDt
-				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + "]";
-	}
+	
+	
 
 	
 	
