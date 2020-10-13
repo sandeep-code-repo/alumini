@@ -31,7 +31,7 @@ public class UserRole {
 	private Long userRoleId;
 	
 	@Column(name = "plant_user_id",nullable=false)
-	private String plantUserId;
+	private Long plantUserId;
 	
 	@Column(name = "role_id",nullable=false)
 	private String roleId;
@@ -66,17 +66,14 @@ public class UserRole {
 		this.userRoleId = userRoleId;
 	}
 
-	/**
-	 * @return the plantUserId
-	 */
-	public String getPlantUserId() {
+
+
+
+	public Long getPlantUserId() {
 		return plantUserId;
 	}
 
-	/**
-	 * @param plantUserId the plantUserId to set
-	 */
-	public void setPlantUserId(String plantUserId) {
+	public void setPlantUserId(Long plantUserId) {
 		this.plantUserId = plantUserId;
 	}
 

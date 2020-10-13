@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rest.dataservice.entity.ParameterInfo;
 import com.rest.dataservice.entity.PlantInfo;
+import com.rest.dataservice.entity.Role;
 import com.rest.dataservice.entity.StationInfo;
 import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.entity.UserRole;
@@ -13,7 +14,6 @@ public class UserHelper {
 	
 	private PlantInfo  plantInfo;
 	private StationInfoMapper  stationInfo;
-	//private List<ParameterInfo> parameterInfo;
 	private String userName;
 	private UserInfo userinfo;
 	private UserRole userrole;
@@ -31,11 +31,7 @@ public class UserHelper {
 		this.stationInfo = stationInfo;
 	}
 
-	/*
-	 * public List<ParameterInfo> getParameterInfo() { return parameterInfo; }
-	 * public void setParameterInfo(List<ParameterInfo> parameterInfo) {
-	 * this.parameterInfo = parameterInfo; }
-	 */
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -54,6 +50,7 @@ public class UserHelper {
 	public void setUserrole(UserRole userrole) {
 		this.userrole = userrole;
 	}
+	
 	
 	
 	

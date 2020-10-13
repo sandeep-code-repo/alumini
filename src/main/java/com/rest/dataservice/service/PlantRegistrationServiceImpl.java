@@ -1,7 +1,5 @@
 package com.rest.dataservice.service;
 
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,33 +15,37 @@ import com.rest.dataservice.entity.ParameterInfo;
 import com.rest.dataservice.entity.PlantInfo;
 import com.rest.dataservice.entity.StationInfo;
 import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.entity.UserRole;
 import com.rest.dataservice.helper.UserHelper;
 import com.rest.dataservice.repository.PlantRegistrationRepository;
 import com.rest.dataservice.repository.ParameterInfoRepository;
 import com.rest.dataservice.repository.PlantInfoRepository;
 import com.rest.dataservice.repository.StationInfoRepository;
 import com.rest.dataservice.repository.UserRepository;
+import com.rest.dataservice.repository.UserRoleRepository;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.ResponseObject;
 
 @Service
-public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
-	
+public class PlantRegistrationServiceImpl implements PlantRegistrationService {
+
 	@Autowired
 	PlantRegistrationRepository employeeRepository;
-	
+
 	@Autowired
 	PlantInfoRepository plantInfoRepository;
-	
+
 	@Autowired
 	StationInfoRepository stationInfoRepository;
-	
+
 	@Autowired
 	ParameterInfoRepository parameterInfoRepository;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
+	@Autowired
+	UserRoleRepository userRoleRepository;
 
 	/*
 	 * @Override public Employee insertemp(Employee employee) {
@@ -61,7 +63,6 @@ public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 	 * employeeRepository.findAll(); }
 	 */
 
-
 	/*
 	 * @Override
 	 * 
@@ -69,7 +70,6 @@ public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 	 * 
 	 * return employeeRepository.deleteUser(iName, status); }
 	 */
-
 
 	/*
 	 * @Override public Employee editByEname(String iName, Employee emp) { Employee
@@ -113,8 +113,18 @@ public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 	public ResponseObject insertPlantStationInfo(UserHelper user) {
 		
 		UserInfo saveuserinfo = insertUserinfo(user);
-	
+
 		PlantInfo plantSaveResult = insertPlantInfo(user);
+		
+		UserRole userrole = new UserRole();
+		userrole.setPlantUserId(plantSaveResult.getPid());
+		
+		userrole.setRoleId(user.getUserrole().getRoleId() == null? "User" : user.getUserrole().getRoleId()); 
+		
+		userrole.setUserRoleStatus(true);
+		userrole.setCreatedDt(new Date());
+		userRoleRepository.save(userrole);
+			
 		
 		/* PlantInfo plantSaveResult = plantInfoRepository.save(user.getPlantInfo()); */
 		 if(plantSaveResult.getPlantUserName()==user.getUserName()) {
@@ -170,10 +180,7 @@ public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 					ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 			return new ResponseObject("User Registered Successfully",SuccessApiStatus);
 }
-	
-	
 
-	
 	public PlantInfo insertPlantInfo(UserHelper user) {
 		PlantInfo plantinfo = new PlantInfo();
 		plantinfo.setPlantUserName(user.getUserName());
@@ -220,13 +227,12 @@ public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 		plantinfo.setSecdPersonDesig(user.getPlantInfo().getSecdPersonDesig());
 		plantinfo.setSecdPersonMob(user.getPlantInfo().getSecdPersonMob());
 		plantinfo.setSecdEmail(user.getPlantInfo().getSecdEmail());
-		plantinfo.setCreatedDt(new Date() );
+		plantinfo.setCreatedDt(new Date());
 		return plantInfoRepository.save(plantinfo);
 	}
-	
-	
+
 	public UserInfo insertUserinfo(UserHelper user) {
-		
+
 		UserInfo userinfo = new UserInfo();
 		userinfo.setUserName(user.getUserName());
 		userinfo.setPassword(user.getUserinfo().getPassword());
@@ -241,8 +247,7 @@ public class PlantRegistrationServiceImpl  implements PlantRegistrationService{
 		userinfo.setRsaPrivateKey(user.getUserinfo().getRsaPrivateKey());
 		userinfo.setRsaPublicKey(user.getUserinfo().getRsaPublicKey());
 		return userRepository.save(userinfo);
-		
+
 	}
-	
-	
+
 }
