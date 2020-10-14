@@ -14,9 +14,8 @@ public class UserHelper {
 	
 	private PlantInfo  plantInfo;
 	private StationInfoMapper  stationInfo;
-	private String userName;
-	private UserInfo userinfo;
-	private UserRole userrole;
+	
+	private UserInfoMapper userInfo;
 	
 	public PlantInfo getPlantInfo() {
 		return plantInfo;
@@ -31,25 +30,15 @@ public class UserHelper {
 		this.stationInfo = stationInfo;
 	}
 
+	public UserInfoMapper getUserInfo() {
+		return userInfo;
+	}
+	public void setUserInfo(UserInfoMapper userInfo) {
+		this.userInfo = userInfo;
+	}
 	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public UserInfo getUserinfo() {
-		return userinfo;
-	}
-	public void setUserinfo(UserInfo userinfo) {
-		this.userinfo = userinfo;
-	}
-	public UserRole getUserrole() {
-		return userrole;
-	}
-	public void setUserrole(UserRole userrole) {
-		this.userrole = userrole;
-	}
+	
+	
 	
 	
 	

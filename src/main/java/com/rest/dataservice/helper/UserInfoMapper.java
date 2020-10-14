@@ -1,80 +1,46 @@
-package com.rest.dataservice.entity;
+package com.rest.dataservice.helper;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.rest.dataservice.entity.UserRole;
 
-@Entity
-@Table(name = "user_info")
-public class UserInfo implements Serializable{
-
-	/**
-	 * @Jayashree
-	 * @Date-29/09/2020
-	 */
-	private static final long serialVersionUID = 1L;
+public class UserInfoMapper {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "uid")
 	private Integer uid;
 	
-	@Column(name = "user_name", unique = true, nullable=false)
 	private String  userName;
 	
-	@Column(name = "password")
 	private String  password;
 	
-	@Column(name = "email")
 	private String  email;
 	
-	@Column(name = "department")
 	private String  department;
 	
-	@Column(name = "mob_no")
 	private String  mobNo;
 	
-	@Column(name = "user_type")
 	private String  userType;
 	
-	@Column(name = "plant_type")
 	private String  plantType;
 	
-	@Column(name = "category")
 	private String  category;
 	
-	@Column(name = "designation")
 	private String  designation;
 	
-	@Column(name = "reportto")
 	private String  reportto;
 	
-	@Column(name = "rsa_public_key")
 	private String rsaPublicKey;
 	
-	@Column(name = "rsa_private_key")
 	private String rsaPrivateKey;
 	
-	@Column(name = "created_by")
-	private String  createdBy;
+    private String  createdBy;
 	
-	@Column(name = "created_dt")
-	private Date  createdDt;
+	private String  createdDt;
 	
-	@Column(name = "last_modified_by")
 	private String  lastModifiedBy;
 	
-	@Column(name="last_modified_dt")
 	private String lastModifiedDt;
 	
-	
+	private List<UserRole> userRole;
 
 	public Integer getUid() {
 		return uid;
@@ -180,6 +146,14 @@ public class UserInfo implements Serializable{
 		this.rsaPrivateKey = rsaPrivateKey;
 	}
 
+	public List<UserRole> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(List<UserRole> userRole) {
+		this.userRole = userRole;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -188,11 +162,11 @@ public class UserInfo implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	public Date getCreatedDt() {
+	public String getCreatedDt() {
 		return createdDt;
 	}
 
-	public void setCreatedDt(Date createdDt) {
+	public void setCreatedDt(String createdDt) {
 		this.createdDt = createdDt;
 	}
 
@@ -211,10 +185,7 @@ public class UserInfo implements Serializable{
 	public void setLastModifiedDt(String lastModifiedDt) {
 		this.lastModifiedDt = lastModifiedDt;
 	}
-	
-	
-	
-	
+
 	
 	
 	
