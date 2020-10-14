@@ -34,7 +34,7 @@ public class UserRole {
 	private Long plantUserId;
 	
 	@Column(name = "role_id",nullable=false)
-	private String roleId;
+	private Long roleId;
 	
 	@Column(name = "user_role_status",nullable=false)
 	private Boolean userRoleStatus=false;
@@ -80,22 +80,21 @@ public class UserRole {
 	/**
 	 * @return the roleId
 	 */
-	public String getRoleId() {
-		return roleId;
-	}
 
-	/**
-	 * @param roleId the roleId to set
-	 */
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
 
 	/**
 	 * @return the userRoleStatus
 	 */
 	public Boolean getUserRoleStatus() {
 		return userRoleStatus;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 
 	/**
