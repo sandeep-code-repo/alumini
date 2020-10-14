@@ -141,7 +141,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		  user.getUserInfo().getUserRole().parallelStream().forEach(record -> {
 			  UserRole userRole = new UserRole();
 			  userRole.setPlantUserId(plantSaveResult.getPid());
-			  userRole.setRoleId(record.getRoleId() == null ? "User" : record.getRoleId());
+			  userRole.setRoleId(record.getRoleId() == null ? 1 : record.getRoleId());
 			  userRole.setUserRoleStatus(true);
 			  userRole.setCreatedDt(new Date());
 			  userRoleRepository.save(userRole);
