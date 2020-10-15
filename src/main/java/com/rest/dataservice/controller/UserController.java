@@ -44,9 +44,9 @@ public class UserController {
 	public ResponseObject loginByUserName(@RequestBody UserInfo user) throws java.security.InvalidKeyException, javax.crypto.IllegalBlockSizeException, javax.crypto.BadPaddingException, java.security.NoSuchAlgorithmException, javax.crypto.NoSuchPaddingException
 	
 	{		
-		String plainTextPass = RSAUtil.decrypt(user.getPassword(), userService.getUserPrivateKey(user.getUserName()));
-		
-		if(user.getUserName().equals("DemoUser") && plainTextPass.equals("hindalco@123")) {
+		//String plainTextPass = RSAUtil.decrypt(user.getPassword(), userService.getUserPrivateKey(user.getUserName()));
+		  String plainTextPass = user.getPassword();
+		if(user.getUserName().equals("hindalco") && plainTextPass.equals("hindalco@123")) {
 			userService.findByUsername(user.getUserName(),plainTextPass);
 			return new ResponseObject("User Logged in Successfully",new CommonApiStatus("success",HttpStatus.OK,"success"));
 		}else
