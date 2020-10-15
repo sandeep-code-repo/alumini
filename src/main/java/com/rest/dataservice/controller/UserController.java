@@ -64,7 +64,7 @@ public class UserController {
 	 * insert role name
 	 */
 
-	@PostMapping("/addrole")
+	@PostMapping("/addRole")
 	public ResponseObject insertEmployeeData(@RequestBody Role role) {
 		
 		ResponseObject entity = userService.insertRole(role);	   

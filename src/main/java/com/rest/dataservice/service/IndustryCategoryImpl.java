@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rest.dataservice.entity.IndustryCatagory;
+import com.rest.dataservice.entity.IndustryCategory;
 import com.rest.dataservice.repository.IndustryCategoryRepository;
 import com.rest.dataservice.util.ResponseObject;
 

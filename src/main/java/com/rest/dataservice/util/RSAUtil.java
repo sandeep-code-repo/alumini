@@ -62,6 +62,7 @@ public class RSAUtil {
     public static String decrypt(String data, String base64PrivateKey) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         return decrypt(Base64.getDecoder().decode(data.getBytes()), getPrivateKey(base64PrivateKey));
     }
+    
 
 	/*
 	 * public static void main(String[] args) throws IllegalBlockSizeException,

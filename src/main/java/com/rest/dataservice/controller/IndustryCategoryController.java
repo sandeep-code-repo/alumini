@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.dataservice.entity.Industry;
-import com.rest.dataservice.entity.IndustryCatagory;
+import com.rest.dataservice.entity.IndustryCategory;
 import com.rest.dataservice.service.IndustryCategoryService;
 import com.rest.dataservice.util.AbstractMapper;
 import com.rest.dataservice.util.RequestObject;
@@ -38,20 +38,19 @@ public class IndustryCategoryController extends AbstractMapper{
 	 * @return ResponseObject
 	 */
 	@PostMapping
-	public ResponseObject addIndustryDetails(@RequestBody IndustryCatagory industryCatagory) {
+	public ResponseObject addIndustryDetails(@RequestBody IndustryCategory industryCatagory) {
 		//IndustryCatagory industry = (IndustryCatagory) getParsedObject(industryCatagory.getName(), IndustryCatagory.class);
 		return industryCategoryService.addIndustryDetails(industryCatagory);
 	}
 	
 	
 	 @GetMapping(value ="/{category}", produces = MediaType.APPLICATION_JSON_VALUE)
-	  public @ResponseBody ResponseEntity<?> getindustrydtlsByCategory(@PathVariable("category")String category) {
+	  public @ResponseBody ResponseObject getindustrydtlsByCategory(@PathVariable("category")String category) {
 		 System.out.println(category);
 		
-	  List<IndustryCatagory> entity = industryCategoryService.getIndustryDetailsByCategory(category); 
-	  return new
-	   ResponseEntity<Object>(entity, HttpStatus.OK); }
+		 return industryCategoryService.getIndustryDetailsByCategory(category); 
 	 
+	 }
 	 
 	 /**
 		 * @return ResponseObject
@@ -75,5 +74,10 @@ public class IndustryCategoryController extends AbstractMapper{
 		  
 		  }
 		 
+      @GetMapping(value ="/dropdownIndustryList", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseObject getDropdownIndustryCategoryList() {
+      	ResponseObject obj= industryCategoryService.getDropdownIndustryCategoryList();
+			return obj;
+		}
 
 }

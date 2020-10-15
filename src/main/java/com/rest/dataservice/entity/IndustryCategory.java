@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "industry_registration")
-public class IndustryCatagory implements Serializable{
+public class IndustryCategory implements Serializable{
 
 	/**
 	 * 

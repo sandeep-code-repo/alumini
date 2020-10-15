@@ -7,16 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.rest.dataservice.entity.IndustryCatagory;
+import com.rest.dataservice.entity.IndustryCategory;
 
 @Repository
-public interface IndustryCategoryRepository extends JpaRepository<IndustryCatagory, Integer> {
+public interface IndustryCategoryRepository extends JpaRepository<IndustryCategory, Integer> {
 	
-	@Query("FROM IndustryCatagory WHERE category=:category")
-	List<IndustryCatagory> getIndustryDetailsByCategory(@Param("category")String category);
+	@Query("FROM IndustryCategory WHERE category=:category")
+	List<IndustryCategory> getIndustryDetailsByCategory(@Param("category")String category);
 
 	
-	@Query("FROM IndustryCatagory WHERE name=:name")
-	IndustryCatagory editByname(@Param("name")String name);
+	@Query("FROM IndustryCategory WHERE name=:name")
+	IndustryCategory editByname(@Param("name")String name);
 
 }
