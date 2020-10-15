@@ -21,6 +21,9 @@ import com.rest.dataservice.util.ResponseObject;
 @Service
 public class UserServiceImpl implements UserService{
 	
+	private static CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
+			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
+	
 	@Autowired
     private UserRepository userRepository;
 	
@@ -34,11 +37,23 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public ResponseObject insertRole(Role role) {
-		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
-				ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
+		
 		Role rName= roleRepository.save(role);
-		ResponseObject res = new ResponseObject(rName, SuccessApiStatus);
+		ResponseObject res = new ResponseObject(rName, successApiStatus);
 		return res;
 	}
+	
+    public ResponseObject getUserPublicKey(String userName) {
+		
+    	String publicKey = userRepository.findPublicKeyByUsername(userName);
+    	System.out.println(publicKey);
+    	return new ResponseObject(publicKey, successApiStatus);
+     }
+    
+    public String getUserPrivateKey(String userName) {
+    	
+    	return userRepository.findPrivateKeyByUsername(userName);
+    	
+    }
 
 }

@@ -18,4 +18,10 @@ public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	@Query("FROM UserInfo WHERE username=:username and password =:password")
 	UserInfo findByUsername(String username,String password);
 
+	@Query("select rsaPublicKey FROM UserInfo WHERE userName=:username")
+	String findPublicKeyByUsername(String username);
+	
+	@Query("select rsaPrivateKey FROM UserInfo WHERE userName=:username")
+	String findPrivateKeyByUsername(String username);
+
 }

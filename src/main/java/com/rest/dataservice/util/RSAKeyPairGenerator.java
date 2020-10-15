@@ -11,6 +11,7 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.util.Base64;
 
 public class RSAKeyPairGenerator {
@@ -18,8 +19,9 @@ public class RSAKeyPairGenerator {
     private PublicKey publicKey;
 
     public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
+    	SecureRandom random = new SecureRandom();
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-        keyGen.initialize(1024);
+        keyGen.initialize(1024,random);
         KeyPair pair = keyGen.generateKeyPair();
         this.privateKey = pair.getPrivate();
         this.publicKey = pair.getPublic();

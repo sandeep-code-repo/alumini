@@ -1,6 +1,7 @@
 package com.rest.dataservice.service;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import com.rest.dataservice.repository.StationInfoRepository;
 import com.rest.dataservice.repository.UserRepository;
 import com.rest.dataservice.repository.UserRoleRepository;
 import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.RSAKeyPairGenerator;
 import com.rest.dataservice.util.ResponseObject;
 
 @Service
@@ -112,6 +114,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 	@Override
 	public ResponseObject insertPlantStationInfo(UserHelper user) {
 
+		try {
 		
 		  PlantInfo plantSaveResult = plantInfoRepository.save(user.getPlantInfo());
 		  
@@ -129,9 +132,13 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		  userinfo.setCategory(user.getUserInfo().getCategory());
 		  userinfo.setDesignation(user.getUserInfo().getDesignation());
 		  userinfo.setReportto(user.getUserInfo().getReportto());
-		  userinfo.setRsaPrivateKey(user.getUserInfo().getRsaPrivateKey());
-		  userinfo.setRsaPublicKey(user.getUserInfo().getRsaPublicKey());
 		  userinfo.setCreatedDt(new Date());
+		  userinfo.setCreatedBy(plantSaveResult.getPlantUserName());
+		  
+		  RSAKeyPairGenerator keyPairGenerator = new  RSAKeyPairGenerator();
+		  userinfo.setRsaPrivateKey(Base64.getEncoder().encodeToString(keyPairGenerator.getPrivateKey().getEncoded()));
+		  userinfo.setRsaPublicKey(Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));
+		  System.out.println(userinfo.getRsaPrivateKey());
 		  userRepository.save(userinfo);
 		}
 		  
@@ -198,6 +205,12 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
 				HttpStatus.CREATED, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 		return new ResponseObject("User Registered Successfully", SuccessApiStatus);
+	}catch(Exception e) {
+		CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+				HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+		return new ResponseObject("Error in User Registration", failedApiStatus);
+	}
+
 	}
 
 	

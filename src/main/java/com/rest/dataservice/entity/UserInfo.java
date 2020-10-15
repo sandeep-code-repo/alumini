@@ -32,7 +32,7 @@ public class UserInfo implements Serializable{
 	@Column(name = "password")
 	private String  password;
 	
-	@Column(name = "email")
+	@Column(name = "email",unique = true, nullable=false)
 	private String  email;
 	
 	@Column(name = "department")
@@ -56,10 +56,10 @@ public class UserInfo implements Serializable{
 	@Column(name = "reportto")
 	private String  reportto;
 	
-	@Column(name = "rsa_public_key")
+	@Column(name = "rsa_public_key",length=500)
 	private String rsaPublicKey;
 	
-	@Column(name = "rsa_private_key")
+	@Column(name = "rsa_private_key",length=1000)
 	private String rsaPrivateKey;
 	
 	@Column(name = "created_by")

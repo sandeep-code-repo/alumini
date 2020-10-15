@@ -38,16 +38,15 @@ public class UserController {
 	private String rsaPrivateKey;
 
 	CommonApiStatus responseStatus;
-
 	
 	@PostMapping(value ="/login",produces = MediaType.APPLICATION_JSON_VALUE)
 
 	public ResponseObject loginByUserName(@RequestBody UserInfo user) throws java.security.InvalidKeyException, javax.crypto.IllegalBlockSizeException, javax.crypto.BadPaddingException, java.security.NoSuchAlgorithmException, javax.crypto.NoSuchPaddingException
 	
 	{		
-		String plainTextPass = RSAUtil.decrypt(user.getPassword(), rsaPrivateKey);
+		String plainTextPass = RSAUtil.decrypt(user.getPassword(), userService.getUserPrivateKey(user.getUserName()));
 		
-		if(user.getUserName().equals("hindalco") && plainTextPass.equals("hindalco@123")) {
+		if(user.getUserName().equals("DemoUser") && plainTextPass.equals("hindalco@123")) {
 			userService.findByUsername(user.getUserName(),plainTextPass);
 			return new ResponseObject("User Logged in Successfully",new CommonApiStatus("success",HttpStatus.OK,"success"));
 		}else
@@ -72,6 +71,12 @@ public class UserController {
 	}
 	
 
+	@PostMapping("/getPublicKey")
+	public ResponseObject getPublicKey(@RequestBody UserInfo user) {
+		
+		ResponseObject entity = userService.getUserPublicKey(user.getUserName());
+	    return entity;
+	}
 
 }
 

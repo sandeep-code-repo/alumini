@@ -4,6 +4,11 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.rest.dataservice.repository.UserRepository;
+
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -12,9 +17,12 @@ import java.util.Base64;
 
 public class RSAUtil {
 
-    private static String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgFGVfrY4jQSoZQWWygZ83roKXWD4YeT2x2p41dGkPixe73rT2IW04glagN2vgoZoHuOPqa5and6kAmK2ujmCHu6D1auJhE2tXP+yLkpSiYMQucDKmCsWMnW9XlC5K7OSL77TXXcfvTvyZcjObEz6LIBRzs6+FqpFbUO9SJEfh6wIDAQAB";
-    private static String privateKey = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAKAUZV+tjiNBKhlBZbKBnzeugpdYPhh5PbHanjV0aQ+LF7vetPYhbTiCVqA3a+Chmge44+prlqd3qQCYra6OYIe7oPVq4mETa1c/7IuSlKJgxC5wMqYKxYydb1eULkrs5IvvtNddx+9O/JlyM5sTPosgFHOzr4WqkVtQ71IkR+HrAgMBAAECgYAkQLo8kteP0GAyXAcmCAkA2Tql/8wASuTX9ITD4lsws/VqDKO64hMUKyBnJGX/91kkypCDNF5oCsdxZSJgV8owViYWZPnbvEcNqLtqgs7nj1UHuX9S5yYIPGN/mHL6OJJ7sosOd6rqdpg6JRRkAKUV+tmN/7Gh0+GFXM+ug6mgwQJBAO9/+CWpCAVoGxCA+YsTMb82fTOmGYMkZOAfQsvIV2v6DC8eJrSa+c0yCOTa3tirlCkhBfB08f8U2iEPS+Gu3bECQQCrG7O0gYmFL2RX1O+37ovyyHTbst4s4xbLW4jLzbSoimL235lCdIC+fllEEP96wPAiqo6dzmdH8KsGmVozsVRbAkB0ME8AZjp/9Pt8TDXD5LHzo8mlruUdnCBcIo5TMoRG2+3hRe1dHPonNCjgbdZCoyqjsWOiPfnQ2Brigvs7J4xhAkBGRiZUKC92x7QKbqXVgN9xYuq7oIanIM0nz/wq190uq0dh5Qtow7hshC/dSK3kmIEHe8z++tpoLWvQVgM538apAkBoSNfaTkDZhFavuiVl6L8cWCoDcJBItip8wKQhXwHp0O3HLg10OEd14M58ooNfpgt+8D8/8/2OOFaR0HzA+2Dm";
+    //private static String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCB5efFlssoMNXxlWmmwPL75tVE56pIA8Q5yUGjV2F+Ntv2BkoxcnHIOQZdurG9UdVWtzGJOiLUjw84k7EFK0DT6WrKI1lP2bBW5vjfKo0VAE/OUwqq0PQhv7DBklkXuTqGKv5k1GPMR89cE1WpRS6cqNZKobjKj5+/+O2GKTLpYQIDAQAB";
+    //private static String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIHl58WWyygw1fGVaabA8vvm1UTnqkgDxDnJQaNXYX422/YGSjFyccg5Bl26sb1R1Va3MYk6ItSPDziTsQUrQNPpasojWU/ZsFbm+N8qjRUAT85TCqrQ9CG/sMGSWRe5OoYq/mTUY8xHz1wTValFLpyo1kqhuMqPn7/47YYpMulhAgMBAAECgYBMRQFhMrj2UDZOMrxl/MSuw0pVuvBweEWu6Exx68yCnxNn0Sme/uNv/IuQXR4fWv04fTfIqynoRFdbkNxPfKYC8MtDhN+l5ujSkbhqijhcqj3emjMP114dB9eJCqMBJC4K2PdTtCQt9mi6twKCV7QcOij/GTKz6VJXovgxUk0cAQJBALnwgAaMSeO2+qkpS3ab6pbfvm5LmgAVxyI9STlZuBRAiagsmBcsGc2zxmoTo9Y2I3TbmXeeNbBqQShX8yMquekCQQCy17gs9Z0RqIFtUZIx9BmuxQ1/gZSGeij421q908JgpPGAJNlUbF+Xp6icLwMGFFX7NZnWo5hpOfWtq+YxlBC5AkEAubLDaca6FL4t4LvpLe/RfhS+7xB6IROe6Ucj1i8QdMlvsZG344ybyKB+zHoI6mrvRkn7H0fWfvXfVRdhMAH/4QJAdPUEWkqp1IF5Wu+MhySWoyf1AtzQL/21y8FQH3Jb3O4hjWcLxd01yqz3ZGSOOqyT6jwMhkToiHBCDbisSuIE6QJAIVc3bzQ1U5oD4g4Ushq7I3rXCmnqxGxt4PhV5lSEeG5H/ZwedLYQ4c+AHM6LixV4ms/9q33aGJponrP/8wn1sw==";
 
+    @Autowired
+    private static UserRepository userRepository;
+    
     public static PublicKey getPublicKey(String base64PublicKey){
         PublicKey publicKey = null;
         try{
@@ -63,7 +71,8 @@ public class RSAUtil {
         return decrypt(Base64.getDecoder().decode(data.getBytes()), getPrivateKey(base64PrivateKey));
     }
     
-
+    
+	
 	/*
 	 * public static void main(String[] args) throws IllegalBlockSizeException,
 	 * InvalidKeyException, NoSuchPaddingException, BadPaddingException { try {
@@ -76,4 +85,5 @@ public class RSAUtil {
 	 * 
 	 * }
 	 */
+	 
 }

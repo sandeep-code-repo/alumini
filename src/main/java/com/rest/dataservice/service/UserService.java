@@ -15,4 +15,8 @@ public interface UserService {
 	UserInfo findByUsername(String userName,String password);
 	
 	ResponseObject insertRole(Role role);
+	
+	ResponseObject getUserPublicKey(String userName);
+	
+	String getUserPrivateKey(String userName);
 }
