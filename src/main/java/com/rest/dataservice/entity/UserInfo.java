@@ -62,6 +62,9 @@ public class UserInfo implements Serializable{
 	@Column(name = "rsa_private_key",length=1000)
 	private String rsaPrivateKey;
 	
+	@Column(name = "temp_password",length=1000)
+	private String tempPassword;
+	
 	@Column(name = "created_by")
 	private String  createdBy;
 	
@@ -74,8 +77,6 @@ public class UserInfo implements Serializable{
 	@Column(name="last_modified_dt")
 	private String lastModifiedDt;
 	
-	
-
 	public Integer getUid() {
 		return uid;
 	}
@@ -178,6 +179,16 @@ public class UserInfo implements Serializable{
 
 	public void setRsaPrivateKey(String rsaPrivateKey) {
 		this.rsaPrivateKey = rsaPrivateKey;
+	}
+	
+	
+
+	public String getTempPassword() {
+		return tempPassword;
+	}
+
+	public void setTempPassword(String tempPassword) {
+		this.tempPassword = tempPassword;
 	}
 
 	public String getCreatedBy() {

@@ -43,11 +43,11 @@ public class UserServiceImpl implements UserService{
 		return res;
 	}
 	
-    public ResponseObject getUserPublicKey(String userName) {
+    public String getUserPublicKey(String userName) {
 		
     	String publicKey = userRepository.findPublicKeyByUsername(userName);
-    	System.out.println(publicKey);
-    	return new ResponseObject(publicKey, successApiStatus);
+    	//System.out.println(publicKey);
+    	return publicKey;
      }
     
     public String getUserPrivateKey(String userName) {
@@ -55,5 +55,40 @@ public class UserServiceImpl implements UserService{
     	return userRepository.findPrivateKeyByUsername(userName);
     	
     }
+
+	@Override
+	public UserInfo getUserByEmail(String email) {
+
+		return userRepository.findUserByEmail(email);
+	}
+	
+	@Override
+	public UserInfo saveTempPassword(String email,String tempPwd) {
+		try {
+		UserInfo editUser = getUserByEmail(email);
+		editUser.setTempPassword(tempPwd);
+		userRepository.save(editUser);
+		
+		return editUser;
+		}catch(Exception e){
+		 return new UserInfo();
+		}
+	}
+
+	@Override
+	public String replaceTempPassword(String userName) {
+		
+		UserInfo editUser = userRepository.findByUsername(userName);
+
+		editUser.setPassword(editUser.getTempPassword());
+		editUser.setTempPassword(null);
+		
+		userRepository.save(editUser);
+		
+		if(userRepository.findByUsername(userName).getTempPassword()!=null) {
+		return "error";
+		}
+		return "success";
+	}
 
 }

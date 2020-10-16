@@ -16,7 +16,13 @@ public interface UserService {
 	
 	ResponseObject insertRole(Role role);
 	
-	ResponseObject getUserPublicKey(String userName);
+	String getUserPublicKey(String userName);
 	
 	String getUserPrivateKey(String userName);
+
+	UserInfo getUserByEmail(String email);
+
+	String replaceTempPassword(String userName);
+
+	UserInfo saveTempPassword(String email, String tempPwd);
 }

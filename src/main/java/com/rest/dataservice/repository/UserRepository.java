@@ -15,7 +15,7 @@ import com.rest.dataservice.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	
-	@Query("FROM UserInfo WHERE username=:username and password =:password")
+	@Query("FROM UserInfo WHERE userName=:username and password =:password")
 	UserInfo findByUsername(String username,String password);
 
 	@Query("select rsaPublicKey FROM UserInfo WHERE userName=:username")
@@ -23,5 +23,11 @@ public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	
 	@Query("select rsaPrivateKey FROM UserInfo WHERE userName=:username")
 	String findPrivateKeyByUsername(String username);
+
+	@Query("FROM UserInfo WHERE email=:email")
+	UserInfo findUserByEmail(String email);
+	
+	@Query("FROM UserInfo WHERE userName=:username")
+	UserInfo findByUsername(String username);
 
 }
