@@ -31,6 +31,10 @@ import com.rest.dataservice.util.ResponseObject;
 @Service
 public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 
+	private static final String ERROR_IN_USER_REGISTRATION = "Error in User Registration";
+
+	private static final String USER_REGISTERED_SUCCESSFULLY = "User Registered Successfully";
+
 	@Autowired
 	PlantRegistrationRepository employeeRepository;
 
@@ -204,11 +208,11 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		}
 		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
 				HttpStatus.CREATED, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
-		return new ResponseObject("User Registered Successfully", SuccessApiStatus);
+		return new ResponseObject(USER_REGISTERED_SUCCESSFULLY, SuccessApiStatus);
 	}catch(Exception e) {
 		CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 				HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
-		return new ResponseObject("Error in User Registration", failedApiStatus);
+		return new ResponseObject(ERROR_IN_USER_REGISTRATION, failedApiStatus);
 	}
 
 	}

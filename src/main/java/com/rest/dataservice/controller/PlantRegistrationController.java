@@ -44,7 +44,6 @@ public class PlantRegistrationController {
 	@PostMapping("/register")
 	public ResponseObject insertEmployeeData(@RequestBody UserHelper plantRegistration) {
     	
-		logger.info("REQUEST RECV : " + plantRegistration);
 		ResponseObject entity = employeeService.insertPlantStationInfo(plantRegistration);	    		
 	    return entity;
 	}

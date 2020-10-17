@@ -19,7 +19,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.rest.dataservice.constants.ApplicationConstants;
+import com.rest.dataservice.entity.MailHeader;
 import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.repository.MailHeaderRepository;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.RSAUtil;
 import com.rest.dataservice.util.ResponseObject;
@@ -40,18 +42,36 @@ import java.time.format.DateTimeFormatter;
 public class MailService {
 
 	
+	private static final String APP_URL = "appUrl";
+
+	private static final String BODY = "body";
+
+	private static final String USER = "user";
+
+	private static final String MAIL_SENDING_FAILED = "Mail Sending failed";
+
+	private static final String CHANGE_PASSWORD = "change password";
+
+	private static final String MAIL_SENT_SUCCESSFULLY = "Mail sent Successfully";
+
 	private JavaMailSender javaMailSender;
 	
 	@Autowired
     private SpringTemplateEngine templateEngine;
 	
 	@Autowired
+    private MailHeaderRepository mailContentRepository;
+	
+	@Autowired
 	UserService userService;
 	
-	@Value("ds_base_url")
+	@Value("${ds.base.url}")
 	String baseUrl;
 	
-	@Value("server.servlet.context-path")
+	@Value("${app.login.url}")
+	String applicationUrl;
+	
+	@Value("${server.servlet.context-path}")
 	String apiMap;
 
 	/**
@@ -77,11 +97,12 @@ public class MailService {
             MimeMessageHelper mail = new MimeMessageHelper(message,
                     MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                     StandardCharsets.UTF_8.name());
-			
+            MailHeader header=mailContentRepository.findByFilter(CHANGE_PASSWORD);	
 		Context context = new Context();
 		Map<String, Object> model = new HashMap<>();
-        model.put("user", user);
-        model.put("signature", "nucigent.in");
+        model.put(USER, user);
+        model.put(BODY,header.getMailBody());
+        model.put(APP_URL,applicationUrl);
         String url = baseUrl+apiMap;
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(ApplicationConstants.DATE_TIME_FORMATTER);  
@@ -93,25 +114,25 @@ public class MailService {
 		
 		
         context.setVariables(model);
-        String html = templateEngine.process("reset-email", context);
+        String html = templateEngine.process("change-pwd-mail", context);
         
 		//SimpleMailMessage mail = new SimpleMailMessage();
+       
 		mail.setTo(user.getEmail());
-		mail.setSubject("OSASP Password Reset request");
+		mail.setSubject(header.getMailSubject());
 		mail.setText(html,true);
 		mail.setSentDate(new Date());
 		
-
 		javaMailSender.send(message);
 		CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
 				HttpStatus.OK, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
-		return new ResponseObject("Mail sent Successfully", SuccessApiStatus);
+		return new ResponseObject(MAIL_SENT_SUCCESSFULLY, SuccessApiStatus);
 		
 		}catch(Exception e) {
 			
 			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
-			return new ResponseObject("Mail Sending failed", failedApiStatus);
+			return new ResponseObject(MAIL_SENDING_FAILED, failedApiStatus);
 			
 		}
 		
