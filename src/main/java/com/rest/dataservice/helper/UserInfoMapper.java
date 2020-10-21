@@ -6,7 +6,7 @@ import com.rest.dataservice.entity.UserRole;
 
 public class UserInfoMapper {
 	
-	private Integer uid;
+	private Long uid;
 	
 	private String  userName;
 	
@@ -40,13 +40,15 @@ public class UserInfoMapper {
 	
 	private String lastModifiedDt;
 	
+	private Boolean regStatus;
+	
 	private List<UserRole> userRole;
 
-	public Integer getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 
@@ -184,6 +186,14 @@ public class UserInfoMapper {
 
 	public void setLastModifiedDt(String lastModifiedDt) {
 		this.lastModifiedDt = lastModifiedDt;
+	}
+
+	public Boolean getRegStatus() {
+		return regStatus;
+	}
+
+	public void setRegStatus(Boolean regStatus) {
+		this.regStatus = regStatus;
 	}
 
 	

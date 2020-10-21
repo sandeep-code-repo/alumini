@@ -30,8 +30,8 @@ public class StationInfo implements Serializable{
 	@Column(name = "plant_user_name")
 	private long plantId;
 	
-	@Column(name = "station_id")
-	private long stationId;
+	@Column(name = "station_name")
+	private String stationId;
 	
 	@Column(name = "analyzer")
 	private String analyzer;
@@ -55,7 +55,7 @@ public class StationInfo implements Serializable{
 	private String macNo;
 	
 	@Column(name = "station_number")
-	private Integer stationNo;
+	private String stationNo;
 	
 	@Column(name = "stn_type")
 	private String stnType;
@@ -126,11 +126,11 @@ public class StationInfo implements Serializable{
 		this.plantId = plantId;
 	}
 
-	public long getStationId() {
+	public String getStationId() {
 		return stationId;
 	}
 
-	public void setStationId(long stationId) {
+	public void setStationId(String stationId) {
 		this.stationId = stationId;
 	}
 
@@ -190,11 +190,11 @@ public class StationInfo implements Serializable{
 		this.macNo = macNo;
 	}
 
-	public Integer getStationNo() {
+	public String getStationNo() {
 		return stationNo;
 	}
 
-	public void setStationNo(Integer stationNo) {
+	public void setStationNo(String stationNo) {
 		this.stationNo = stationNo;
 	}
 

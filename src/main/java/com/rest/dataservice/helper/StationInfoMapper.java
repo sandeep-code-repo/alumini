@@ -19,7 +19,7 @@ public class StationInfoMapper {
 	
 	private long plantId;
 	
-	private long stationId;
+	private String stationId;
 	
 	private String analyzer;
 	
@@ -35,7 +35,7 @@ public class StationInfoMapper {
 	
 	private String macNo;
 	
-	private Integer stationNo;
+	private String stationNo;
 	
 	private String stnType;
 	
@@ -103,11 +103,11 @@ public class StationInfoMapper {
 		this.plantId = plantId;
 	}
 
-	public long getStationId() {
+	public String getStationId() {
 		return stationId;
 	}
 
-	public void setStationId(long stationId) {
+	public void setStationId(String stationId) {
 		this.stationId = stationId;
 	}
 
@@ -167,11 +167,11 @@ public class StationInfoMapper {
 		this.macNo = macNo;
 	}
 
-	public Integer getStationNo() {
+	public String getStationNo() {
 		return stationNo;
 	}
 
-	public void setStationNo(Integer stationNo) {
+	public void setStationNo(String stationNo) {
 		this.stationNo = stationNo;
 	}
 

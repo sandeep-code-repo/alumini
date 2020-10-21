@@ -24,7 +24,7 @@ public class UserInfo implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "uid")
-	private Integer uid;
+	private Long uid;
 	
 	@Column(name = "user_name", unique = true, nullable=false)
 	private String  userName;
@@ -77,11 +77,16 @@ public class UserInfo implements Serializable{
 	@Column(name="last_modified_dt")
 	private String lastModifiedDt;
 	
-	public Integer getUid() {
+	@Column(name="reg_status")
+	private Boolean regStatus;
+	
+	
+
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 
@@ -221,6 +226,14 @@ public class UserInfo implements Serializable{
 
 	public void setLastModifiedDt(String lastModifiedDt) {
 		this.lastModifiedDt = lastModifiedDt;
+	}
+
+	public Boolean getRegStatus() {
+		return regStatus;
+	}
+
+	public void setRegStatus(Boolean regStatus) {
+		this.regStatus = regStatus;
 	}
 	
 	

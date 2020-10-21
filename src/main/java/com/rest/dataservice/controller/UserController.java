@@ -203,6 +203,21 @@ public class UserController {
 			return errorHtml;
 		}
 	}
+	
+	@GetMapping(value = "/seacrhByEmail")
+	public ResponseObject seacrhByEmail(@RequestParam String email) throws IOException {
+		try {
+			
+
+			UserInfo user = userService.getUserByEmail(email);
+			return new ResponseObject(user,successApiStatus);
+			
+		}catch(Exception e){
+			
+			return new ResponseObject(e.getMessage(),errorApiStatus);
+		}
+			
+	}
 
 }
 

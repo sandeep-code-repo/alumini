@@ -22,6 +22,11 @@ public interface PlantRegistrationService {
 	 */
 
 	ResponseObject insertPlantStationInfo(UserHelper plantReg);
+	
+	
+	/* ResponseObject insertPlantStationInfoByRegStatus(UserHelper user); */
+
+	ResponseObject findByUserName(UserHelper plant);
 
 	
 

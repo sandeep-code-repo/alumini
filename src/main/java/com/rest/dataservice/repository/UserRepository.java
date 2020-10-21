@@ -2,9 +2,11 @@ package com.rest.dataservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.entity.PlantInfo;
 import com.rest.dataservice.entity.User;
 
 /**
@@ -29,5 +31,11 @@ public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	
 	@Query("FROM UserInfo WHERE userName=:username")
 	UserInfo findByUsername(String username);
+	
+	@Query("FROM UserInfo WHERE userName=:userName")
+	UserInfo findByUser(@Param("userName")String userName);
+	
+	@Query("FROM PlantInfo WHERE  userName=:userName AND regStatus= 0") 
+	UserInfo findRegStatus(@Param("userName")String userName);
 
 }

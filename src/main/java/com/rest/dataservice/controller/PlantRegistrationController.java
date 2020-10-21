@@ -43,10 +43,22 @@ public class PlantRegistrationController {
 	
 	@PostMapping("/register")
 	public ResponseObject insertEmployeeData(@RequestBody UserHelper plantRegistration) {
+		
+			ResponseObject entity = employeeService.insertPlantStationInfo(plantRegistration);
     	
-		ResponseObject entity = employeeService.insertPlantStationInfo(plantRegistration);	    		
+		//logger.info("REQUEST RECV : " + plantRegistration);
+			    		
 	    return entity;
 	}
+	
+	@PostMapping("/getPlantDetails")
+	 public ResponseObject getEmpByName(@RequestBody UserHelper plant) {
+	 
+		ResponseObject entity = employeeService.findByUserName(plant); 
+	 
+	 return entity;
+	 }
+}
 	
 	
 	/*
@@ -125,4 +137,4 @@ public class PlantRegistrationController {
 	
 	
 	
-}
+
