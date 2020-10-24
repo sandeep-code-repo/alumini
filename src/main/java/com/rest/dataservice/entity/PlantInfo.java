@@ -24,7 +24,7 @@ public class PlantInfo implements Serializable{
 	@Column(name = "pid")
 	private long pid;
 	
-	@Column(name = "plant_user_name")
+	@Column(name = "plant_user_name", unique=true, nullable=false)
 	private String  plantUserName;
 	
 	@Column(name = "pin")
@@ -45,7 +45,7 @@ public class PlantInfo implements Serializable{
 	@Column(name = "state")
 	private String  state;
 	
-	@Column(name = "email")
+	@Column(name = "email" , unique=true, nullable=false)
 	private String  email;
 	
 	@Column(name = "web")

@@ -19,7 +19,6 @@ public class UserHelper {
 	private UserInfoMapper userInfo;
 	
 	private String regstatus;
-	private String plantUserName;
 	
 	public PlantInfo getPlantInfo() {
 		return plantInfo;
@@ -47,23 +46,5 @@ public class UserHelper {
 	public void setRegstatus(String regstatus) {
 		this.regstatus = regstatus;
 	}
-	public String getPlantUserName() {
-		return plantUserName;
-	}
-	public void setPlantUserName(String plantUserName) {
-		this.plantUserName = plantUserName;
-	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

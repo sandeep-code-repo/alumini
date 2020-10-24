@@ -63,8 +63,6 @@ public class StationInfo implements Serializable{
 	@Column(name = "has_threshold")
 	private Integer hasThresold;
 	
-	@Column(name = "pid")
-	private Integer pid;
 	
 	@Column(name = "station_vendor")
 	private String stationVendor;
@@ -213,15 +211,6 @@ public class StationInfo implements Serializable{
 	public void setHasThresold(Integer hasThresold) {
 		this.hasThresold = hasThresold;
 	}
-
-	public Integer getPid() {
-		return pid;
-	}
-
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
 
 	public String getStationVendor() {
 		return stationVendor;

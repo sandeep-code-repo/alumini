@@ -62,80 +62,21 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 	@Autowired
 	UserRoleRepository userRoleRepository;
 
-	/*
-	 * @Override public Employee insertemp(Employee employee) {
-	 * employee.setCreatedDate(new Date()); return
-	 * employeeRepository.save(employee); }
-	 */
-
-	/*
-	 * @Override public Employee findEmpByName(String iName) { return
-	 * employeeRepository.getEmpByName(iName); }
-	 */
-
-	/*
-	 * @Override public List<Employee> getEmployeeList() { return
-	 * employeeRepository.findAll(); }
-	 */
-
-	/*
-	 * @Override
-	 * 
-	 * @Transactional public Employee deleteUser(String iName, String status) {
-	 * 
-	 * return employeeRepository.deleteUser(iName, status); }
-	 */
-
-	/*
-	 * @Override public Employee editByEname(String iName, Employee emp) { Employee
-	 * employee = employeeRepository.getEmpByName(iName);
-	 * employee.setiName(emp.getiName());
-	 * employee.setIndCatagory(emp.getIndCatagory());
-	 * employee.setVendor(emp.getVendor()); employee.setPlantId(emp.getPlantId());
-	 * employee.setDistrict(emp.getDistrict()); employee.setRegOfc(emp.getRegOfc());
-	 * employee.setCaaqmsStation(emp.getCaaqmsStation());
-	 * employee.setCemsStation(emp.getCemsStation());
-	 * employee.setCeqmsStation(emp.getCeqmsStation());
-	 * employee.setPrimaryCnt(emp.getPrimaryCnt());
-	 * employee.setSecondaryCnt(emp.getSecondaryCnt());
-	 * employee.setAddress(emp.getAddress());
-	 * employee.setDataTrasmision(emp.getDataTrasmision());
-	 * employee.setHistoryData(emp.getHistoryData());
-	 * employee.setmType(emp.getmType());
-	 * employee.setStationName(emp.getStationName());
-	 * employee.setProcessAttached(emp.getProcessAttached());
-	 * employee.setProVendor(emp.getProVendor());
-	 * employee.setAnalyserMake(emp.getAnalyserMake());
-	 * employee.setAnalyserSerNo(emp.getAnalyserSerNo());
-	 * employee.setDeviceNo(emp.getDeviceNo()); employee.setMacId(emp.getMacId());
-	 * employee.setMeasurementMin(emp.getMeasurementMin());
-	 * employee.setMeasurementMax(emp.getMeasurementMax());
-	 * employee.setParameter(emp.getParameter()); employee.setUnit(emp.getUnit());
-	 * employee.setCertification(emp.getCertification());
-	 * employee.setLatitude(emp.getLatitude());
-	 * employee.setLongitude(emp.getLongitude());
-	 * employee.setMeasurementPriciple(emp.getMeasurementPriciple());
-	 * employee.setStackheight(emp.getStackheight());
-	 * employee.setStackDiameter(emp.getStackDiameter());
-	 * employee.setStackVel(emp.getStackVel());
-	 * employee.setGasDisRate(emp.getGasDisRate());
-	 * employee.setRemark(emp.getRemark());
-	 * 
-	 * return employeeRepository.save(employee); }
-	 */
 
 	@Override
+	@Transactional
 	public ResponseObject insertPlantStationInfo(UserHelper user) {
-
 		try {
-
 			UserHelper responseobj = new UserHelper();
-
+			Boolean checkRegStatus = false;
 			
-			  PlantInfo checkRegStatus =plantInfoRepository.findSavedRegistration(user.getPlantInfo().getPlantUserName(),user.getPlantInfo().getEmail()); 
-			  if(checkRegStatus == null) {
+			if(user.getRegstatus().equalsIgnoreCase("register")) {
+			
+				checkRegStatus=checkDuplicateEntry(user);
+			}
+			  //PlantInfo checkRegStatus =plantInfoRepository.findSavedRegistration(user.getPlantInfo().getPlantUserName(),user.getPlantInfo().getEmail()); 
+			  if(!checkRegStatus) {
 			 
-
 			PlantInfo plantSaveResult = plantInfoRepository.save(user.getPlantInfo());
 
 			if (plantSaveResult.getPlantUserName() != null) {
@@ -143,8 +84,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				UserInfo userinfo = new UserInfo();
 				userinfo.setUserName(plantSaveResult.getPlantUserName());
 				userinfo.setPassword(user.getUserInfo().getPassword());
-
-				userinfo.setEmail(user.getUserInfo().getEmail());
+				userinfo.setEmail(plantSaveResult.getEmail());
 				userinfo.setDepartment(user.getUserInfo().getDepartment());
 				userinfo.setMobNo(user.getUserInfo().getMobNo());
 				userinfo.setUserType(user.getUserInfo().getUserType());
@@ -162,25 +102,24 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 						Base64.getEncoder().encodeToString(keyPairGenerator.getPrivateKey().getEncoded()));
 				userinfo.setRsaPublicKey(
 						Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));
-				System.out.println(userinfo.getRsaPrivateKey());
+				//System.out.println(userinfo.getRsaPrivateKey());
 				userRepository.save(userinfo);
+				
+				user.getUserInfo().getUserRole().parallelStream().forEach(record -> {
+					UserRole userRole = new UserRole();
+					userRole.setPlantUserId(plantSaveResult.getPid());
+					userRole.setRoleId(record.getRoleId() == null ? 3 : record.getRoleId());
+					userRole.setUserRoleStatus(true);
+					userRole.setCreatedDt(new Date());
+					userRoleRepository.save(userRole);
+				});
 			}
-
-			user.getUserInfo().getUserRole().parallelStream().forEach(record -> {
-				UserRole userRole = new UserRole();
-				userRole.setPlantUserId(plantSaveResult.getPid());
-				userRole.setRoleId(record.getRoleId() == null ? 1 : record.getRoleId());
-				userRole.setUserRoleStatus(true);
-				userRole.setCreatedDt(new Date());
-				userRoleRepository.save(userRole);
-			});
 
 			if (plantSaveResult.getPlantUserName() != null) {
 
 				user.getStationInfo().parallelStream().forEach(record -> {
 					StationInfo stationinfo = new StationInfo();
 					stationinfo.setPlantId(plantSaveResult.getPid());
-
 					stationinfo.setStationId(record.getStationId());
 					stationinfo.setAnalyzer(record.getAnalyzer());
 					stationinfo.setAnalyzerv2(record.getAnalyzerv2());
@@ -192,7 +131,6 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 					stationinfo.setStationNo(record.getStationNo());
 					stationinfo.setStnType(record.getStnType());
 					stationinfo.setHasThresold(record.getHasThresold());
-					stationinfo.setPid(record.getPid());
 					stationinfo.setStationVendor(record.getStationVendor());
 					stationinfo.setCertification(record.getCertification());
 					stationinfo.setLatitude(record.getLatitude());
@@ -240,21 +178,17 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			 } 
 			
 			  else {
-			  //logger.info("FOUND DUPLICATE USERNAME :: FOR :: "+user.getPlantInfo(). getPlantUserName());
-			 
 			  
 			  CommonApiStatus failedApiStatus = new
 			  CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 			  HttpStatus.ALREADY_REPORTED, ApplicationConstants.API_OVER_ALL_ERROR_STATUS);
 			  return new ResponseObject("User Already Exist!", failedApiStatus); }
 			 
-
-		}
-		
-
-		catch (Exception e) {
-			// logger.info("THROWING ERROR DUPLICATE USERNAME :: FOR :: " +
-			// user.getPlantInfo().getPlantUserName());
+		}catch (ConstraintViolationException e) {
+			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			return new ResponseObject("User Already Exist!", failedApiStatus);
+		}catch (Exception e) {
 			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 			return new ResponseObject("Errors in Registration page", failedApiStatus);
@@ -262,10 +196,29 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 
 	}
 
+	private Boolean checkDuplicateEntry(UserHelper user) {
+		
+		try {
+		PlantInfo info= plantInfoRepository.getByPlantUser(user.getPlantInfo().getPlantUserName());
+		UserInfo infoEmail= userRepository.findUserByEmail(user.getPlantInfo().getEmail());
+		UserInfo infoMob= userRepository.getUserByMob(user.getUserInfo().getMobNo());
+		
+		if(info!=null || infoEmail!=null || infoMob!=null) {
+			return true;
+		}
+		
+		}catch(Exception e){
+			return false;
+		}
+		
+		
+		return false;
+	}
+
 	@Override
 	public ResponseObject findByUserName(UserHelper user) {
 
-		PlantInfo plant1 = plantInfoRepository.getByPlantUser(user.getPlantUserName());
+		PlantInfo plant1 = plantInfoRepository.getByPlantUser(user.getPlantInfo().getPlantUserName());
 
 		user.setPlantInfo(plant1);
 
@@ -323,7 +276,6 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			stationMapper.setStationNo(station.getStationNo());
 			stationMapper.setStnType(station.getStnType());
 			stationMapper.setHasThresold(station.getHasThresold());
-			stationMapper.setPid(station.getPid());
 			stationMapper.setStationVendor(station.getStationVendor());
 			stationMapper.setCertification(station.getCertification());
 			stationMapper.setLatitude(station.getLatitude());
@@ -340,7 +292,6 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			// parameter info call to paramRepo = with sid will get a list set it into the
 			// setter method
 			List<ParameterInfo> paramId = parameterInfoRepository.findBySId(stationMapper.getSid());
-			//System.out.println("jjjjjj" + paramId.get(0).getSid());
 			stationMapper.setParameterInfo(paramId);
 
 			mappers.add(stationMapper);

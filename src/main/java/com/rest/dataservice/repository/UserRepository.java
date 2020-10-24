@@ -38,4 +38,7 @@ public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	@Query("FROM PlantInfo WHERE  userName=:userName AND regStatus= 0") 
 	UserInfo findRegStatus(@Param("userName")String userName);
 
+	@Query("FROM UserInfo WHERE mobNo=:mobNo")
+	UserInfo getUserByMob(String mobNo);
+
 }

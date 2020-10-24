@@ -23,13 +23,13 @@ public class HelpFeedbackServiceImpl implements HelpFeedbackService {
 			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 	
 	@Override
-	public ResponseObject addHelpDetails(HelpFeedback help) {
+	public HelpFeedback addHelpDetails(HelpFeedback help) {
 		
 		help.setCreatedBy(help.getUserName());
 		help.setCreatedDt(new Date());
 		HelpFeedback feedback = helpFeedbackRepository.save(help);
 		
-		return new ResponseObject(feedback,successApiStatus);
+		return feedback;
 		}
 
 	@Override

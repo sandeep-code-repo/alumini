@@ -5,6 +5,6 @@ import com.rest.dataservice.util.ResponseObject;
 
 public interface HelpFeedbackService {
 
-	 ResponseObject addHelpDetails(HelpFeedback help);
+	 HelpFeedback addHelpDetails(HelpFeedback help);
 	 ResponseObject getHelpFeedbackList();
 }

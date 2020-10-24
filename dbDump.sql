@@ -41,4 +41,14 @@ insert  into `dropdown_industry_category`(`industry_cat_id`,`industry_cat_name`,
 
 /*Data for the table `mail_header` */
 insert  into `mail_header`(`mail_subject`,`mail_body`,`mail_filter`,`created_by`,`created_dt`) values 
-('OSASP Password Reset request','Seems like you forgot your password for your CPCB account. Use the button below to reset it. ','change password','System',CURRENT_TIMESTAMP)
+('OSASP Password Reset request','Seems like you forgot your password for your CPCB account. Use the button below to reset it. ','change password','System',CURRENT_TIMESTAMP),
+('APCB Query submit confirmation','Your query has been submitted successfully.
+ Our team is currently looking into the matter and will be in contact with you as soon as possible.','Help Query','System',CURRENT_TIMESTAMP)
+
+
+/*Data for the table `user_role` */
+insert  into `role`(`role_name`,`role_status`,`role_desc`,`created_by`,`created_dt`) values 
+('Super Admin',true,'Super Admin role','System',CURRENT_TIMESTAMP),
+('Admin',true,'Admin role','System',CURRENT_TIMESTAMP),
+('User',true,'User role','System',CURRENT_TIMESTAMP)
+

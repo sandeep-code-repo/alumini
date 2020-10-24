@@ -13,6 +13,7 @@ import com.rest.dataservice.entity.HelpFeedback;
 import com.rest.dataservice.entity.Industry;
 import com.rest.dataservice.service.HelpFeedbackService;
 import com.rest.dataservice.service.IndustryService;
+import com.rest.dataservice.service.MailService;
 import com.rest.dataservice.util.AbstractMapper;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.RequestObject;
@@ -27,11 +28,18 @@ import com.rest.dataservice.util.ResponseObject;
 @RestController
 public class HelpFeedbackController extends AbstractMapper{
 
+	private static final String ERROR_IN_SAVING_YOUR_QUERY = "Error in saving your query";
+	
+	@Autowired
+	private MailService mailService; 
+
 	@Autowired
 	HelpFeedbackService helpFeedbackService;
 
 	private static CommonApiStatus errorApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS, HttpStatus.INTERNAL_SERVER_ERROR,
 			ApplicationConstants.API_OVER_ALL_ERROR_STATUS);
+	private static CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.CREATED,
+			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 
 	/**
 	 * @return ResponseObject
@@ -40,8 +48,12 @@ public class HelpFeedbackController extends AbstractMapper{
 	public ResponseObject addHelpDetails(@RequestBody HelpFeedback helpFeedback) {
 
 		try {
-			//HelpFeedback helpFeedback = (HelpFeedback) getParsedObject(obj.getRequestdata(), HelpFeedback.class);
-			return helpFeedbackService.addHelpDetails(helpFeedback);
+			HelpFeedback helpFeedbackOp = helpFeedbackService.addHelpDetails(helpFeedback);
+			if(helpFeedbackOp.getUserName()==null || helpFeedbackOp.getUserName().isEmpty()) {
+				return new ResponseObject(ERROR_IN_SAVING_YOUR_QUERY,errorApiStatus);
+			}
+			mailService.sendFeedbackEmail(helpFeedbackOp);
+			return new ResponseObject(helpFeedbackOp,successApiStatus);
 		} catch (Exception e) {
 
 			return new ResponseObject(e.getStackTrace(),errorApiStatus);

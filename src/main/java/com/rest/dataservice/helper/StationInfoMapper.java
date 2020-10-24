@@ -41,8 +41,6 @@ public class StationInfoMapper {
 	
 	private Integer hasThresold;
 	
-	private Integer pid;
-	
 	private String stationVendor;
 	
 	private String certification;
@@ -191,14 +189,6 @@ public class StationInfoMapper {
 		this.hasThresold = hasThresold;
 	}
 
-	public Integer getPid() {
-		return pid;
-	}
-
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
 
 	public String getStationVendor() {
 		return stationVendor;
@@ -339,20 +329,16 @@ public class StationInfoMapper {
 
 	@Override
 	public String toString() {
-		return "StationInfo [sid=" + sid + ", plantId=" + plantId + ", stationId=" + stationId + ", analyzer="
+		return "StationInfoMapper [sid=" + sid + ", plantId=" + plantId + ", stationId=" + stationId + ", analyzer="
 				+ analyzer + ", analyzerv2=" + analyzerv2 + ", shortName=" + shortName + ", location=" + location
 				+ ", installDt=" + installDt + ", token=" + token + ", macNo=" + macNo + ", stationNo=" + stationNo
-				+ ", stnType=" + stnType + ", hasThresold=" + hasThresold + ", pid=" + pid + ", stationVendor="
-				+ stationVendor + ", certification=" + certification + ", latitude=" + latitude + ", longitute="
-				+ longitute + ", measurementPrinciple=" + measurementPrinciple + ", stackHeight=" + stackHeight
-				+ ", stackDiameter=" + stackDiameter + ", stackVelocity=" + stackVelocity + ", gasDischargeRate="
-				+ gasDischargeRate + ", remarks=" + remarks + ", createdBy=" + createdBy + ", createdDt=" + createdDt
-				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + "]";
+				+ ", stnType=" + stnType + ", hasThresold=" + hasThresold + ", stationVendor=" + stationVendor
+				+ ", certification=" + certification + ", latitude=" + latitude + ", longitute=" + longitute
+				+ ", measurementPrinciple=" + measurementPrinciple + ", stackHeight=" + stackHeight + ", stackDiameter="
+				+ stackDiameter + ", stackVelocity=" + stackVelocity + ", gasDischargeRate=" + gasDischargeRate
+				+ ", remarks=" + remarks + ", createdBy=" + createdBy + ", createdDt=" + createdDt + ", lastModifiedBy="
+				+ lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + ", parameterInfo=" + parameterInfo + "]";
 	}
 
-	
-	
-	
-	
 
 }

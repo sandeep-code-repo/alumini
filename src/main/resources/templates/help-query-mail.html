@@ -443,22 +443,22 @@
                     <td class="content-cell">
                       <div class="f-fallback">
                         <h1 th:text="${'Dear ' + user.userName}"></h1>
-                        <p>Seems like you forgot your password for your APCB account. Use the button below to activate it. <strong>This password is only valid for the next 24 hours.</strong></p>
+                        <p th:text="${body}"></p>
                         <!-- Action -->
-                        <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                        <table align="center" width="100%" cellpadding="0" cellspacing="0" >
                           <tr>
                             <td align="center">
-                              <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
+                              <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                   <td align="center">
-                                    <a th:href="${resetUrl}" class="f-fallback button button--green" target="_blank">Activate your password</a>
+                                    <strong>Query Details</strong> <p th:text="${query}"> </p>
                                   </td>
                                 </tr>
                               </table>
                             </td>
                           </tr>
                         </table>
-                        <p>If you did not request a password reset, please ignore this email.</p>
+                        <p> We appreciate your patience.</p>
                         <p>Thanks,
                           <br>APCB Team</p>
                       </div>

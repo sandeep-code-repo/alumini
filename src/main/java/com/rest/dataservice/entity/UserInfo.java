@@ -29,7 +29,7 @@ public class UserInfo implements Serializable{
 	@Column(name = "user_name", unique = true, nullable=false)
 	private String  userName;
 	
-	@Column(name = "password")
+	@Column(name = "password", nullable=false)
 	private String  password;
 	
 	@Column(name = "email",unique = true, nullable=false)
@@ -38,7 +38,7 @@ public class UserInfo implements Serializable{
 	@Column(name = "department")
 	private String  department;
 	
-	@Column(name = "mob_no")
+	@Column(name = "mob_no",unique = true, nullable=false)
 	private String  mobNo;
 	
 	@Column(name = "user_type")
