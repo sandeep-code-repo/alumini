@@ -27,7 +27,7 @@ public class StationInfo implements Serializable{
 	@Column(name = "sid")
 	private long sid;
 	
-	@Column(name = "plant_user_name")
+	@Column(name = "plant_id")
 	private long plantId;
 	
 	@Column(name = "station_name")

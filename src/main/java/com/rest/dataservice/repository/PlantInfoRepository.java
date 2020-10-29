@@ -13,6 +13,6 @@ public interface PlantInfoRepository extends JpaRepository<PlantInfo, Integer>{
 	 @Query("FROM PlantInfo WHERE  plantUserName=:plantUserName AND email=:email") 
 	  PlantInfo findSavedRegistration(@Param("plantUserName")String plantUserName,@Param("email")String email);
 	 
-	 @Query("FROM PlantInfo WHERE  plantUserName=:plantUserName ") 
-	  PlantInfo getByPlantUser(@Param("plantUserName")String plantUserName);
+	 @Query("FROM PlantInfo WHERE  plantUserName=:userId ") 
+	  PlantInfo getByPlantUser(@Param("userId")Long userId);
 }

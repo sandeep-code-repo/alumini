@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.UserHelper;
 import com.rest.dataservice.service.PlantRegistrationService;
 import com.rest.dataservice.util.ResponseObject;
@@ -52,9 +53,9 @@ public class PlantRegistrationController {
 	}
 	
 	@PostMapping("/getPlantDetails")
-	 public ResponseObject getEmpByName(@RequestBody UserHelper plant) {
+	 public ResponseObject getUserByName(@RequestBody UserInfo info) {
 	 
-		ResponseObject entity = employeeService.findByUserName(plant); 
+		ResponseObject entity = employeeService.findByUserName(info); 
 	 
 	 return entity;
 	 }

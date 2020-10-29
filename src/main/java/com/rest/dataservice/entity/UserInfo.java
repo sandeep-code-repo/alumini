@@ -32,7 +32,22 @@ public class UserInfo implements Serializable{
 	@Column(name = "password", nullable=false)
 	private String  password;
 	
-	@Column(name = "email",unique = true, nullable=false)
+	@Column(name = "pin")
+	private String  pin;
+	
+	@Column(name = "district")
+	private String  district;
+	
+	@Column(name = "town")
+	private String  town;
+	
+	@Column(name = "street")
+	private String  street;
+	
+	@Column(name = "state")
+	private String  state;
+	
+	@Column(name = "email" , unique=true, nullable=false)
 	private String  email;
 	
 	@Column(name = "department")
@@ -44,11 +59,20 @@ public class UserInfo implements Serializable{
 	@Column(name = "user_type")
 	private String  userType;
 	
-	@Column(name = "plant_type")
-	private String  plantType;
+	@Column(name = "auth_person")
+	private String  authPerson;
 	
-	@Column(name = "category")
-	private String  category;
+	@Column(name = "secd_person")
+	private String  secdPerson;
+	
+	@Column(name = "secd_person_desig")
+	private String  secdPersonDesig;
+	
+	@Column(name = "secd_person_mob")
+	private String  secdPersonMob;
+	
+	@Column(name = "secd_email")
+	private String  secdEmail;
 	
 	@Column(name = "designation")
 	private String  designation;
@@ -138,21 +162,6 @@ public class UserInfo implements Serializable{
 		this.userType = userType;
 	}
 
-	public String getPlantType() {
-		return plantType;
-	}
-
-	public void setPlantType(String plantType) {
-		this.plantType = plantType;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
 
 	public String getDesignation() {
 		return designation;

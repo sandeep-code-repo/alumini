@@ -24,29 +24,8 @@ public class PlantInfo implements Serializable{
 	@Column(name = "pid")
 	private long pid;
 	
-	@Column(name = "plant_user_name", unique=true, nullable=false)
-	private String  plantUserName;
-	
-	@Column(name = "pin")
-	private String  pin;
-	
-	@Column(name = "type")
-	private String  typ;
-	
-	@Column(name = "district")
-	private String  district;
-	
-	@Column(name = "town")
-	private String  town;
-	
-	@Column(name = "street")
-	private String  street;
-	
-	@Column(name = "state")
-	private String  state;
-	
-	@Column(name = "email" , unique=true, nullable=false)
-	private String  email;
+	@Column(name = "user_id")
+	private Long  userId;
 	
 	@Column(name = "web")
 	private String  web;
@@ -59,15 +38,6 @@ public class PlantInfo implements Serializable{
 	
 	@Column(name = "date_time_stamp")
 	private Date  timeStamp;
-	
-	@Column(name = "auth_person")
-	private String  authPerson;
-	
-	@Column(name = "auth_person_mob")
-	private String  authoPerMob;
-	
-	@Column(name = "auth_person_desig")
-	private String  authPersonDesig;
 	
 	@Column(name = "cpcb_usr")
 	private String  cpcbUser;
@@ -98,6 +68,9 @@ public class PlantInfo implements Serializable{
 	
 	@Column(name = "category")
 	private String  category;
+	
+	@Column(name = "plant_type")
+	private String  plantType;
 	
 	@Column(name = "plant_name")
 	private String  plantName;
@@ -144,18 +117,6 @@ public class PlantInfo implements Serializable{
 	@Column(name = "CEQMS_Station")
 	private String  ceqmsStation;
 	
-	@Column(name = "secd_person")
-	private String  secdPerson;
-	
-	@Column(name = "secd_person_desig")
-	private String  secdPersonDesig;
-	
-	@Column(name = "secd_person_mob")
-	private String  secdPersonMob;
-	
-	@Column(name = "secd_email")
-	private String  secdEmail;
-	
 	@Column(name = "created_by")
 	private String  createdBy;
 	
@@ -168,8 +129,6 @@ public class PlantInfo implements Serializable{
 	@Column(name="last_modified_dt")
 	private String lastModifiedDt;
 
-	
-
 	public long getPid() {
 		return pid;
 	}
@@ -177,69 +136,13 @@ public class PlantInfo implements Serializable{
 	public void setPid(long pid) {
 		this.pid = pid;
 	}
-
-	public String getPlantUserName() {
-		return plantUserName;
+	
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setPlantUserName(String plantUserName) {
-		this.plantUserName = plantUserName;
-	}
-
-	public String getPin() {
-		return pin;
-	}
-
-	public void setPin(String pin) {
-		this.pin = pin;
-	}
-
-	public String getTyp() {
-		return typ;
-	}
-
-	public void setTyp(String typ) {
-		this.typ = typ;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getTown() {
-		return town;
-	}
-
-	public void setTown(String town) {
-		this.town = town;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(Long long1) {
+		this.userId = long1;
 	}
 
 	public String getWeb() {
@@ -272,30 +175,6 @@ public class PlantInfo implements Serializable{
 
 	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
-	}
-
-	public String getAuthPerson() {
-		return authPerson;
-	}
-
-	public void setAuthPerson(String authPerson) {
-		this.authPerson = authPerson;
-	}
-
-	public String getAuthoPerMob() {
-		return authoPerMob;
-	}
-
-	public void setAuthoPerMob(String authoPerMob) {
-		this.authoPerMob = authoPerMob;
-	}
-
-	public String getAuthPersonDesig() {
-		return authPersonDesig;
-	}
-
-	public void setAuthPersonDesig(String authPersonDesig) {
-		this.authPersonDesig = authPersonDesig;
 	}
 
 	public String getCpcbUser() {
@@ -376,6 +255,14 @@ public class PlantInfo implements Serializable{
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getPlantType() {
+		return plantType;
+	}
+
+	public void setPlantType(String plantType) {
+		this.plantType = plantType;
 	}
 
 	public String getPlantName() {
@@ -498,54 +385,13 @@ public class PlantInfo implements Serializable{
 		this.ceqmsStation = ceqmsStation;
 	}
 
-	public String getSecdPerson() {
-		return secdPerson;
-	}
-
-	public void setSecdPerson(String secdPerson) {
-		this.secdPerson = secdPerson;
-	}
-
-	public String getSecdPersonDesig() {
-		return secdPersonDesig;
-	}
-
-	public void setSecdPersonDesig(String secdPersonDesig) {
-		this.secdPersonDesig = secdPersonDesig;
-	}
-
-	public String getSecdPersonMob() {
-		return secdPersonMob;
-	}
-
-	public void setSecdPersonMob(String secdPersonMob) {
-		this.secdPersonMob = secdPersonMob;
-	}
-
-	public String getSecdEmail() {
-		return secdEmail;
-	}
-
-	public void setSecdEmail(String secdEmail) {
-		this.secdEmail = secdEmail;
-	}
-
-	
-	/**
-	 * @return the createdBy
-	 */
 	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	/**
-	 * @param createdBy the createdBy to set
-	 */
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-
-	
 
 	public Date getCreatedDt() {
 		return createdDt;
@@ -555,41 +401,20 @@ public class PlantInfo implements Serializable{
 		this.createdDt = createdDt;
 	}
 
-	/**
-	 * @return the lastModifiedBy
-	 */
 	public String getLastModifiedBy() {
 		return lastModifiedBy;
 	}
 
-	/**
-	 * @param lastModifiedBy the lastModifiedBy to set
-	 */
 	public void setLastModifiedBy(String lastModifiedBy) {
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
-	/**
-	 * @return the lastModifiedDt
-	 */
 	public String getLastModifiedDt() {
 		return lastModifiedDt;
 	}
 
-	/**
-	 * @param lastModifiedDt the lastModifiedDt to set
-	 */
 	public void setLastModifiedDt(String lastModifiedDt) {
 		this.lastModifiedDt = lastModifiedDt;
 	}
-
-	
-
-
-
-
-
-	
-	
 
 }

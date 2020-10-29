@@ -13,10 +13,10 @@ public class UserHelper {
 
 	
 	private PlantInfo  plantInfo;
-	private List<StationInfoMapper>  stationInfo;
 	
+	private List<StationInfoMapper>  stationInfoMapper;
 	
-	private UserInfoMapper userInfo;
+	private UserInfoMapper userInfoMapper;
 	
 	private String regstatus;
 	
@@ -28,17 +28,17 @@ public class UserHelper {
 	}
 
 	
-	public List<StationInfoMapper> getStationInfo() {
-		return stationInfo;
+	public List<StationInfoMapper> getStationInfoMapper() {
+		return stationInfoMapper;
 	}
-	public void setStationInfo(List<StationInfoMapper> stationInfo) {
-		this.stationInfo = stationInfo;
+	public void setStationInfo(List<StationInfoMapper> stationInfoMapper) {
+		this.stationInfoMapper = stationInfoMapper;
 	}
-	public UserInfoMapper getUserInfo() {
-		return userInfo;
+	public UserInfoMapper getUserInfoMapper() {
+		return userInfoMapper;
 	}
-	public void setUserInfo(UserInfoMapper userInfo) {
-		this.userInfo = userInfo;
+	public void setUserInfoMapper(UserInfoMapper userInfoMapper) {
+		this.userInfoMapper = userInfoMapper;
 	}
 	public String getRegstatus() {
 		return regstatus;

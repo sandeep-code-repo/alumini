@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rest.dataservice.entity.Employee;
 import com.rest.dataservice.entity.StationInfo;
+import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.UserHelper;
 import com.rest.dataservice.util.ResponseObject;
 
@@ -26,7 +27,7 @@ public interface PlantRegistrationService {
 	
 	/* ResponseObject insertPlantStationInfoByRegStatus(UserHelper user); */
 
-	ResponseObject findByUserName(UserHelper plant);
+	ResponseObject findByUserName(UserInfo user);
 
 	
 
