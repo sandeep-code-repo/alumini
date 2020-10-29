@@ -31,7 +31,7 @@ public class UserHelper {
 	public List<StationInfoMapper> getStationInfoMapper() {
 		return stationInfoMapper;
 	}
-	public void setStationInfo(List<StationInfoMapper> stationInfoMapper) {
+	public void setStationInfoMapper(List<StationInfoMapper> stationInfoMapper) {
 		this.stationInfoMapper = stationInfoMapper;
 	}
 	public UserInfoMapper getUserInfoMapper() {

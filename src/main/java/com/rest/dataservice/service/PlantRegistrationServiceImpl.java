@@ -105,7 +105,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				
 
 				    user.getStationInfoMapper().parallelStream().forEach(record -> {
-				    	record.getStationInfo().setPlantId(plantSaveResult.getUserId());
+				    	record.getStationInfo().setPlantId(plantSaveResult.getPid());
 				    	record.getStationInfo().setCreatedDt(new Date());
 				    	record.getStationInfo().setCreatedBy(user.getUserInfoMapper().getUserInfo().getUserName());
 				    	stationInfoRepository.save(record.getStationInfo());
@@ -122,20 +122,9 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 
 				});
 
-				   // PlantInfo plant = plantInfoRepository.getByPlantUser(plantSaveResult.getPlantUserName());
-
-					responseobj.setPlantInfo(plantSaveResult);
-
-					responseobj.setUserInfoMapper(parseToMapperUserinfo(userSaveResult));
-
-					List<StationInfo> stationinfo = stationInfoRepository.findByplantId(plantSaveResult.getPid());
-					responseobj.setStationInfo(parseToMapperObject(stationinfo));
-
 			}
 
-			CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
-					HttpStatus.CREATED, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
-			return new ResponseObject(responseobj, SuccessApiStatus);
+			return findByUserName(userSaveResult);
 			
 			 }else {
 			  
@@ -196,7 +185,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			
 			List<StationInfo> stationinfo = stationInfoRepository.findByplantId(plantInfo.getPid());
 
-			user.setStationInfo(parseToMapperObject(stationinfo));
+			user.setStationInfoMapper(parseToMapperObject(stationinfo));
 			
 			CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
 					HttpStatus.CREATED, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);

@@ -10,9 +10,6 @@ import com.rest.dataservice.entity.PlantInfo;
 @Repository
 public interface PlantInfoRepository extends JpaRepository<PlantInfo, Integer>{
 
-	 @Query("FROM PlantInfo WHERE  plantUserName=:plantUserName AND email=:email") 
-	  PlantInfo findSavedRegistration(@Param("plantUserName")String plantUserName,@Param("email")String email);
-	 
-	 @Query("FROM PlantInfo WHERE  plantUserName=:userId ") 
+	 @Query("FROM PlantInfo WHERE  userId=:userId ") 
 	  PlantInfo getByPlantUser(@Param("userId")Long userId);
 }
