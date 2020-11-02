@@ -84,6 +84,8 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
 				user.getUserInfoMapper().getUserInfo().setRsaPrivateKey(
 						Base64.getEncoder().encodeToString(keyPairGenerator.getPrivateKey().getEncoded()));
+				user.getUserInfoMapper().getUserInfo().setRsaPublicKey(
+						Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));
 				UserInfo userSaveResult=userRepository.save(user.getUserInfoMapper().getUserInfo());
 				
 				user.getUserInfoMapper().getUserRole().parallelStream().forEach(record -> {
@@ -239,6 +241,67 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		return mappers;
 
 	}
+
+	@Override
+	public ResponseObject insertUserInfo(UserInfo user) {
+		
+	try {
+		UserHelper helper = new UserHelper();
+		Boolean checkRegStatus = false;
+		UserInfoMapper mapper = new UserInfoMapper();
+		mapper.setUserInfo(user);
+		helper.setUserInfoMapper(mapper);
+		
+		if(user.getRegStatus()) {
+			
+			checkRegStatus=checkDuplicateEntry(helper);
+		}
+		  if(!checkRegStatus) {
+		 
+			  helper.getUserInfoMapper().getUserInfo().setCreatedDt(new Date());
+			  helper.getUserInfoMapper().getUserInfo().setCreatedBy(helper.getUserInfoMapper().getUserInfo().getUserName());
+			  helper.getUserInfoMapper().getUserInfo().setRegStatus(true);
+
+			RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
+			helper.getUserInfoMapper().getUserInfo().setRsaPrivateKey(
+					Base64.getEncoder().encodeToString(keyPairGenerator.getPrivateKey().getEncoded()));
+			helper.getUserInfoMapper().getUserInfo().setRsaPublicKey(
+					Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));
+			UserInfo userSaveResult=userRepository.save(helper.getUserInfoMapper().getUserInfo());
+			
+				UserRole userRole = new UserRole();
+				userRole.setPlantUserId(helper.getUserInfoMapper().getUserInfo().getUid());
+				userRole.setRoleId(3L); //for User role as default
+				userRole.setUserRoleStatus(true);
+				userRole.setCreatedDt(new Date());
+				userRoleRepository.save(userRole);
+		
+		
+		CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
+				HttpStatus.CREATED, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
+		user.setUid(userSaveResult.getUid());
+		user.setRsaPublicKey(null);
+		user.setRsaPrivateKey(null);
+		return new ResponseObject(user, successApiStatus);
+	}else {
+		
+		 CommonApiStatus failedApiStatus = new
+				  CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+				  HttpStatus.ALREADY_REPORTED, ApplicationConstants.API_OVER_ALL_ERROR_STATUS);
+				  return new ResponseObject("User Already Exist!", failedApiStatus);
+	}
+		  
+	}catch (ConstraintViolationException e) {
+		CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+				HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+		return new ResponseObject("User Already Exist!", failedApiStatus);
+	}catch (Exception e) {
+		CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+				HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+		return new ResponseObject("Errors in Registration page", failedApiStatus);
+	}
+ }
+	
 }
 	
 	 

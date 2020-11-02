@@ -103,8 +103,6 @@ public class UserInfo implements Serializable{
 	
 	@Column(name="reg_status")
 	private Boolean regStatus;
-	
-	
 
 	public Long getUid() {
 		return uid;
@@ -128,6 +126,46 @@ public class UserInfo implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPin() {
+		return pin;
+	}
+
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public String getEmail() {
@@ -162,6 +200,45 @@ public class UserInfo implements Serializable{
 		this.userType = userType;
 	}
 
+	public String getAuthPerson() {
+		return authPerson;
+	}
+
+	public void setAuthPerson(String authPerson) {
+		this.authPerson = authPerson;
+	}
+
+	public String getSecdPerson() {
+		return secdPerson;
+	}
+
+	public void setSecdPerson(String secdPerson) {
+		this.secdPerson = secdPerson;
+	}
+
+	public String getSecdPersonDesig() {
+		return secdPersonDesig;
+	}
+
+	public void setSecdPersonDesig(String secdPersonDesig) {
+		this.secdPersonDesig = secdPersonDesig;
+	}
+
+	public String getSecdPersonMob() {
+		return secdPersonMob;
+	}
+
+	public void setSecdPersonMob(String secdPersonMob) {
+		this.secdPersonMob = secdPersonMob;
+	}
+
+	public String getSecdEmail() {
+		return secdEmail;
+	}
+
+	public void setSecdEmail(String secdEmail) {
+		this.secdEmail = secdEmail;
+	}
 
 	public String getDesignation() {
 		return designation;
@@ -194,8 +271,6 @@ public class UserInfo implements Serializable{
 	public void setRsaPrivateKey(String rsaPrivateKey) {
 		this.rsaPrivateKey = rsaPrivateKey;
 	}
-	
-	
 
 	public String getTempPassword() {
 		return tempPassword;
@@ -244,11 +319,19 @@ public class UserInfo implements Serializable{
 	public void setRegStatus(Boolean regStatus) {
 		this.regStatus = regStatus;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "UserInfo [uid=" + uid + ", userName=" + userName + ", password=" + password + ", pin=" + pin
+				+ ", district=" + district + ", town=" + town + ", street=" + street + ", state=" + state + ", email="
+				+ email + ", department=" + department + ", mobNo=" + mobNo + ", userType=" + userType + ", authPerson="
+				+ authPerson + ", secdPerson=" + secdPerson + ", secdPersonDesig=" + secdPersonDesig
+				+ ", secdPersonMob=" + secdPersonMob + ", secdEmail=" + secdEmail + ", designation=" + designation
+				+ ", reportto=" + reportto + ", rsaPublicKey=" + rsaPublicKey + ", rsaPrivateKey=" + rsaPrivateKey
+				+ ", tempPassword=" + tempPassword + ", createdBy=" + createdBy + ", createdDt=" + createdDt
+				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + ", regStatus="
+				+ regStatus + "]";
+	}
 	
 	
 

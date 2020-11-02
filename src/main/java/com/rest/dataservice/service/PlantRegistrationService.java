@@ -29,6 +29,8 @@ public interface PlantRegistrationService {
 
 	ResponseObject findByUserName(UserInfo user);
 
+	ResponseObject insertUserInfo(UserInfo userInfo);
+
 	
 
 }
