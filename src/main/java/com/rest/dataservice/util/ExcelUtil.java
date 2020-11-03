@@ -75,41 +75,35 @@ public class ExcelUtil {
 					} else if(cellIndex==1) { 
 						userInfo.setPassword(currentCell.getStringCellValue());
 					} else if(cellIndex==2) { 
-						userInfo.setDepartment(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					} else if(cellIndex==3) { 
-						userInfo.setUserType(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					}else if(cellIndex==4) { 
-						userInfo.setReportto(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					} else if(cellIndex==5) { 
 						userInfo.setAuthPerson(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					} else if(cellIndex==6) { 
+					} else if(cellIndex==3) { 
 						userInfo.setDesignation(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					} else if(cellIndex==7) { 
+					} else if(cellIndex==4) { 
 						userInfo.setMobNo(NumberToTextConverter.toText(currentCell.getNumericCellValue()));
-					}else if(cellIndex==8) { 
+					}else if(cellIndex==5) { 
 						userInfo.setEmail(currentCell.getStringCellValue());
-					} else if(cellIndex==9) { 
+					} else if(cellIndex==6) { 
 						userInfo.setSecdPerson(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					} else if(cellIndex==10) { 
+					} else if(cellIndex==7) { 
 						userInfo.setSecdPersonDesig(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					}else if(cellIndex==11) { 
+					}else if(cellIndex==8) { 
 						if(currentCell.getCellType() == CellType.STRING) {
 							userInfo.setSecdPersonMob(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":NumberToTextConverter.toText(currentCell.getNumericCellValue()));
 						}else {
 							userInfo.setSecdPersonMob(NumberToTextConverter.toText(currentCell.getNumericCellValue()));
 						}
 						
-					}else if(cellIndex==12) { 
+					}else if(cellIndex==9) { 
 						userInfo.setSecdEmail(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
-					}else if(cellIndex==13) { 
+					}else if(cellIndex==10) { 
 						userInfo.setStreet(currentCell.getStringCellValue());
-					} else if(cellIndex==14) { 
+					} else if(cellIndex==11) { 
 						userInfo.setTown(currentCell.getStringCellValue());
-					} else if(cellIndex==15) { 
+					} else if(cellIndex==12) { 
 						userInfo.setDistrict(currentCell.getStringCellValue());
-					} else if(cellIndex==16) { 
+					} else if(cellIndex==13) { 
 						userInfo.setState(currentCell.getStringCellValue());
-					}else if(cellIndex==17) { 
+					}else if(cellIndex==14) { 
 						if(currentCell.getCellType() == CellType.STRING) {
 							userInfo.setPin(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":NumberToTextConverter.toText(currentCell.getNumericCellValue()));
 						}else {

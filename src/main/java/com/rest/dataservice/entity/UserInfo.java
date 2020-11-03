@@ -50,14 +50,8 @@ public class UserInfo implements Serializable{
 	@Column(name = "email" , unique=true, nullable=false)
 	private String  email;
 	
-	@Column(name = "department")
-	private String  department;
-	
 	@Column(name = "mob_no",unique = true, nullable=false)
 	private String  mobNo;
-	
-	@Column(name = "user_type")
-	private String  userType;
 	
 	@Column(name = "auth_person")
 	private String  authPerson;
@@ -77,8 +71,6 @@ public class UserInfo implements Serializable{
 	@Column(name = "designation")
 	private String  designation;
 	
-	@Column(name = "reportto")
-	private String  reportto;
 	
 	@Column(name = "rsa_public_key",length=500)
 	private String rsaPublicKey;
@@ -176,28 +168,12 @@ public class UserInfo implements Serializable{
 		this.email = email;
 	}
 
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
 	public String getMobNo() {
 		return mobNo;
 	}
 
 	public void setMobNo(String mobNo) {
 		this.mobNo = mobNo;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 
 	public String getAuthPerson() {
@@ -246,14 +222,6 @@ public class UserInfo implements Serializable{
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
-	}
-
-	public String getReportto() {
-		return reportto;
-	}
-
-	public void setReportto(String reportto) {
-		this.reportto = reportto;
 	}
 
 	public String getRsaPublicKey() {
@@ -324,14 +292,14 @@ public class UserInfo implements Serializable{
 	public String toString() {
 		return "UserInfo [uid=" + uid + ", userName=" + userName + ", password=" + password + ", pin=" + pin
 				+ ", district=" + district + ", town=" + town + ", street=" + street + ", state=" + state + ", email="
-				+ email + ", department=" + department + ", mobNo=" + mobNo + ", userType=" + userType + ", authPerson="
-				+ authPerson + ", secdPerson=" + secdPerson + ", secdPersonDesig=" + secdPersonDesig
-				+ ", secdPersonMob=" + secdPersonMob + ", secdEmail=" + secdEmail + ", designation=" + designation
-				+ ", reportto=" + reportto + ", rsaPublicKey=" + rsaPublicKey + ", rsaPrivateKey=" + rsaPrivateKey
-				+ ", tempPassword=" + tempPassword + ", createdBy=" + createdBy + ", createdDt=" + createdDt
-				+ ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt + ", regStatus="
-				+ regStatus + "]";
+				+ email + ", mobNo=" + mobNo + ", authPerson=" + authPerson + ", secdPerson=" + secdPerson
+				+ ", secdPersonDesig=" + secdPersonDesig + ", secdPersonMob=" + secdPersonMob + ", secdEmail="
+				+ secdEmail + ", designation=" + designation + ", rsaPublicKey=" + rsaPublicKey + ", rsaPrivateKey="
+				+ rsaPrivateKey + ", tempPassword=" + tempPassword + ", createdBy=" + createdBy + ", createdDt="
+				+ createdDt + ", lastModifiedBy=" + lastModifiedBy + ", lastModifiedDt=" + lastModifiedDt
+				+ ", regStatus=" + regStatus + "]";
 	}
+
 	
 	
 
