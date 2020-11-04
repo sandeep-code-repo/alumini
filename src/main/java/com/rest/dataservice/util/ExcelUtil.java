@@ -73,13 +73,21 @@ public class ExcelUtil {
 					if(cellIndex==0) { 
 						userInfo.setUserName(currentCell.getStringCellValue());
 					} else if(cellIndex==1) { 
-						userInfo.setPassword(currentCell.getStringCellValue());
+						if(currentCell.getCellType() == CellType.STRING) {
+							userInfo.setPassword(currentCell.getStringCellValue());
+						}else {
+						userInfo.setPassword(NumberToTextConverter.toText(currentCell.getNumericCellValue()));
+						}
 					} else if(cellIndex==2) { 
 						userInfo.setAuthPerson(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
 					} else if(cellIndex==3) { 
 						userInfo.setDesignation(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
 					} else if(cellIndex==4) { 
+						if(currentCell.getCellType() == CellType.STRING) {
+							userInfo.setMobNo(currentCell.getStringCellValue());
+						}else {
 						userInfo.setMobNo(NumberToTextConverter.toText(currentCell.getNumericCellValue()));
+						}
 					}else if(cellIndex==5) { 
 						userInfo.setEmail(currentCell.getStringCellValue());
 					} else if(cellIndex==6) { 
@@ -88,7 +96,7 @@ public class ExcelUtil {
 						userInfo.setSecdPersonDesig(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
 					}else if(cellIndex==8) { 
 						if(currentCell.getCellType() == CellType.STRING) {
-							userInfo.setSecdPersonMob(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":NumberToTextConverter.toText(currentCell.getNumericCellValue()));
+							userInfo.setSecdPersonMob(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
 						}else {
 							userInfo.setSecdPersonMob(NumberToTextConverter.toText(currentCell.getNumericCellValue()));
 						}
@@ -105,7 +113,7 @@ public class ExcelUtil {
 						userInfo.setState(currentCell.getStringCellValue());
 					}else if(cellIndex==14) { 
 						if(currentCell.getCellType() == CellType.STRING) {
-							userInfo.setPin(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":NumberToTextConverter.toText(currentCell.getNumericCellValue()));
+							userInfo.setPin(currentCell.getStringCellValue().equalsIgnoreCase("NA")?"":currentCell.getStringCellValue());
 						}else {
 							userInfo.setPin(NumberToTextConverter.toText(currentCell.getNumericCellValue()));
 						}
