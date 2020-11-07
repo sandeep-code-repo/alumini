@@ -2,6 +2,11 @@ package com.rest.dataservice.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -23,6 +28,8 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import com.rest.dataservice.entity.UserInfo;
+import com.rest.dataservice.model.TokenResponse;
+import com.rest.dataservice.config.TokenUtil;
 import com.rest.dataservice.constants.ApplicationConstants;
 import com.rest.dataservice.entity.Role;
 import com.rest.dataservice.service.MailService;
@@ -59,6 +66,12 @@ public class UserController {
 	private static final String LOGGED_IN_SUCCESSFULLY = " Logged in Successfully";
 
 	private static final String INVALID_CREDENTIAL = "Invalid Credential";
+	
+	private static final String LOGIN = "/login";
+
+	private static final String REGISTER = "/register";
+
+	private static final String USER_DISABLED = "User Disabled";
 
 	private static final String PASSWORD_CHANGED_SUCCESSFULLY = "Password changed successfully";
 
@@ -74,6 +87,12 @@ public class UserController {
 
 	@Autowired
 	private SpringTemplateEngine templateEngine;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private TokenUtil tokenUtil;
 
 	@Value("${app.login.url}")
 	String appUrl;
@@ -94,11 +113,33 @@ public class UserController {
 		//String plainTextPass = RSAUtil.decrypt(user.getPassword(), userService.getUserPrivateKey(user.getUserName()));
 		String plainTextPass = user.getPassword();
 		UserInfo userInfo=userService.findByUsername(user.getUserName(),plainTextPass);
-		return new ResponseObject(userInfo.getUserName()+LOGGED_IN_SUCCESSFULLY,successApiStatus);
+		//authenticate(user.getUserName(), plainTextPass);
+		final UserDetails userDetails = userService.loadUserByUsername(user.getUserName());
+
+		final String token = tokenUtil.generateToken(userDetails);
+		
+		TokenResponse response = new TokenResponse(userInfo.getUserName(),token);
+		
+		return new ResponseObject(response,successApiStatus);
 	}catch(Exception e){
 		return new ResponseObject(INVALID_CREDENTIAL,new CommonApiStatus(FAILED,HttpStatus.UNAUTHORIZED,e.getMessage()));
 	}
 
+	}
+	
+	/**
+	 * @param username
+	 * @param password
+	 * @throws Exception
+	 */
+	private void authenticate(String username, String password) throws Exception {
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+		} catch (DisabledException e) {
+			throw new Exception(USER_DISABLED, e);
+		} catch (BadCredentialsException e) {
+			throw new Exception(INVALID_CREDENTIAL, e);
+		}
 	}
 
 	/**
