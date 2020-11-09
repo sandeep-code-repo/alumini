@@ -79,7 +79,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			 
 				user.getUserInfoMapper().getUserInfo().setCreatedDt(new Date());
 				user.getUserInfoMapper().getUserInfo().setCreatedBy(user.getUserInfoMapper().getUserInfo().getUserName());
-				user.getUserInfoMapper().getUserInfo().setRegStatus(true);
+				//user.getUserInfoMapper().getUserInfo().setRegStatus(true);
 
 				RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
 				user.getUserInfoMapper().getUserInfo().setRsaPrivateKey(
@@ -170,6 +170,9 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 	public ResponseObject findByUserName(UserInfo info) {
 
 		try {
+			
+			CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
+					HttpStatus.OK, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
         UserHelper user = new UserHelper();
 
 		if (info.getUserName() != null) {
@@ -180,17 +183,23 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 						HttpStatus.INTERNAL_SERVER_ERROR, "Invalid Username");
 				return new ResponseObject("Please enter a valid username", errorApiStatus);
 			}
+			
 			user.setUserInfoMapper(parseToMapperUserinfo(userInfo));
 			
+			
 			PlantInfo plantInfo = plantInfoRepository.getByPlantUser(userInfo.getUid());
+			
+			if(plantInfo==null) {
+				return new ResponseObject(user, successApiStatus);
+			}
 			user.setPlantInfo(plantInfo);
 			
 			List<StationInfo> stationinfo = stationInfoRepository.findByplantId(plantInfo.getPid());
-
+			if(stationinfo==null) {
+				return new ResponseObject(user, successApiStatus);
+			}
 			user.setStationInfoMapper(parseToMapperObject(stationinfo));
 			
-			CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS,
-					HttpStatus.CREATED, ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 			return new ResponseObject(user, successApiStatus);
 		}else {
 			
@@ -199,8 +208,6 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			return new ResponseObject("Please enter a valid username", errorApiStatus);
 			
 		}
-
-		
 		
 		}catch(Exception e){
 			

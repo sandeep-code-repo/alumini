@@ -33,6 +33,7 @@ import com.rest.dataservice.config.TokenUtil;
 import com.rest.dataservice.constants.ApplicationConstants;
 import com.rest.dataservice.entity.Role;
 import com.rest.dataservice.service.MailService;
+import com.rest.dataservice.service.PlantRegistrationService;
 import com.rest.dataservice.service.UserService;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.RSAUtil;
@@ -90,6 +91,9 @@ public class UserController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private PlantRegistrationService registrationService;
 
 	@Autowired
 	private TokenUtil tokenUtil;
@@ -115,10 +119,11 @@ public class UserController {
 		UserInfo userInfo=userService.findByUsername(user.getUserName(),plainTextPass);
 		//authenticate(user.getUserName(), plainTextPass);
 		final UserDetails userDetails = userService.loadUserByUsername(user.getUserName());
-
 		final String token = tokenUtil.generateToken(userDetails);
 		
-		TokenResponse response = new TokenResponse(userInfo.getUserName(),token);
+		ResponseObject resObj=registrationService.findByUserName(userInfo);
+		
+		TokenResponse response = new TokenResponse(resObj,token);
 		
 		return new ResponseObject(response,successApiStatus);
 	}catch(Exception e){
