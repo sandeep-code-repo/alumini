@@ -31,6 +31,8 @@ public interface PlantRegistrationService {
 
 	ResponseObject insertUserInfo(UserInfo userInfo);
 
+	ResponseObject updatePlantStationInfo(UserHelper plantRegistration);
+
 	
 
 }

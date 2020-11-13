@@ -127,7 +127,7 @@ public class PlantInfo implements Serializable{
 	private String  lastModifiedBy;
 	
 	@Column(name="last_modified_dt")
-	private String lastModifiedDt;
+	private Date lastModifiedDt;
 
 	public long getPid() {
 		return pid;
@@ -409,11 +409,11 @@ public class PlantInfo implements Serializable{
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
-	public String getLastModifiedDt() {
+	public Date getLastModifiedDt() {
 		return lastModifiedDt;
 	}
 
-	public void setLastModifiedDt(String lastModifiedDt) {
+	public void setLastModifiedDt(Date lastModifiedDt) {
 		this.lastModifiedDt = lastModifiedDt;
 	}
 

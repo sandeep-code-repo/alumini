@@ -76,6 +76,24 @@ public class PlantRegistrationController {
 	    return entity;
 	}
 	
+	/**
+	 * 
+	 * @param Plant
+	 * @return
+	 * @description
+	 * insert Plant details
+	 */
+	
+	@PutMapping("/updateUser")
+	public ResponseObject updateEmployeeData(@RequestBody UserHelper plantRegistration) {
+		
+			ResponseObject entity = registrationService.updatePlantStationInfo(plantRegistration);
+    	
+		//logger.info("REQUEST RECV : " + plantRegistration);
+			    		
+	    return entity;
+	}
+	
 	@PostMapping("/getPlantDetails")
 	 public ResponseObject getUserByName(@RequestBody UserInfo info) {
 	 
@@ -94,6 +112,7 @@ public class PlantRegistrationController {
 
 	    if (ExcelUtil.hasExcelFormat(file)) {
 	      try {
+	    	  UserHelper userHelper = new UserHelper();
 	        UserInfo userInfo= excelService.store(file);
 	        userInfo.setRegStatus(true);
 	        ResponseObject entity = registrationService.insertUserInfo(userInfo);

@@ -104,7 +104,7 @@ public class StationInfo implements Serializable{
 	private String  lastModifiedBy;
 	
 	@Column(name="last_modified_dt")
-	private String lastModifiedDt;
+	private Date lastModifiedDt;
 	
 	
 
@@ -334,15 +334,15 @@ public class StationInfo implements Serializable{
 	/**
 	 * @return the lastModifiedDt
 	 */
-	public String getLastModifiedDt() {
+	public Date getLastModifiedDt() {
 		return lastModifiedDt;
 	}
 
 	/**
-	 * @param lastModifiedDt the lastModifiedDt to set
+	 * @param date the lastModifiedDt to set
 	 */
-	public void setLastModifiedDt(String lastModifiedDt) {
-		this.lastModifiedDt = lastModifiedDt;
+	public void setLastModifiedDt(Date date) {
+		this.lastModifiedDt = date;
 	}
 
 	

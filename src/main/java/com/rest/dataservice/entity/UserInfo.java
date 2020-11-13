@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "user_info")
 public class UserInfo implements Serializable{
@@ -85,13 +90,17 @@ public class UserInfo implements Serializable{
 	private String  createdBy;
 	
 	@Column(name = "created_dt")
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date  createdDt;
 	
 	@Column(name = "last_modified_by")
 	private String  lastModifiedBy;
 	
 	@Column(name="last_modified_dt")
-	private String lastModifiedDt;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date lastModifiedDt;
 	
 	@Column(name="reg_status")
 	private Boolean regStatus;
@@ -272,12 +281,12 @@ public class UserInfo implements Serializable{
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
-	public String getLastModifiedDt() {
+	public Date getLastModifiedDt() {
 		return lastModifiedDt;
 	}
 
-	public void setLastModifiedDt(String lastModifiedDt) {
-		this.lastModifiedDt = lastModifiedDt;
+	public void setLastModifiedDt(Date date) {
+		this.lastModifiedDt = date;
 	}
 
 	public Boolean getRegStatus() {

@@ -79,7 +79,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			 
 				user.getUserInfoMapper().getUserInfo().setCreatedDt(new Date());
 				user.getUserInfoMapper().getUserInfo().setCreatedBy(user.getUserInfoMapper().getUserInfo().getUserName());
-				//user.getUserInfoMapper().getUserInfo().setRegStatus(true);
+				user.getUserInfoMapper().getUserInfo().setRegStatus(user.getUserInfoMapper().getUserInfo().getRegStatus() == null ? false : user.getUserInfoMapper().getUserInfo().getRegStatus());
 
 				RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
 				user.getUserInfoMapper().getUserInfo().setRsaPrivateKey(
@@ -308,6 +308,106 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		return new ResponseObject("Errors in Registration page", failedApiStatus);
 	}
  }
+
+	@Override
+	@Transactional
+	public ResponseObject updatePlantStationInfo(UserHelper user) {
+		try {
+			UserHelper responseobj = new UserHelper();
+			Boolean checkRegStatus = false;
+			List<StationInfoMapper>  stationInfoMapper;
+			CommonApiStatus failedApiStatus = new
+					  CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+					  HttpStatus.ALREADY_REPORTED, ApplicationConstants.API_OVER_ALL_ERROR_STATUS);
+			
+			ResponseObject obj= findByUserName(user.getUserInfoMapper().getUserInfo());
+			
+			if(!obj.getData().toString().contains("UserHelper") ) {
+				
+				return new ResponseObject("Invalid User Details!", failedApiStatus); 
+				
+			} 
+				
+			  responseobj=(UserHelper) obj.getData();
+			  
+			  if(responseobj.getUserInfoMapper().getUserInfo().getUid()!=null) {
+			 
+				//user.getUserInfoMapper().setUserInfo(responseobj.getUserInfoMapper().getUserInfo());
+						
+				user.getUserInfoMapper().getUserInfo().setUid(responseobj.getUserInfoMapper().getUserInfo().getUid());
+				user.getUserInfoMapper().getUserInfo().setLastModifiedDt(new Date());
+				user.getUserInfoMapper().getUserInfo().setLastModifiedBy(user.getUserInfoMapper().getUserInfo().getUserName());
+				user.getUserInfoMapper().getUserInfo().setRegStatus(user.getUserInfoMapper().getUserInfo().getRegStatus() == null ? false : user.getUserInfoMapper().getUserInfo().getRegStatus());
+
+				UserInfo userSaveResult=userRepository.save(user.getUserInfoMapper().getUserInfo());
+				
+				if(user.getUserInfoMapper().getUserRole()!=null) {
+					user.getUserInfoMapper().setUserRole(responseobj.getUserInfoMapper().getUserRole());
+					user.getUserInfoMapper().getUserRole().parallelStream().forEach(record -> {
+					UserRole userRole = new UserRole();
+					userRole.setPlantUserId(user.getUserInfoMapper().getUserInfo().getUid());
+					userRole.setRoleId(record.getRoleId() == null ? 3 : record.getRoleId());
+					userRole.setUserRoleStatus(true);
+					userRole.setModifiedDt(new Date());
+					userRole.setModifiedBy(user.getUserInfoMapper().getUserInfo().getUserName());;
+					userRoleRepository.save(userRole);
+				});
+				
+				}
+				
+				
+				if (user.getPlantInfo()!=null) {
+					if(responseobj.getPlantInfo()!=null) {
+						user.getPlantInfo().setPid(responseobj.getPlantInfo().getPid());
+				}
+				//user.getPlantInfo().setPid(responseobj.getPlantInfo().getPid());
+				user.getPlantInfo().setUserId(user.getUserInfoMapper().getUserInfo().getUid());
+				user.getPlantInfo().setLastModifiedDt(new Date());
+				user.getPlantInfo().setLastModifiedBy(user.getUserInfoMapper().getUserInfo().getUserName());
+ 				PlantInfo plantSaveResult = plantInfoRepository.save(user.getPlantInfo());	
+				
+				if (user.getStationInfoMapper()!=null) {
+					if(responseobj.getStationInfoMapper()!=null) {
+						user.setStationInfoMapper(responseobj.getStationInfoMapper());
+						}
+					
+				        user.getStationInfoMapper().parallelStream().forEach(record -> {
+				    	record.getStationInfo().setPlantId(plantSaveResult.getPid());
+				    	record.getStationInfo().setLastModifiedDt(new Date());
+				    	record.getStationInfo().setLastModifiedBy(user.getUserInfoMapper().getUserInfo().getUserName());
+				    	stationInfoRepository.save(record.getStationInfo());
+				   if (user.getStationInfoMapper().get(0).getParameterInfo()!=null) { 	
+					user.getStationInfoMapper().get(0).getParameterInfo().parallelStream().forEach(record1 -> {
+						record1.setSid(record.getStationInfo().getSid());
+						record1.setLastModifiedDt(new Date());
+				    	record1.setLastModifiedBy(user.getUserInfoMapper().getUserInfo().getUserName());
+						parameterInfoRepository.save(record1);
+					});
+				   }
+					
+					
+
+				});
+			 }
+
+			}
+
+			return findByUserName(userSaveResult);
+			
+			 }else {
+			  
+			  return new ResponseObject("Invalid User Details!", failedApiStatus); }
+			 
+		}catch (ConstraintViolationException e) {
+			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			return new ResponseObject("Invalid User Details!", failedApiStatus);
+		}catch (Exception e) {
+			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			return new ResponseObject("Errors in Update user data", failedApiStatus);
+		}
+	}
 	
 }
 	
