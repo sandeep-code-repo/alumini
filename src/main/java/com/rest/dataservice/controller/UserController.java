@@ -123,9 +123,11 @@ public class UserController {
 		
 		ResponseObject resObj=registrationService.findByUserName(userInfo);
 		
-		TokenResponse response = new TokenResponse(resObj,token);
-		
-		return new ResponseObject(response,successApiStatus);
+		//TokenResponse response = new TokenResponse(resObj,token);
+		if(resObj==null) {
+			return new ResponseObject(INVALID_CREDENTIAL,new CommonApiStatus(FAILED,HttpStatus.INTERNAL_SERVER_ERROR,""));
+		}
+		return new ResponseObject(resObj.getData(),successApiStatus);
 	}catch(Exception e){
 		return new ResponseObject(INVALID_CREDENTIAL,new CommonApiStatus(FAILED,HttpStatus.UNAUTHORIZED,e.getMessage()));
 	}
