@@ -52,3 +52,11 @@ insert  into `role`(`role_name`,`role_status`,`role_desc`,`created_by`,`created_
 ('Admin',true,'Admin role','System',CURRENT_TIMESTAMP),
 ('User',true,'User role','System',CURRENT_TIMESTAMP)
 
+/*Data for the table `real_pollutant_level_infos` */
+INSERT INTO alumini.real_pollutant_level_infos (plant_id, analyzer, station_id, parameter_code, recorded_time, recorded_level, aggregation, threshold_level) 
+	VALUES ('hindalco_lpng', 'AAQ', 'AAQMS-1', 'NO2', '2020-11-13 21:16:00.0', 13.36, '1Hr', 0.00);	
+INSERT INTO alumini.real_pollutant_level_infos (plant_id, analyzer, station_id, parameter_code, recorded_time, recorded_level, aggregation, threshold_level) 
+	VALUES ('hindalco_lpng', 'Stack', 'CEMS-5', 'PM', '2020-11-13 21:13:00.0', 6.73, '1Hr', 0.00);
+INSERT INTO alumini.real_pollutant_level_infos (plant_id, analyzer, station_id, parameter_code, recorded_time, recorded_level, aggregation, threshold_level) 
+	VALUES ('hindalco_lpng', 'Water', 'EQMS-1', 'PH', '2020-11-13 21:13:00.0', 7.09, '1Hr', 0.00);
+
