@@ -6,4 +6,6 @@ import com.rest.dataservice.util.ResponseObject;
 public interface RealPollutantLevelService {
 	
 	ResponseObject getRealPoulltantLevelData(RealPollutantLevelInfos info);
+
+	ResponseObject getRealPoulltantLevelGraphData(RealPollutantLevelInfos info);
 }

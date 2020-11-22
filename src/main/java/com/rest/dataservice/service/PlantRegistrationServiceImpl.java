@@ -113,8 +113,9 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				    	stationInfoRepository.save(record.getStationInfo());
 				    	
 
-					user.getStationInfoMapper().get(0).getParameterInfo().parallelStream().forEach(record1 -> {
+				    	record.getParameterInfo().parallelStream().forEach(record1 -> {
 						record1.setSid(record.getStationInfo().getSid());
+						record1.setParameterStatus(record1.getParameterStatus() == null ? true : record1.getParameterStatus());
 						record1.setCreatedDt(new Date());
 				    	record1.setCreatedBy(user.getUserInfoMapper().getUserInfo().getUserName());
 						parameterInfoRepository.save(record1);

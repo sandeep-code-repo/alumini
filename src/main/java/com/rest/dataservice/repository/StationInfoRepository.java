@@ -15,4 +15,11 @@ public interface StationInfoRepository extends JpaRepository<StationInfo, Intege
 	@Query("FROM StationInfo WHERE plantId=:plantId")
 	List<StationInfo> findByplantId(@Param("plantId")Long plantId);
 
+	@Query("FROM StationInfo WHERE plantId=:plantId and stationId=:stationId")
+	StationInfo getStationInfo(@Param("plantId")Long plantId, @Param("stationId") String stationId);
+
+	@Query(value="SELECT count(*) FROM station_info WHERE plant_id=:plantId",
+			nativeQuery = true)
+	int getStationCount(long plantId);
+
 }

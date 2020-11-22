@@ -17,9 +17,9 @@ public class RealPollutantLevelHelper {
     
     private String city;
     
-    private String countStation;
+    private int countStation;
      
-    private String countParameter;
+    private int countParameter;
 	
 	private List<RealParameterInfoHelper> realParameterInfo;
 	
@@ -30,7 +30,7 @@ public class RealPollutantLevelHelper {
 	}
 
 	public RealPollutantLevelHelper(String plantName, String regionalOffice, String industryCategory, String state,
-			String city, String countStation, String countParameter, List<RealParameterInfoHelper> realParameterInfo) {
+			String city, int countStation, int countParameter, List<RealParameterInfoHelper> realParameterInfo) {
 		super();
 		this.plantName = plantName;
 		this.regionalOffice = regionalOffice;
@@ -82,19 +82,19 @@ public class RealPollutantLevelHelper {
 		this.city = city;
 	}
 
-	public String getCountStation() {
+	public int getCountStation() {
 		return countStation;
 	}
 
-	public void setCountStation(String countStation) {
+	public void setCountStation(int countStation) {
 		this.countStation = countStation;
 	}
 
-	public String getCountParameter() {
+	public int getCountParameter() {
 		return countParameter;
 	}
 
-	public void setCountParameter(String countParameter) {
+	public void setCountParameter(int countParameter) {
 		this.countParameter = countParameter;
 	}
 

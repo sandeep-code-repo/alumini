@@ -1,5 +1,12 @@
 package com.rest.dataservice.helper;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class RealParameterInfoHelper {
 
 	private String parameterName;
@@ -12,7 +19,9 @@ public class RealParameterInfoHelper {
 
 	private String range;
 
-	private String recordedTime;
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date recordedTime;
 
 	private String recordedLevel;
 	
@@ -24,7 +33,7 @@ public class RealParameterInfoHelper {
 	
 	private String analyzer;
 
-	private String parameterStatus;
+	private Boolean parameterStatus;
 
 	public RealParameterInfoHelper() {
 		super();
@@ -32,8 +41,8 @@ public class RealParameterInfoHelper {
 
 
 	public RealParameterInfoHelper(String parameterName, String parameterCode, String unit, String limit, String range,
-			String recordedTime, String recordedLevel, String thresholdLevel, String aggregation, String stationName,
-			String analyzer, String parameterStatus) {
+			Date recordedTime, String recordedLevel, String thresholdLevel, String aggregation, String stationName,
+			String analyzer, Boolean parameterStatus) {
 		super();
 		this.parameterName = parameterName;
 		this.parameterCode = parameterCode;
@@ -91,11 +100,11 @@ public class RealParameterInfoHelper {
 		this.range = range;
 	}
 
-	public String getRecordedTime() {
+	public Date getRecordedTime() {
 		return recordedTime;
 	}
 
-	public void setRecordedTime(String recordedTime) {
+	public void setRecordedTime(Date recordedTime) {
 		this.recordedTime = recordedTime;
 	}
 
@@ -139,11 +148,11 @@ public class RealParameterInfoHelper {
 		this.analyzer = analyzer;
 	}
 
-	public String getParameterStatus() {
+	public Boolean getParameterStatus() {
 		return parameterStatus;
 	}
 
-	public void setParameterStatus(String parameterStatus) {
+	public void setParameterStatus(Boolean parameterStatus) {
 		this.parameterStatus = parameterStatus;
 	}
 

@@ -63,12 +63,8 @@ public class StationInfo implements Serializable{
 	@Column(name = "has_threshold")
 	private Integer hasThresold;
 	
-	
 	@Column(name = "station_vendor")
 	private String stationVendor;
-	
-	@Column(name = "certification")
-	private String certification;
 	
 	@Column(name = "latitude")
 	private String latitude;
@@ -218,14 +214,6 @@ public class StationInfo implements Serializable{
 
 	public void setStationVendor(String stationVendor) {
 		this.stationVendor = stationVendor;
-	}
-
-	public String getCertification() {
-		return certification;
-	}
-
-	public void setCertification(String certification) {
-		this.certification = certification;
 	}
 
 	public String getLatitude() {

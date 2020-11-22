@@ -56,6 +56,12 @@ public class ParameterInfo implements Serializable{
 	@Column(name = "Unit")
 	private String Unit;
 	
+	@Column(name = "certification")
+	private String certification;
+	
+	@Column(name = "status")
+	private Boolean parameterStatus;
+	
 	@Column(name = "created_by")
 	private String  createdBy;
 	
@@ -158,6 +164,22 @@ public class ParameterInfo implements Serializable{
 		Unit = unit;
 	}
 	
+	public String getCertification() {
+		return certification;
+	}
+
+	public void setCertification(String certification) {
+		this.certification = certification;
+	}
+
+	public Boolean getParameterStatus() {
+		return parameterStatus;
+	}
+
+	public void setParameterStatus(Boolean parameterStatus) {
+		this.parameterStatus = parameterStatus;
+	}
+
 	/**
 	 * @return the createdBy
 	 */

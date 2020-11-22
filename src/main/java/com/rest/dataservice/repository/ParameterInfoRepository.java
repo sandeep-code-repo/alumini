@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.rest.dataservice.entity.ParameterInfo;
+import com.rest.dataservice.entity.RealPollutantLevelInfos;
 
 
 @Repository
@@ -15,5 +16,17 @@ public interface ParameterInfoRepository extends JpaRepository<ParameterInfo,Int
 	
 	@Query("FROM ParameterInfo WHERE sid=:sid")
 	List<ParameterInfo> findBySId(@Param("sid")Long sid);
+
+	//@Query("unit FROM ParameterInfo WHERE parameter=:parameter and createdBy=:userId")
+	//String getParamUnit(@Param("parameter")String parameter,@Param("userId")String userId);
+
+	//@Query("measurmentMin FROM ParameterInfo WHERE parameter=:parameter and createdBy=:userId")
+	//String getLowerLimit(String parameterCode, String plantId);
+
+	//@Query("measurmentMax FROM ParameterInfo WHERE parameter=:parameter and createdBy=:userId")
+	//String getHigherLimit(String parameterCode, String plantId);
+
+	@Query("FROM ParameterInfo WHERE paramter=:parameter and createdBy=:userId and sid=:sid")
+	ParameterInfo getParamterInfo(@Param("parameter")String parameter,@Param("userId")String userId,@Param("sid")long sid);
 
 }
