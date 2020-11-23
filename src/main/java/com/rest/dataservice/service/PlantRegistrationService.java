@@ -33,6 +33,8 @@ public interface PlantRegistrationService {
 
 	ResponseObject updatePlantStationInfo(UserHelper plantRegistration);
 
+	ResponseObject getParamDataFromStation(String plantId, String stnType);
+
 	
 
 }

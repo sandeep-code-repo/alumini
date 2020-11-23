@@ -61,6 +61,12 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 
 	@Autowired
 	UserRoleRepository userRoleRepository;
+	
+	private static CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
+			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
+	
+	CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+			  HttpStatus.EXPECTATION_FAILED, "failed");
 
 
 	@Override
@@ -407,6 +413,22 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 			return new ResponseObject("Errors in Update user data", failedApiStatus);
+		}
+	}
+	
+	@Override
+	public ResponseObject getParamDataFromStation(String plant_id,String stn_type) {
+		
+		try {
+			
+		List<ParameterInfo> parameterList = parameterInfoRepository.getParamterFromStation(plant_id, stn_type);
+		
+		return new ResponseObject(parameterList,successApiStatus);
+		
+		}catch(Exception e) {
+			
+			return new ResponseObject("Error in fetching parameter data : "+e.getMessage(),failedApiStatus);
+			
 		}
 	}
 	

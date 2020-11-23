@@ -8,4 +8,5 @@ public interface RealPollutantLevelService {
 	ResponseObject getRealPoulltantLevelData(RealPollutantLevelInfos info);
 
 	ResponseObject getRealPoulltantLevelGraphData(RealPollutantLevelInfos info);
+
 }

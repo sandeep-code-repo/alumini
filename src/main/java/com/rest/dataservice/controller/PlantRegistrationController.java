@@ -30,6 +30,7 @@ import com.rest.dataservice.helper.UserHelper;
 import com.rest.dataservice.helper.UserInfoMapper;
 import com.rest.dataservice.service.ExcelService;
 import com.rest.dataservice.service.PlantRegistrationService;
+import com.rest.dataservice.service.RealPollutantLevelService;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.ExcelUtil;
 import com.rest.dataservice.util.ResponseObject;
@@ -54,6 +55,9 @@ public class PlantRegistrationController {
 	
 	@Autowired
 	private PlantRegistrationService registrationService;
+	
+	@Autowired
+	private RealPollutantLevelService realPollutantLevelService;
 	
 	@Autowired
 	ExcelService excelService;
@@ -98,6 +102,14 @@ public class PlantRegistrationController {
 	 public ResponseObject getUserByName(@RequestBody UserInfo info) {
 	 
 		ResponseObject entity = registrationService.findByUserName(info); 
+	 
+	 return entity;
+	 }
+	
+	@GetMapping("/getPrameterFromStation")
+	 public ResponseObject getPrameterFromStation(@RequestParam String plantId,@RequestParam String stnType) {
+	 
+		ResponseObject entity = registrationService.getParamDataFromStation(plantId,stnType);
 	 
 	 return entity;
 	 }

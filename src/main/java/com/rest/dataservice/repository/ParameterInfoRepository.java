@@ -28,5 +28,9 @@ public interface ParameterInfoRepository extends JpaRepository<ParameterInfo,Int
 
 	@Query("FROM ParameterInfo WHERE paramter=:parameter and createdBy=:userId and sid=:sid")
 	ParameterInfo getParamterInfo(@Param("parameter")String parameter,@Param("userId")String userId,@Param("sid")long sid);
+	
+	@Query(value ="SELECT * FROM alumini.parameter_info where sid in (select sid from alumini.station_info where stn_type=:stnType and plant_id =(select pid from alumini.plant_info where user_id=(select uid from alumini.user_info where user_name=:userId)))",
+			nativeQuery = true)
+	List<ParameterInfo> getParamterFromStation(@Param("userId")String userId,@Param("stnType")String stnType);
 
 }
