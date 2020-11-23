@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: BatchInsertsJpaRepository
+Implementation-Version: 1.0
+Built-By: sandeep.dash
+Implementation-Vendor-Id: com.jpa
+Build-Jdk: 1.8.0_251
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/BatchInsertsJpaRepository
+Created-By: Maven Integration for Eclipse
+
