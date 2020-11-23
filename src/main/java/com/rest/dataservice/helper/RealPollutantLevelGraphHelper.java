@@ -13,9 +13,9 @@ public class RealPollutantLevelGraphHelper {
 	
 	 @DateTimeFormat(iso = ISO.DATE_TIME)
 	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	 public List<Date> recordedTime;
-	 public List<String> recordedLevel;
-	 public List<String> thresholdLevel;
+	 public List<Date> labels;
+	 public List<String> events;
+	 public List<String> thresholdLevel; 
 	 public List<String> aggregation;
 	 
 	public RealPollutantLevelGraphHelper() {
@@ -23,27 +23,27 @@ public class RealPollutantLevelGraphHelper {
 	}
 
 
-	public RealPollutantLevelGraphHelper(List<Date> recordedTime, List<String> recordedLevel,
+	public RealPollutantLevelGraphHelper(List<Date> labels, List<String> events,
 			List<String> thresholdLevel, List<String> aggregation) {
 		super();
-		this.recordedTime = recordedTime;
-		this.recordedLevel = recordedLevel;
+		this.labels = labels;
+		this.events = events;
 		this.thresholdLevel = thresholdLevel;
 		this.aggregation = aggregation;
 	}
 	
 	
 	public List<Date> getRecordedTime() {
-		return recordedTime;
+		return labels;
 	}
-	public void setRecordedTime(List<Date> recordedTime) {
-		this.recordedTime = recordedTime;
+	public void setRecordedTime(List<Date> labels) {
+		this.labels = labels;
 	}
 	public List<String> getRecordedLevel() {
-		return recordedLevel;
+		return events;
 	}
-	public void setRecordedLevel(List<String> recordedLevel) {
-		this.recordedLevel = recordedLevel;
+	public void setRecordedLevel(List<String> events) {
+		this.events = events;
 	}
 	public List<String> getThresholdLevel() {
 		return thresholdLevel;
@@ -60,7 +60,7 @@ public class RealPollutantLevelGraphHelper {
 	
 	@Override
 	public String toString() {
-		return "RealPollutantLevelGraphHelper [recordedTime=" + recordedTime + ", recordedLevel=" + recordedLevel
+		return "RealPollutantLevelGraphHelper [recordedTime=" + labels + ", recordedLevel=" + events
 				+ ", thresholdLevel=" + thresholdLevel + ", aggregation=" + aggregation + "]";
 	}
 	 
