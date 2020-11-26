@@ -9,37 +9,42 @@ public class RealPollutantLevelHelper {
 	
     private String plantName;
     
-    private String regionalOffice;
-    
     private String industryCategory;
     
-    private String state;
-    
     private String city;
+    
+    private String district;
+    
+    private String state;
     
     private int countStation;
      
     private int countParameter;
 	
 	private List<RealParameterInfoHelper> realParameterInfo;
-	
-	
 
 	public RealPollutantLevelHelper() {
 		super();
 	}
 
-	public RealPollutantLevelHelper(String plantName, String regionalOffice, String industryCategory, String state,
-			String city, int countStation, int countParameter, List<RealParameterInfoHelper> realParameterInfo) {
+	public RealPollutantLevelHelper(String plantName, String industryCategory, String city, String district,
+			String state, int countStation, int countParameter, List<RealParameterInfoHelper> realParameterInfo) {
 		super();
 		this.plantName = plantName;
-		this.regionalOffice = regionalOffice;
 		this.industryCategory = industryCategory;
-		this.state = state;
 		this.city = city;
+		this.district = district;
+		this.state = state;
 		this.countStation = countStation;
 		this.countParameter = countParameter;
 		this.realParameterInfo = realParameterInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "RealPollutantLevelHelper [plantName=" + plantName + ", industryCategory=" + industryCategory + ", city="
+				+ city + ", district=" + district + ", state=" + state + ", countStation=" + countStation
+				+ ", countParameter=" + countParameter + ", realParameterInfo=" + realParameterInfo + "]";
 	}
 
 	public String getPlantName() {
@@ -50,14 +55,6 @@ public class RealPollutantLevelHelper {
 		this.plantName = plantName;
 	}
 
-	public String getRegionalOffice() {
-		return regionalOffice;
-	}
-
-	public void setRegionalOffice(String regionalOffice) {
-		this.regionalOffice = regionalOffice;
-	}
-
 	public String getIndustryCategory() {
 		return industryCategory;
 	}
@@ -66,20 +63,28 @@ public class RealPollutantLevelHelper {
 		this.industryCategory = industryCategory;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	public String getCity() {
 		return city;
 	}
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public int getCountStation() {
@@ -104,14 +109,6 @@ public class RealPollutantLevelHelper {
 
 	public void setRealParameterInfo(List<RealParameterInfoHelper> realParameterInfo) {
 		this.realParameterInfo = realParameterInfo;
-	}
-
-	@Override
-	public String toString() {
-		return "RealPollutantLevelHelper [plantName=" + plantName + ", regionalOffice=" + regionalOffice
-				+ ", industryCategory=" + industryCategory + ", state=" + state + ", city=" + city + ", countStation="
-				+ countStation + ", countParameter=" + countParameter + ", realParameterInfo=" + realParameterInfo
-				+ "]";
 	}
 	
 	

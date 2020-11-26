@@ -9,10 +9,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RealParameterInfoHelper {
 
-	private String parameterName;
+	private String parameter;
 	
-	private String parameterCode;
-
 	private String unit;
 
 	private String limit;
@@ -39,13 +37,11 @@ public class RealParameterInfoHelper {
 		super();
 	}
 
-
-	public RealParameterInfoHelper(String parameterName, String parameterCode, String unit, String limit, String range,
-			Date recordedTime, String recordedLevel, String thresholdLevel, String aggregation, String stationName,
-			String analyzer, Boolean parameterStatus) {
+	public RealParameterInfoHelper(String parameter, String unit, String limit, String range, Date recordedTime,
+			String recordedLevel, String thresholdLevel, String aggregation, String stationName, String analyzer,
+			Boolean parameterStatus) {
 		super();
-		this.parameterName = parameterName;
-		this.parameterCode = parameterCode;
+		this.parameter = parameter;
 		this.unit = unit;
 		this.limit = limit;
 		this.range = range;
@@ -58,22 +54,12 @@ public class RealParameterInfoHelper {
 		this.parameterStatus = parameterStatus;
 	}
 
-
-
-	public String getParameterName() {
-		return parameterName;
+	public String getParameter() {
+		return parameter;
 	}
 
-	public void setParameterName(String parameterName) {
-		this.parameterName = parameterName;
-	}
-
-	public String getParameterCode() {
-		return parameterCode;
-	}
-
-	public void setParameterCode(String parameterCode) {
-		this.parameterCode = parameterCode;
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
 	}
 
 	public String getUnit() {
@@ -108,20 +94,20 @@ public class RealParameterInfoHelper {
 		this.recordedTime = recordedTime;
 	}
 
-	public String getThresholdLevel() {
-		return thresholdLevel;
-	}
-
-	public void setThresholdLevel(String thresholdLevel) {
-		this.thresholdLevel = thresholdLevel;
-	}
-
 	public String getRecordedLevel() {
 		return recordedLevel;
 	}
 
 	public void setRecordedLevel(String recordedLevel) {
 		this.recordedLevel = recordedLevel;
+	}
+
+	public String getThresholdLevel() {
+		return thresholdLevel;
+	}
+
+	public void setThresholdLevel(String thresholdLevel) {
+		this.thresholdLevel = thresholdLevel;
 	}
 
 	public String getAggregation() {
@@ -158,12 +144,13 @@ public class RealParameterInfoHelper {
 
 	@Override
 	public String toString() {
-		return "RealParameterInfoHelper [parameterName=" + parameterName + ", parameterCode=" + parameterCode
-				+ ", unit=" + unit + ", limit=" + limit + ", range=" + range + ", recordedTime=" + recordedTime
-				+ ", recordedLevel=" + recordedLevel + ", thresholdLevel=" + thresholdLevel + ", aggregation="
-				+ aggregation + ", stationName=" + stationName + ", analyzer=" + analyzer + ", parameterStatus="
-				+ parameterStatus + "]";
+		return "RealParameterInfoHelper [parameter=" + parameter + ", unit=" + unit + ", limit=" + limit + ", range="
+				+ range + ", recordedTime=" + recordedTime + ", recordedLevel=" + recordedLevel + ", thresholdLevel="
+				+ thresholdLevel + ", aggregation=" + aggregation + ", stationName=" + stationName + ", analyzer="
+				+ analyzer + ", parameterStatus=" + parameterStatus + "]";
 	}
 
+	
+	
 	
 }

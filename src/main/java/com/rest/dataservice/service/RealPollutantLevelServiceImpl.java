@@ -72,14 +72,14 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				
 				RealParameterInfoHelper parameterInfoHelper = new RealParameterInfoHelper();
 				parameterInfoHelper.setUnit(parameterInfo.getUnit());
-				parameterInfoHelper.setLimit(parameterInfo.getMeasurmentMin()+"-"+parameterInfo.getMeasurmentMax());
-				parameterInfoHelper.setRange("0-1000");
-				parameterInfoHelper.setParameterCode(data.getParameterCode());
-				parameterInfoHelper.setParameterName("CEMS1_DRI KILN 3-4");
+				parameterInfoHelper.setLimit(data.getThresholdLevel());
+				parameterInfoHelper.setRange(parameterInfo.getMeasurmentMin()+"-"+parameterInfo.getMeasurmentMax());
+				parameterInfoHelper.setParameter(data.getParameterCode());
 				parameterInfoHelper.setParameterStatus(parameterInfo.getParameterStatus() == null ? true : parameterInfo.getParameterStatus());
 				parameterInfoHelper.setRecordedLevel(data.getRecordedLevel());
 				parameterInfoHelper.setRecordedTime(data.getRecordedTime());
 				parameterInfoHelper.setThresholdLevel(data.getThresholdLevel());
+				parameterInfoHelper.setStationName(stationInfo.getStationId());
 				parameterInfoHelper.setAnalyzer(data.getAnalyzer());
 				parameterInfoHelper.setAggregation(data.getAggregation());
 				listParameterInfo.add(parameterInfoHelper);
@@ -89,7 +89,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			
 		
 		RealPollutantLevelHelper pollutantLevelHelper= new RealPollutantLevelHelper
-				(plantInfo.getPlantName(), userInfo.getTown(), plantInfo.getCategory(), userInfo.getState(), userInfo.getDistrict(), stationInfoRepository.getStationCount(plantInfo.getPid()), listParameterInfo.size(), listParameterInfo);
+				(plantInfo.getPlantName(), plantInfo.getCategory(), userInfo.getTown(), userInfo.getDistrict(), userInfo.getState(),stationInfoRepository.getStationCount(plantInfo.getPid()), listParameterInfo.size(), listParameterInfo);
 		
 		
 		return new ResponseObject(pollutantLevelHelper,successApiStatus);
@@ -105,9 +105,14 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 	@Override
 	public ResponseObject getRealPoulltantLevelGraphData(RealPollutantLevelInfos info) {
 		
-		try {
+	 	try {
 			
-			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();			
+			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();	
+            if(info.getPlantId()==null || info.getParameterCode()==null) {
+				
+				listData = realPollutantLevelInfoRepository.getRealParamDataFromParam(info.getPlantId(),info.getParameterCode());	
+				
+			}
 			if(info.getRecordedTime()==null) {
 				
 				listData = realPollutantLevelInfoRepository.getRealParamDataFromParam(info.getPlantId(),info.getParameterCode());	
