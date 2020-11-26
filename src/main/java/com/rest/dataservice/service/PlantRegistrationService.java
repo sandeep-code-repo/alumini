@@ -35,6 +35,8 @@ public interface PlantRegistrationService {
 
 	ResponseObject getParamDataFromStation(String plantId, String stnType);
 
+	ResponseObject findByCategory(String category);
+
 	
 
 }

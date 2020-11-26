@@ -17,11 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rest.dataservice.constants.ApplicationConstants;
 import com.rest.dataservice.entity.Employee;
+import com.rest.dataservice.entity.IndustryCategory;
 import com.rest.dataservice.entity.ParameterInfo;
 import com.rest.dataservice.entity.PlantInfo;
 import com.rest.dataservice.entity.StationInfo;
 import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.entity.UserRole;
+import com.rest.dataservice.helper.IndustryCategoryMapper;
 import com.rest.dataservice.helper.StationInfoMapper;
 import com.rest.dataservice.helper.UserHelper;
 import com.rest.dataservice.helper.UserInfoMapper;
@@ -430,6 +432,46 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			return new ResponseObject("Error in fetching parameter data : "+e.getMessage(),failedApiStatus);
 			
 		}
+	}
+
+
+	@Override
+	public ResponseObject findByCategory(String category) {
+		try {
+			List<PlantInfo> plantList = new ArrayList<>();
+			if(category.equalsIgnoreCase("All")) {
+			    plantList = plantInfoRepository.findAll();
+			}else {
+				plantList = plantInfoRepository.findByCategory(category);
+			}
+			List<IndustryCategoryMapper> industryList = new ArrayList<>();
+			
+			for(PlantInfo info: plantList) {
+				IndustryCategoryMapper industryCategory = new IndustryCategoryMapper();
+				industryCategory.setUserId(userRepository.findByUserId(info.getUserId()).getUserName());
+				industryCategory.setName(info.getPlantName());
+				industryCategory.setRegionalOfc(info.getZonal());
+				industryCategory.setCategory(info.getCategory());
+				industryCategory.setStatus(userRepository.findByUserId(info.getUserId()).getRegStatus());
+				
+				StringBuilder address= new StringBuilder();
+				address.append(userRepository.findByUserId(info.getUserId()).getStreet()==null?"":userRepository.findByUserId(info.getUserId()).getStreet()+", ");
+				address.append(userRepository.findByUserId(info.getUserId()).getTown()==null?"":userRepository.findByUserId(info.getUserId()).getTown()+", ");
+				address.append(userRepository.findByUserId(info.getUserId()).getDistrict()==null?"":userRepository.findByUserId(info.getUserId()).getDistrict()+", ");
+				address.append(userRepository.findByUserId(info.getUserId()).getState()==null?"":userRepository.findByUserId(info.getUserId()).getState());
+				
+				industryCategory.setAddress(address.toString());
+				
+				industryList.add(industryCategory);
+			}
+			
+			return new ResponseObject(industryList,successApiStatus);
+			
+			}catch(Exception e) {
+				
+				return new ResponseObject("Error in fetching plant details data by category : "+e.getMessage(),failedApiStatus);
+				
+			}
 	}
 	
 }

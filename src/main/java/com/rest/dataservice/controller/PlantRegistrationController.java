@@ -106,6 +106,14 @@ public class PlantRegistrationController {
 	 return entity;
 	 }
 	
+	@GetMapping("/getAllPlants")
+	 public ResponseObject getUserByName(@RequestParam(defaultValue = "All") String category) {
+	 
+		ResponseObject entity = registrationService.findByCategory(category); 
+	 
+	 return entity;
+	 }
+	
 	@GetMapping("/getPrameterFromStation")
 	 public ResponseObject getPrameterFromStation(@RequestParam String plantId,@RequestParam String stnType) {
 	 

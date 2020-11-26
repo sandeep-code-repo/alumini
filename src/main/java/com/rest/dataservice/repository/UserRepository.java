@@ -41,4 +41,7 @@ public interface UserRepository extends JpaRepository<UserInfo,Integer>{
 	@Query("FROM UserInfo WHERE mobNo=:mobNo")
 	UserInfo getUserByMob(String mobNo);
 
+	@Query("FROM UserInfo WHERE uid=:userId")
+	UserInfo findByUserId(Long userId);
+
 }
