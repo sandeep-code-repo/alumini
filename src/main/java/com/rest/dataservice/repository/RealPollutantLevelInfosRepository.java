@@ -19,11 +19,11 @@ public interface RealPollutantLevelInfosRepository extends JpaRepository<RealPol
 		    nativeQuery = true)
 	List<RealPollutantLevelInfos> getRealParamDataFromPlant(@Param("plantId") String plantId);
 
-	@Query(value = "SELECT * FROM alumini.real_pollutant_level_infos WHERE recorded_time >= (select max(recorded_time) from alumini.real_pollutant_level_infos where plant_id=:plantId and parameter_code=:parameterCode) - INTERVAL 1 DAY and plant_id=:plantId and parameter_code=:parameterCode", 
+	@Query(value = "SELECT * FROM alumini.real_pollutant_level_infos WHERE recorded_time >= (select max(recorded_time) from alumini.real_pollutant_level_infos where plant_id=:plantId and parameter_code=:parameterCode) - INTERVAL 1 DAY and plant_id=:plantId and parameter_code=:parameterCode ORDER BY recorded_time", 
 		    nativeQuery = true)
 	List<RealPollutantLevelInfos> getRealParamDataFromParam(@Param("plantId") String plantId,@Param("parameterCode") String parameterCode);
 	
-	@Query(value = "SELECT * FROM alumini.real_pollutant_level_infos WHERE recorded_time >= :date - INTERVAL 1 DAY and plant_id=:plantId and parameter_code=:parameterCode", 
+	@Query(value = "SELECT * FROM alumini.real_pollutant_level_infos WHERE recorded_time >= :date - INTERVAL 1 DAY and plant_id=:plantId and parameter_code=:parameterCode ORDER BY recorded_time", 
 		    nativeQuery = true)
 	List<RealPollutantLevelInfos> getRealParamDataFromParam(String plantId, String parameterCode, Date date);
 	

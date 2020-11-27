@@ -110,7 +110,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();	
             if(info.getPlantId()==null || info.getParameterCode()==null) {
 				
-				listData = realPollutantLevelInfoRepository.getRealParamDataFromParam(info.getPlantId(),info.getParameterCode());	
+            	return new ResponseObject("Error in fetching Real pollutant Graph level data : parameter ans plant id is manadatory",errorApiStatus);	
 				
 			}
 			if(info.getRecordedTime()==null) {
