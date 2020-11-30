@@ -12,6 +12,8 @@ import javax.persistence.Table;
 //@Entity
 //@Table(name = "industry_registration")
 public class IndustryCategoryMapper implements Serializable{
+	
+	private int id;
 
 	private String userId;
 	
@@ -24,6 +26,16 @@ public class IndustryCategoryMapper implements Serializable{
 	private String regionalOfc;
 
 	private Boolean status;
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUserId() {
 		return userId;

@@ -446,8 +446,11 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			}
 			List<IndustryCategoryMapper> industryList = new ArrayList<>();
 			
+			int id=1;
+			
 			for(PlantInfo info: plantList) {
 				IndustryCategoryMapper industryCategory = new IndustryCategoryMapper();
+				industryCategory.setId(id);
 				industryCategory.setUserId(userRepository.findByUserId(info.getUserId()).getUserName());
 				industryCategory.setName(info.getPlantName());
 				industryCategory.setRegionalOfc(info.getZonal());
@@ -463,6 +466,8 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				industryCategory.setAddress(address.toString());
 				
 				industryList.add(industryCategory);
+				
+				id++;
 			}
 			
 			return new ResponseObject(industryList,successApiStatus);
