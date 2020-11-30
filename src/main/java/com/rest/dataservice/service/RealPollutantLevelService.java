@@ -9,4 +9,6 @@ public interface RealPollutantLevelService {
 
 	ResponseObject getRealPoulltantLevelGraphData(RealPollutantLevelInfos info);
 
+	ResponseObject getRealPollutantStationParamLevelInfos(RealPollutantLevelInfos info);
+
 }

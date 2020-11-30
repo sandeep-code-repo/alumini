@@ -20,6 +20,8 @@ import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.RealParameterInfoHelper;
 import com.rest.dataservice.helper.RealPollutantLevelGraphHelper;
 import com.rest.dataservice.helper.RealPollutantLevelHelper;
+import com.rest.dataservice.helper.RealTimeStationParamLevelHelper;
+import com.rest.dataservice.helper.RealTimeStationParamMapper;
 import com.rest.dataservice.repository.ParameterInfoRepository;
 import com.rest.dataservice.repository.PlantInfoRepository;
 import com.rest.dataservice.repository.RealPollutantLevelInfosRepository;
@@ -151,6 +153,76 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 	}
 		
   }
+	
+	@Override
+	public ResponseObject getRealPollutantStationParamLevelInfos(RealPollutantLevelInfos info) {
+		
+		try {
+			
+		List<RealParameterInfoHelper> listParameterInfo = new ArrayList<>();
+		
+		
+		List<RealPollutantLevelInfos> listData = realPollutantLevelInfoRepository.getRealParamDataFromPlant(info.getPlantId());
+		
+		UserInfo userInfo = userRepository.findByUsername(listData.get(0).getPlantId());
+		PlantInfo plantInfo= plantInfoRepository.getByPlantUser(userInfo.getUid());
+		
+		List<RealParameterInfoHelper> emissionList = new ArrayList<>();
+		List<RealParameterInfoHelper> effluentList = new ArrayList<>();
+		List<RealParameterInfoHelper> ambientList = new ArrayList<>(); 
+		
+			for (RealPollutantLevelInfos data : listData) {
+				
+				StationInfo stationInfo = stationInfoRepository.getStationInfo(plantInfo.getPid(),data.getStationId());
+				ParameterInfo parameterInfo = parameterInfoRepository.getParamterInfo(data.getParameterCode(),data.getPlantId(),stationInfo.getSid());
+				
+				RealParameterInfoHelper parameterInfoHelper = new RealParameterInfoHelper();
+				parameterInfoHelper.setUnit(parameterInfo.getUnit());
+				parameterInfoHelper.setLimit(data.getThresholdLevel());
+				parameterInfoHelper.setRange(parameterInfo.getMeasurmentMin()+"-"+parameterInfo.getMeasurmentMax());
+				parameterInfoHelper.setParameter(data.getParameterCode());
+				parameterInfoHelper.setParameterStatus(parameterInfo.getParameterStatus() == null ? true : parameterInfo.getParameterStatus());
+				parameterInfoHelper.setRecordedLevel(data.getRecordedLevel());
+				parameterInfoHelper.setRecordedTime(data.getRecordedTime());
+				parameterInfoHelper.setThresholdLevel(data.getThresholdLevel());
+				parameterInfoHelper.setStationName(stationInfo.getStationId());
+				parameterInfoHelper.setAnalyzer(data.getAnalyzer());
+				parameterInfoHelper.setAggregation(data.getAggregation());
+				listParameterInfo.add(parameterInfoHelper);
+				
+				if(stationInfo.getStnType().equalsIgnoreCase("Emission")) {
+					
+					emissionList.add(parameterInfoHelper);
+					
+				}else if(stationInfo.getStnType().equalsIgnoreCase("Effluent")) {
+					
+					effluentList.add(parameterInfoHelper);
+					
+				}else if(stationInfo.getStnType().equalsIgnoreCase("Ambient")) {
+					
+					ambientList.add(parameterInfoHelper);
+					
+				}
+				
+			}
+			
+			RealTimeStationParamMapper realTimeStationParamMapper= new RealTimeStationParamMapper();
+			realTimeStationParamMapper.setEmissionList(emissionList);
+			realTimeStationParamMapper.setEffluentList(effluentList);
+			realTimeStationParamMapper.setAmbientList(ambientList);
+		
+			RealTimeStationParamLevelHelper realTimeStationParamLevelHelper= new RealTimeStationParamLevelHelper
+				(plantInfo.getPlantName(), plantInfo.getCategory(), userInfo.getTown(), userInfo.getDistrict(), userInfo.getState(),stationInfoRepository.getStationCount(plantInfo.getPid()), listParameterInfo.size(), realTimeStationParamMapper);
+		
+		
+		return new ResponseObject(realTimeStationParamLevelHelper,successApiStatus);
+		
+		}catch(Exception e) {
+			
+			return new ResponseObject("Error in fetching Real Time Station Param Level data : "+e.getMessage(),errorApiStatus);
+			
+		}
+	}
 	
 
 }

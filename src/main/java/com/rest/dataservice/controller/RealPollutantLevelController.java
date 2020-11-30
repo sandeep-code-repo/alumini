@@ -37,5 +37,13 @@ public class RealPollutantLevelController {
 
 		return data;
 	}
+	
+	@PostMapping("/getRealPollutantStationParamLevelInfos")
+	public ResponseObject getRealPollutantStationParamLevelInfos(@RequestBody RealPollutantLevelInfos info) {
+
+		ResponseObject data = realPollutantLevelService.getRealPollutantStationParamLevelInfos(info);
+
+		return data;
+	}
 
 }
