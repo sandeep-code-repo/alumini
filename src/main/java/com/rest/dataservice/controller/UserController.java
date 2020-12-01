@@ -124,7 +124,7 @@ public class UserController {
 		ResponseObject resObj=registrationService.findByUserName(userInfo);
 		
 		//TokenResponse response = new TokenResponse(resObj,token);
-		if(resObj==null) {
+		if(resObj.getApiStatus().getStatusCode()==HttpStatus.INTERNAL_SERVER_ERROR) {
 			return new ResponseObject(INVALID_CREDENTIAL,new CommonApiStatus(FAILED,HttpStatus.INTERNAL_SERVER_ERROR,""));
 		}
 		return new ResponseObject(resObj.getData(),successApiStatus);
