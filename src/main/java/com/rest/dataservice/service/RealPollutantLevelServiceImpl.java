@@ -160,6 +160,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 		try {
 			
 		List<RealParameterInfoHelper> listParameterInfo = new ArrayList<>();
+		List<String> listStationName = new ArrayList<>();
 		
 		
 		List<RealPollutantLevelInfos> listData = realPollutantLevelInfoRepository.getRealParamDataFromPlant(info.getPlantId());
@@ -189,6 +190,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				parameterInfoHelper.setAnalyzer(data.getAnalyzer());
 				parameterInfoHelper.setAggregation(data.getAggregation());
 				listParameterInfo.add(parameterInfoHelper);
+				listStationName.add(stationInfo.getStationId());
 				
 				if(stationInfo.getStnType().equalsIgnoreCase("Emission")) {
 					
@@ -215,7 +217,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			realTimeStationParamMapper.setAmbientListSize(ambientList.size());
 		
 			RealTimeStationParamLevelHelper realTimeStationParamLevelHelper= new RealTimeStationParamLevelHelper
-				(plantInfo.getPlantName(), plantInfo.getCategory(), userInfo.getTown(), userInfo.getDistrict(), userInfo.getState(),stationInfoRepository.getStationCount(plantInfo.getPid()), listParameterInfo.size(), realTimeStationParamMapper);
+				(plantInfo.getPlantName(), plantInfo.getCategory(), userInfo.getTown(), userInfo.getDistrict(), userInfo.getState(),stationInfoRepository.getStationCount(plantInfo.getPid()), listParameterInfo.size(),listStationName, realTimeStationParamMapper);
 		
 		
 		return new ResponseObject(realTimeStationParamLevelHelper,successApiStatus);

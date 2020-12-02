@@ -20,6 +20,8 @@ public class RealTimeStationParamLevelHelper {
     private int countStation;
      
     private int countParameter;
+    
+    private List<String> listStationName;
 	
 	private RealTimeStationParamMapper realTimeStationParamMapper;
 
@@ -27,8 +29,10 @@ public class RealTimeStationParamLevelHelper {
 		super();
 	}
 
+	
 	public RealTimeStationParamLevelHelper(String plantName, String industryCategory, String city, String district,
-			String state, int countStation, int countParameter, RealTimeStationParamMapper realTimeStationParamMapper) {
+			String state, int countStation, int countParameter, List<String> listStationName,
+			RealTimeStationParamMapper realTimeStationParamMapper) {
 		super();
 		this.plantName = plantName;
 		this.industryCategory = industryCategory;
@@ -37,15 +41,19 @@ public class RealTimeStationParamLevelHelper {
 		this.state = state;
 		this.countStation = countStation;
 		this.countParameter = countParameter;
+		this.listStationName = listStationName;
 		this.realTimeStationParamMapper = realTimeStationParamMapper;
 	}
 
+
 	@Override
 	public String toString() {
-		return "RealPollutantLevelHelper [plantName=" + plantName + ", industryCategory=" + industryCategory + ", city="
-				+ city + ", district=" + district + ", state=" + state + ", countStation=" + countStation
-				+ ", countParameter=" + countParameter + ", realTimeStationParamMapper=" + realTimeStationParamMapper + "]";
+		return "RealTimeStationParamLevelHelper [plantName=" + plantName + ", industryCategory=" + industryCategory
+				+ ", city=" + city + ", district=" + district + ", state=" + state + ", countStation=" + countStation
+				+ ", countParameter=" + countParameter + ", listStationName=" + listStationName
+				+ ", realTimeStationParamMapper=" + realTimeStationParamMapper + "]";
 	}
+
 
 	public String getPlantName() {
 		return plantName;
@@ -102,6 +110,18 @@ public class RealTimeStationParamLevelHelper {
 	public void setCountParameter(int countParameter) {
 		this.countParameter = countParameter;
 	}
+	
+	
+
+	public List<String> getListStationName() {
+		return listStationName;
+	}
+
+
+	public void setListStationName(List<String> listStationName) {
+		this.listStationName = listStationName;
+	}
+
 
 	public RealTimeStationParamMapper getRealTimeStationParamMapper() {
 		return realTimeStationParamMapper;
