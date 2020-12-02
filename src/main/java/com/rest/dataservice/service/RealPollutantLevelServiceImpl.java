@@ -210,6 +210,9 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			realTimeStationParamMapper.setEmissionList(emissionList);
 			realTimeStationParamMapper.setEffluentList(effluentList);
 			realTimeStationParamMapper.setAmbientList(ambientList);
+			realTimeStationParamMapper.setEmissionListSize(emissionList.size());
+			realTimeStationParamMapper.setEffluentListSize(effluentList.size());
+			realTimeStationParamMapper.setAmbientListSize(ambientList.size());
 		
 			RealTimeStationParamLevelHelper realTimeStationParamLevelHelper= new RealTimeStationParamLevelHelper
 				(plantInfo.getPlantName(), plantInfo.getCategory(), userInfo.getTown(), userInfo.getDistrict(), userInfo.getState(),stationInfoRepository.getStationCount(plantInfo.getPid()), listParameterInfo.size(), realTimeStationParamMapper);

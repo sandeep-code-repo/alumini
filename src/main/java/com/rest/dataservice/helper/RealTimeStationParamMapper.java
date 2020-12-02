@@ -8,6 +8,10 @@ public class RealTimeStationParamMapper {
 	 public List<RealParameterInfoHelper> effluentList; 
 	 public List<RealParameterInfoHelper> ambientList;
 	 
+	 public int emissionListSize;
+	 public int effluentListSize; 
+	 public int ambientListSize;
+	 
 	public List<RealParameterInfoHelper> getEmissionList() {
 		return emissionList;
 	}
@@ -26,7 +30,23 @@ public class RealTimeStationParamMapper {
 	public void setAmbientList(List<RealParameterInfoHelper> ambientList) {
 		this.ambientList = ambientList;
 	}
-	 
-	 
-
+	public int getEmissionListSize() {
+		return emissionListSize;
+	}
+	public void setEmissionListSize(int emissionListSize) {
+		this.emissionListSize = emissionListSize;
+	}
+	public int getEffluentListSize() {
+		return effluentListSize;
+	}
+	public void setEffluentListSize(int effluentListSize) {
+		this.effluentListSize = effluentListSize;
+	}
+	public int getAmbientListSize() {
+		return ambientListSize;
+	}
+	public void setAmbientListSize(int ambientListSize) {
+		this.ambientListSize = ambientListSize;
+	}
+	
 }
