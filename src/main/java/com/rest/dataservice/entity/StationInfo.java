@@ -42,8 +42,8 @@ public class StationInfo implements Serializable{
 	@Column(name = "short_name")
 	private String shortName;
 	
-	@Column(name = "LOCATION")
-	private String location;
+	@Column(name = "process_attached")
+	private String processAttached;
 	
 	@Column(name = "install_date")
 	private Date installDt;
@@ -152,12 +152,12 @@ public class StationInfo implements Serializable{
 		this.shortName = shortName;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getProcessAttached() {
+		return processAttached;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setProcessAttached(String processAttached) {
+		this.processAttached = processAttached;
 	}
 
 	public Date getInstallDt() {

@@ -39,6 +39,8 @@ import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.RSAUtil;
 import com.rest.dataservice.util.ResponseObject;
 
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author Kamal
  *
@@ -110,6 +112,7 @@ public class UserController {
 	CommonApiStatus errorApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS, HttpStatus.INTERNAL_SERVER_ERROR,
 			ApplicationConstants.API_OVER_ALL_ERROR_STATUS);
 
+	@ApiOperation(value="User Login",response=ResponseObject.class)
 	@PostMapping(value ="/login",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseObject loginByUserName(@RequestBody UserInfo user) throws java.security.InvalidKeyException, javax.crypto.IllegalBlockSizeException, javax.crypto.BadPaddingException, java.security.NoSuchAlgorithmException, javax.crypto.NoSuchPaddingException
 

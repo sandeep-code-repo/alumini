@@ -81,7 +81,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				parameterInfoHelper.setRecordedLevel(data.getRecordedLevel());
 				parameterInfoHelper.setRecordedTime(data.getRecordedTime());
 				parameterInfoHelper.setThresholdLevel(data.getThresholdLevel());
-				parameterInfoHelper.setStationName(stationInfo.getStationId());
+				parameterInfoHelper.setStationName(stationInfo.getStationId()+" "+stationInfo.getProcessAttached()+" "+data.getParameterCode());
 				parameterInfoHelper.setAnalyzer(data.getAnalyzer());
 				parameterInfoHelper.setAggregation(data.getAggregation());
 				listParameterInfo.add(parameterInfoHelper);
@@ -186,11 +186,11 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				parameterInfoHelper.setRecordedLevel(data.getRecordedLevel());
 				parameterInfoHelper.setRecordedTime(data.getRecordedTime());
 				parameterInfoHelper.setThresholdLevel(data.getThresholdLevel());
-				parameterInfoHelper.setStationName(stationInfo.getStationId());
+				parameterInfoHelper.setStationName(stationInfo.getStationId()+" "+stationInfo.getProcessAttached()+" "+data.getParameterCode());
 				parameterInfoHelper.setAnalyzer(data.getAnalyzer());
 				parameterInfoHelper.setAggregation(data.getAggregation());
 				listParameterInfo.add(parameterInfoHelper);
-				listStationName.add(stationInfo.getStationId());
+				listStationName.add(stationInfo.getStationId()+" "+stationInfo.getProcessAttached()+" "+data.getParameterCode());
 				
 				if(stationInfo.getStnType().equalsIgnoreCase("Emission")) {
 					

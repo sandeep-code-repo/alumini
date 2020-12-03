@@ -16,7 +16,10 @@ import com.rest.dataservice.service.RealPollutantLevelService;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.ResponseObject;
 
+import io.swagger.annotations.Api;
+
 @RestController
+@Api(value="Real Pollutant Dashboard",description="Real pollutant data for dashboard trend")
 public class RealPollutantLevelController {
 	
 	@Autowired
