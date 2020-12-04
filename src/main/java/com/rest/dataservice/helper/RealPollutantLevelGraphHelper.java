@@ -33,16 +33,16 @@ public class RealPollutantLevelGraphHelper {
 	}
 	
 	
-	public List<Date> getRecordedTime() {
+	public List<Date> getLabels() {
 		return labels;
 	}
-	public void setRecordedTime(List<Date> labels) {
+	public void setLabels(List<Date> labels) {
 		this.labels = labels;
 	}
-	public List<String> getRecordedLevel() {
+	public List<String> getEvents() {
 		return events;
 	}
-	public void setRecordedLevel(List<String> events) {
+	public void setEvents(List<String> events) {
 		this.events = events;
 	}
 	public List<String> getThresholdLevel() {

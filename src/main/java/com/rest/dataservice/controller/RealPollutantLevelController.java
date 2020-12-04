@@ -12,6 +12,7 @@ import com.rest.dataservice.entity.RealPollutantLevelInfos;
 import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.RealParameterInfoHelper;
 import com.rest.dataservice.helper.RealPollutantLevelHelper;
+import com.rest.dataservice.model.StationDateLevelGraphRequest;
 import com.rest.dataservice.service.RealPollutantLevelService;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.ResponseObject;
@@ -36,7 +37,7 @@ public class RealPollutantLevelController {
 	@PostMapping("/getRealPollutantLevelGraphData")
 	public ResponseObject getRealPollutantLevelGraphData(@RequestBody RealPollutantLevelInfos info) {
 
-		ResponseObject data = realPollutantLevelService.getRealPoulltantLevelGraphData(info);
+		ResponseObject data = realPollutantLevelService.getRealPollutantLevelGraphData(info);
 
 		return data;
 	}
@@ -45,6 +46,14 @@ public class RealPollutantLevelController {
 	public ResponseObject getRealPollutantStationParamLevelInfos(@RequestBody RealPollutantLevelInfos info) {
 
 		ResponseObject data = realPollutantLevelService.getRealPollutantStationParamLevelInfos(info);
+
+		return data;
+	}
+	
+	@PostMapping("/getRealPoulltantStationDateLevelGraphData")
+	public ResponseObject getRealPoulltantStationDateLevelGraphData(@RequestBody StationDateLevelGraphRequest request) {
+
+		ResponseObject data = realPollutantLevelService.getRealPoulltantStationDateLevelGraphData(request);
 
 		return data;
 	}
