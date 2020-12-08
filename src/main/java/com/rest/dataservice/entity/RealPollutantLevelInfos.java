@@ -1,7 +1,6 @@
 package com.rest.dataservice.entity;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -35,9 +35,8 @@ public class RealPollutantLevelInfos {
 	@Column(name = "parameter_code") 
 	private String parameterCode;
 	
-	@DateTimeFormat(iso = ISO.DATE_TIME)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "recorded_time")
+	@Column(name = "recorded_time", columnDefinition="TIMESTAMP")
 	private Date recordedTime;
 	
 	@Column(name = "recorded_level")

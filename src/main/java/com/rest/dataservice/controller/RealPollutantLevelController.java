@@ -26,6 +26,16 @@ public class RealPollutantLevelController {
 	@Autowired
 	private RealPollutantLevelService realPollutantLevelService;
 	
+	@GetMapping("/getRealPollutantLevelInfosAllData")
+	public ResponseObject getRealPollutantLevelInfosAllData() {
+
+		ResponseObject data = realPollutantLevelService.getRealPoulltantLevelAllData();
+		return data;
+		
+	}
+
+	
+	
 	@PostMapping("/getRealPollutantLevelInfos")
 	public ResponseObject getRealPollutantLevelInfos(@RequestBody RealPollutantLevelInfos info) {
 

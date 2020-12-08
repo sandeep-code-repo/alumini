@@ -2,6 +2,8 @@ package com.rest.dataservice.helper;
 
 import java.util.List;
 
+import javax.persistence.Column;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -13,7 +15,7 @@ public class RealPollutantLevelGraphHelper {
 	
 	 @DateTimeFormat(iso = ISO.DATE_TIME)
 	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	 public List<Date> labels;
+	 public List<String> labels;
 	 public List<String> events;
 	 public List<String> thresholdLevel; 
 	 public List<String> aggregation;
@@ -23,7 +25,7 @@ public class RealPollutantLevelGraphHelper {
 	}
 
 
-	public RealPollutantLevelGraphHelper(List<Date> labels, List<String> events,
+	public RealPollutantLevelGraphHelper(List<String> labels, List<String> events,
 			List<String> thresholdLevel, List<String> aggregation) {
 		super();
 		this.labels = labels;
@@ -33,10 +35,10 @@ public class RealPollutantLevelGraphHelper {
 	}
 	
 	
-	public List<Date> getLabels() {
+	public List<String> getLabels() {
 		return labels;
 	}
-	public void setLabels(List<Date> labels) {
+	public void setLabels(List<String> labels) {
 		this.labels = labels;
 	}
 	public List<String> getEvents() {

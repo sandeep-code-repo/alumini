@@ -14,4 +14,6 @@ public interface RealPollutantLevelService {
 
 	ResponseObject getRealPoulltantStationDateLevelGraphData(StationDateLevelGraphRequest graphRequest);
 
+	ResponseObject getRealPoulltantLevelAllData();
+
 }

@@ -29,6 +29,7 @@ import com.rest.dataservice.repository.RealPollutantLevelInfosRepository;
 import com.rest.dataservice.repository.StationInfoRepository;
 import com.rest.dataservice.repository.UserRepository;
 import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.DateFormatUtil;
 import com.rest.dataservice.util.ResponseObject;
 
 @Service
@@ -126,14 +127,14 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 
 			RealPollutantLevelGraphHelper pollutantLevelGraphHelper = new RealPollutantLevelGraphHelper();
 
-			List<Date> recordedTime = new ArrayList<Date>();
+			List<String> recordedTime = new ArrayList<String>();
 			List<String> recordedLevel = new ArrayList<String>();
 			List<String> thresholdLevel = new ArrayList<String>();
 			List<String> aggregation = new ArrayList<String>();
 
 			for (RealPollutantLevelInfos data : listData) {
 
-				recordedTime.add(data.getRecordedTime());
+				recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
 				recordedLevel.add(data.getRecordedLevel());
 				thresholdLevel.add(data.getThresholdLevel());
 				aggregation.add(data.getAggregation());
@@ -251,14 +252,14 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 
 			RealPollutantLevelGraphHelper pollutantLevelGraphHelper = new RealPollutantLevelGraphHelper();
 
-			List<Date> recordedTime = new ArrayList<Date>();
+			List<String> recordedTime = new ArrayList<String>();
 			List<String> recordedLevel = new ArrayList<String>();
 			List<String> thresholdLevel = new ArrayList<String>();
 			List<String> aggregation = new ArrayList<String>();
 
 			for (RealPollutantLevelInfos data : listData) {
 
-				recordedTime.add(data.getRecordedTime());
+				recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
 				recordedLevel.add(data.getRecordedLevel());
 				thresholdLevel.add(data.getThresholdLevel());
 				aggregation.add(data.getAggregation());
@@ -277,6 +278,12 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			return new ResponseObject("Error in fetching Real pollutant Graph level data : "+e.getMessage(),errorApiStatus);
 
 		}	
+	}
+
+
+	@Override
+	public ResponseObject getRealPoulltantLevelAllData() {
+		return new ResponseObject(realPollutantLevelInfoRepository.findAll(),successApiStatus);
 	}
 
 
