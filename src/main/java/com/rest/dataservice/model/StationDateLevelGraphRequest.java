@@ -13,13 +13,9 @@ public class StationDateLevelGraphRequest {
 	
 	private String stationId;
 	
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date fromDate;
+	private String fromDate;
 	
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date toDate;
+	private String toDate;
 	
 	private String frequency;
 	
@@ -35,7 +31,7 @@ public class StationDateLevelGraphRequest {
 		super();
 	}
 
-	public StationDateLevelGraphRequest(String plantId, String stationId, Date fromDate, Date toDate, String frequency,
+	public StationDateLevelGraphRequest(String plantId, String stationId, String fromDate, String toDate, String frequency,
 			String parameter) {
 		super();
 		this.plantId = plantId;
@@ -62,19 +58,19 @@ public class StationDateLevelGraphRequest {
 		this.stationId = stationId;
 	}
 
-	public Date getFromDate() {
+	public String getFromDate() {
 		return fromDate;
 	}
 
-	public void setFromDate(Date fromDate) {
+	public void setFromDate(String fromDate) {
 		this.fromDate = fromDate;
 	}
 
-	public Date getToDate() {
+	public String getToDate() {
 		return toDate;
 	}
 
-	public void setToDate(Date toDate) {
+	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
 

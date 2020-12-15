@@ -235,6 +235,8 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 	public ResponseObject getRealPoulltantStationDateLevelGraphData(StationDateLevelGraphRequest graphRequest) {
 
 		try {
+			
+			SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
 
 			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();	
 			if(graphRequest.getPlantId()==null || graphRequest.getParameter()==null || graphRequest.getStationId()==null) {
@@ -247,7 +249,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				//listData = realPollutantLevelInfoRepository.getRealStationWiseData(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),graphRequest.getFrequency());	
 
 			}else {
-				listData = realPollutantLevelInfoRepository.getRealStationWiseDataFromDate(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),graphRequest.getFromDate(),graphRequest.getToDate());
+				listData = realPollutantLevelInfoRepository.getRealStationWiseDataFromDate(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
 			}
 
 			RealPollutantLevelGraphHelper pollutantLevelGraphHelper = new RealPollutantLevelGraphHelper();
@@ -256,13 +258,32 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			List<String> recordedLevel = new ArrayList<String>();
 			List<String> thresholdLevel = new ArrayList<String>();
 			List<String> aggregation = new ArrayList<String>();
+			
+			for (RealPollutantLevelInfos data : listData) {   
+				
+				if(graphRequest.getFrequency().equalsIgnoreCase("15 Minutes")){
+				
+				long diff_in_time = sdf.parse(graphRequest.getFromDate()).getTime()- sdf.parse(DateFormatUtil.dateFormatString(data.getRecordedTime())).getTime();
 
-			for (RealPollutantLevelInfos data : listData) {
-
+				long difference_In_Minutes 
+                = (diff_in_time 
+                   / (1000 * 60)) 
+                  % 60;
+				if(difference_In_Minutes%15L==0) {
 				recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
 				recordedLevel.add(data.getRecordedLevel());
 				thresholdLevel.add(data.getThresholdLevel());
 				aggregation.add(data.getAggregation());
+				}
+				
+				}else{
+					
+					recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
+					recordedLevel.add(data.getRecordedLevel());
+					thresholdLevel.add(data.getThresholdLevel());
+					aggregation.add(data.getAggregation());
+					
+				}
 
 			}
 

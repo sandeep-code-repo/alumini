@@ -30,7 +30,7 @@ public interface RealPollutantLevelInfosRepository extends JpaRepository<RealPol
 
 	//List<RealPollutantLevelGraphHelper> getRealStationWiseData(String plantId, String parameter, String stationId, String frequency);
 
-	@Query(value = "SELECT * FROM alumini.real_pollutant_level_infos WHERE recorded_time between :fromDate AND :toDate AND plant_id=:plantId AND station_id=:stationId AND parameter_code=:parameter",
+	@Query(value = "SELECT * FROM alumini.real_pollutant_level_infos WHERE recorded_time between :fromDate AND :toDate AND plant_id=:plantId AND station_id=:stationId AND parameter_code=:parameter ORDER BY recorded_time",
 			 nativeQuery = true)
 	List<RealPollutantLevelInfos> getRealStationWiseDataFromDate(String plantId, String parameter, String stationId,Date fromDate, Date toDate);
 
