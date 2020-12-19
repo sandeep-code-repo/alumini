@@ -17,7 +17,7 @@ public interface IndustryCategoryService {
 	ResponseObject editByEname(String name);
 	
 	ResponseObject getDropdownIndustryCategoryList();
-	
-	
+
+	ResponseObject getSMSReport();
 
 }

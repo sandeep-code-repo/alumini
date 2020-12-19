@@ -60,3 +60,9 @@ INSERT INTO alumini.real_pollutant_level_infos (plant_id, analyzer, station_id, 
 INSERT INTO alumini.real_pollutant_level_infos (plant_id, analyzer, station_id, parameter_code, recorded_time, recorded_level, aggregation, threshold_level) 
 	VALUES ('hindalco_lpng', 'Water', 'EQMS-1', 'PH', '2020-11-13 21:13:00.0', 7.09, '1Hr', 0.00);
 
+/*Data for the table `sms_report` */
+INSERT INTO `alumini`.`sms_report` (`industry_category`, `industry_code`, `industry_name`, `address`, `sms_contact_no`, `state`, `station_name`, `param_limit`, `parameter`, `exceedence`, `total_sms`, `in_ganga_basin_status`, `created_by`, `created_dt`) VALUES 
+( 'Iron & Steel', '08OD183', 'M/S ROURKELA STEEL PLANT', 'Sundergarh,Odisha', '918895500627', 'Odisha', 'CEMS-10', '100 mg/Nm3', 'PM', '34', '164', 'NO', 'System', '2020-11-12 11:17:03'),
+( 'Iron & Steel', '08OD183', 'M/S ROURKELA STEEL PLANT', 'Sundergarh,Odisha', '918895500627', 'Odisha', 'CEMS-11', '100 mg/Nm3', 'PM', '49', '164', 'NO', 'System', '2020-11-12 11:17:03'),
+( 'Iron & Steel', '08OD183', 'M/S ROURKELA STEEL PLANT', 'Sundergarh,Odisha', '918895500627', 'Odisha', 'CEMS-12', '100 mg/Nm3', 'PM', '81', '164', 'NO', 'System', '2020-11-12 11:17:03'); 
+

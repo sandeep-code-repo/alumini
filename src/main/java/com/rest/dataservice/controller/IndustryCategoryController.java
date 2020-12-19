@@ -79,5 +79,12 @@ public class IndustryCategoryController extends AbstractMapper{
       	ResponseObject obj= industryCategoryService.getDropdownIndustryCategoryList();
 			return obj;
 		}
+      
+      
+      @GetMapping(value ="/getSMSReport", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseObject getSMSReport() {
+    	ResponseObject obj= industryCategoryService.getSMSReport();
+			return obj;
+		}
 
 }
