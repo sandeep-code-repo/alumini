@@ -2,10 +2,16 @@ package com.rest.dataservice.service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -235,8 +241,9 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 	public ResponseObject getRealPoulltantStationDateLevelGraphData(StationDateLevelGraphRequest graphRequest) {
 
 		try {
-			
+
 			SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
+			SimpleDateFormat sdf_date = new SimpleDateFormat(ApplicationConstants.DATE_FORMATTER);
 
 			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();	
 			if(graphRequest.getPlantId()==null || graphRequest.getParameter()==null || graphRequest.getStationId()==null) {
@@ -252,6 +259,9 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				listData = realPollutantLevelInfoRepository.getRealStationWiseDataFromDate(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
 			}
 
+			List<String> distinctTime = realPollutantLevelInfoRepository.getDistinctTime(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
+			List<String> distinctMonth = realPollutantLevelInfoRepository.getDistinctMonth(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
+
 			RealPollutantLevelGraphHelper pollutantLevelGraphHelper = new RealPollutantLevelGraphHelper();
 
 			List<String> recordedTime = new ArrayList<String>();
@@ -259,33 +269,88 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			List<String> thresholdLevel = new ArrayList<String>();
 			List<String> aggregation = new ArrayList<String>();
 			
-			for (RealPollutantLevelInfos data : listData) {   
-				
-				if(graphRequest.getFrequency().equalsIgnoreCase("15 Minutes")){
-				
-				long diff_in_time = sdf.parse(graphRequest.getFromDate()).getTime()- sdf.parse(DateFormatUtil.dateFormatString(data.getRecordedTime())).getTime();
 
-				long difference_In_Minutes 
-                = (diff_in_time 
-                   / (1000 * 60)) 
-                  % 60;
-				if(difference_In_Minutes%15L==0) {
-				recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
-				recordedLevel.add(data.getRecordedLevel());
-				thresholdLevel.add(data.getThresholdLevel());
-				aggregation.add(data.getAggregation());
-				}
-				
-				}else{
+			if(graphRequest.getFrequency().equalsIgnoreCase("15 Minutes")){
+
+				for (RealPollutantLevelInfos data : listData) {
+
+					long diff_in_time = sdf.parse(graphRequest.getFromDate()).getTime()- sdf.parse(DateFormatUtil.dateFormatString(data.getRecordedTime())).getTime();
+
+					long difference_In_Minutes 
+					= (diff_in_time 
+							/ (1000 * 60)) 
+					% 60;
+					if(difference_In_Minutes%15L==0) {
+						recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
+						recordedLevel.add(data.getRecordedLevel());
+						thresholdLevel.add(data.getThresholdLevel());
+						aggregation.add(data.getAggregation());
+					}
 					
+				}
+
+			}else if(graphRequest.getFrequency().equalsIgnoreCase("1 Day")){
+
+
+
+				for (String info : distinctTime) { 
+					List<Double> recordedLevelTemp = new ArrayList<Double>();
+					List<Double> thresholdLevelTemp = new ArrayList<Double>();
+					for (RealPollutantLevelInfos data : listData) {
+
+						if(sdf_date.parse(sdf_date.format(data.getRecordedTime())).compareTo(sdf_date.parse(info))==0) {
+							recordedLevelTemp.add(Double.parseDouble(data.getRecordedLevel()));
+							thresholdLevelTemp.add(Double.parseDouble(data.getThresholdLevel()));
+						}
+
+					}
+
+					double recordedLevelAvg = recordedLevelTemp.stream().mapToDouble(a->a).average().orElse(0);
+					double thresholdLevelAvg = thresholdLevelTemp.stream().mapToDouble(a->a).average().orElse(0);
+
+					recordedTime.add(info);
+					recordedLevel.add(Double.toString(recordedLevelAvg));
+					thresholdLevel.add(Double.toString(thresholdLevelAvg));
+
+				}
+
+
+			}else if(graphRequest.getFrequency().equalsIgnoreCase("1 Month")){
+
+
+
+				for (String month : distinctMonth) { 
+					List<Double> recordedLevelTemp = new ArrayList<Double>();
+					List<Double> thresholdLevelTemp = new ArrayList<Double>();
+					for (RealPollutantLevelInfos data : listData) {
+
+						if(sdf_date.format(data.getRecordedTime()).substring(0,7).equalsIgnoreCase(month)) {
+							recordedLevelTemp.add(Double.parseDouble(data.getRecordedLevel()));
+							thresholdLevelTemp.add(Double.parseDouble(data.getThresholdLevel()));
+						}
+
+					}
+
+					double recordedLevelAvg = recordedLevelTemp.stream().mapToDouble(a->a).average().orElse(0);
+					double thresholdLevelAvg = thresholdLevelTemp.stream().mapToDouble(a->a).average().orElse(0);
+
+					recordedTime.add(month+"-01");
+					recordedLevel.add(Double.toString(recordedLevelAvg));
+					thresholdLevel.add(Double.toString(thresholdLevelAvg));
+
+			}
+
+
+			}else{
+				for (RealPollutantLevelInfos data : listData) {
 					recordedTime.add(DateFormatUtil.dateFormatString(data.getRecordedTime()));
 					recordedLevel.add(data.getRecordedLevel());
 					thresholdLevel.add(data.getThresholdLevel());
 					aggregation.add(data.getAggregation());
-					
 				}
 
 			}
+
 
 			pollutantLevelGraphHelper.setLabels(recordedTime);
 			pollutantLevelGraphHelper.setEvents(recordedLevel);

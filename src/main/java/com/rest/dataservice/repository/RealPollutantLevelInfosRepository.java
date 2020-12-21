@@ -34,4 +34,12 @@ public interface RealPollutantLevelInfosRepository extends JpaRepository<RealPol
 			 nativeQuery = true)
 	List<RealPollutantLevelInfos> getRealStationWiseDataFromDate(String plantId, String parameter, String stationId,Date fromDate, Date toDate);
 
+	@Query(value = "SELECT DISTINCT(DATE(rpli.recorded_time)) FROM alumini.real_pollutant_level_infos rpli WHERE recorded_time between :fromDate AND :toDate AND plant_id=:plantId AND station_id=:stationId AND parameter_code=:parameter ORDER BY recorded_time",
+			 nativeQuery = true)
+	List<String> getDistinctTime(@Param("plantId") String plantId, @Param("parameter") String parameter, @Param("stationId") String stationId, @Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
+
+	@Query(value = "SELECT DISTINCT SUBSTRING(recorded_time, 1, 7) FROM alumini.real_pollutant_level_infos rpli WHERE recorded_time between :fromDate AND :toDate AND plant_id=:plantId AND station_id=:stationId AND parameter_code=:parameter ORDER BY recorded_time",
+			 nativeQuery = true)
+	List<String> getDistinctMonth(@Param("plantId") String plantId, @Param("parameter") String parameter, @Param("stationId") String stationId, @Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
+
 }
