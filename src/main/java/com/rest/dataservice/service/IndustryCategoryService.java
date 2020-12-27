@@ -1,8 +1,12 @@
 package com.rest.dataservice.service;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.text.ParseException;
 import java.util.List;
 
 import com.rest.dataservice.entity.IndustryCategory;
+import com.rest.dataservice.model.StationDateLevelGraphRequest;
 import com.rest.dataservice.util.RequestObject;
 import com.rest.dataservice.util.ResponseObject;
 
@@ -19,5 +23,7 @@ public interface IndustryCategoryService {
 	ResponseObject getDropdownIndustryCategoryList();
 
 	ResponseObject getSMSReport();
+
+	ByteArrayInputStream getSMSReportInExcel(String from, String to) throws ParseException;
 
 }

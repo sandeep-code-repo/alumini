@@ -3,6 +3,8 @@
  */
 package com.rest.dataservice.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import java.io.InputStream;
@@ -11,13 +13,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.rest.dataservice.entity.SMSReport;
 import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.UserInfoMapper;
 
@@ -26,6 +34,9 @@ import com.rest.dataservice.helper.UserInfoMapper;
  *
  */
 public class ExcelUtil {
+	
+	  static String[] HEADERs = { "S.No", "Category", "Industry Code", "Industry Name","Full Address", "Contact In which SMSAlerts generated", "State", "Station Name", "Parameter Standard limit's", "Parameters", "Exceedence", "Total SMS","In Ganga Basin"  };
+	  static String SHEET = "SMSReport";
 
 	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
@@ -132,5 +143,45 @@ public class ExcelUtil {
 			throw new RuntimeException("FAIL! -> message = " + e.getMessage());
 		}
 	}
+
+
+    public static ByteArrayInputStream tutorialsToExcel(List<SMSReport> smsReports) {
+
+    try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
+      Sheet sheet = workbook.createSheet(SHEET);
+
+      // Header
+      Row headerRow = sheet.createRow(0);
+
+      for (int col = 0; col < HEADERs.length; col++) {
+        Cell cell = headerRow.createCell(col);
+        cell.setCellValue(HEADERs[col]);
+      }
+
+      int rowIdx = 1;
+      for (SMSReport smsReport : smsReports) {
+        Row row = sheet.createRow(rowIdx++);
+
+        row.createCell(0).setCellValue(smsReport.getId());
+        row.createCell(1).setCellValue(smsReport.getIndustryCategory());
+        row.createCell(2).setCellValue(smsReport.getIndustryCode());
+        row.createCell(3).setCellValue(smsReport.getIndustryName());
+        row.createCell(4).setCellValue(smsReport.getAddress());
+        row.createCell(5).setCellValue(smsReport.getSmsContactNo());
+        row.createCell(6).setCellValue(smsReport.getState());
+        row.createCell(7).setCellValue(smsReport.getStationName());
+        row.createCell(8).setCellValue(smsReport.getParamLimit());
+        row.createCell(9).setCellValue(smsReport.getParameter());
+        row.createCell(10).setCellValue(smsReport.getExceedence());
+        row.createCell(11).setCellValue(smsReport.getTotalSMS());
+        row.createCell(12).setCellValue(smsReport.getInGangaBasinStatus());
+      }
+
+      workbook.write(out);
+      return new ByteArrayInputStream(out.toByteArray());
+    } catch (IOException e) {
+      throw new RuntimeException("fail to import data to Excel file: " + e.getMessage());
+    }
+  }
 
 }

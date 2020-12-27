@@ -1,5 +1,9 @@
 package com.rest.dataservice.service;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +12,13 @@ import org.springframework.stereotype.Service;
 
 import com.rest.dataservice.constants.ApplicationConstants;
 import com.rest.dataservice.entity.IndustryCategory;
+import com.rest.dataservice.entity.SMSReport;
+import com.rest.dataservice.model.StationDateLevelGraphRequest;
 import com.rest.dataservice.repository.DropdownIndustryCategoryRepository;
 import com.rest.dataservice.repository.IndustryCategoryRepository;
 import com.rest.dataservice.repository.SMSReportRepository;
 import com.rest.dataservice.util.CommonApiStatus;
+import com.rest.dataservice.util.ExcelUtil;
 import com.rest.dataservice.util.RequestObject;
 import com.rest.dataservice.util.ResponseObject;
 
@@ -70,6 +77,16 @@ public class IndustryCategoryServiceImpl implements IndustryCategoryService{
 		
 		return new ResponseObject(smsReportRepository.findAll(),SuccessApiStatus);
 	}
+
+	public ByteArrayInputStream getSMSReportInExcel(String from, String to) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
+	    List<SMSReport> smsReport = null;
+		smsReport = smsReportRepository.getReportInRange(sdf.parse(from),sdf.parse(to));
+
+	    ByteArrayInputStream in = ExcelUtil.tutorialsToExcel(smsReport);
+	    return in;
+		
+	  }
 
 
 }
