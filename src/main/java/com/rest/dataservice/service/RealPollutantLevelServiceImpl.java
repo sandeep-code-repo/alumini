@@ -245,25 +245,30 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
 			SimpleDateFormat sdf_date = new SimpleDateFormat(ApplicationConstants.DATE_FORMATTER);
 
-			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();	
+			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();
+			List<RealPollutantLevelGraphHelper> pollutantGraphList = new ArrayList<RealPollutantLevelGraphHelper>();
+			
+			
+			String[] param=graphRequest.getParameter().split(",");
+			for (int i=0; i < param.length; i++){
+		    
 			if(graphRequest.getPlantId()==null || graphRequest.getParameter()==null || graphRequest.getStationId()==null) {
 
 				return new ResponseObject("Error in fetching Real pollutant Graph level data : Station parameter and plant id is manadatory",errorApiStatus);	
 
-			}
-			if(graphRequest.getFromDate()==null || graphRequest.getToDate()==null) {
+			}else if(graphRequest.getFromDate()==null || graphRequest.getToDate()==null) {
 
-				//listData = realPollutantLevelInfoRepository.getRealStationWiseData(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),graphRequest.getFrequency());	
+				return new ResponseObject("Error in fetching Real pollutant Graph level data : From and to date",errorApiStatus);	
 
 			}else {
-				listData = realPollutantLevelInfoRepository.getRealStationWiseDataFromDate(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
+				listData = realPollutantLevelInfoRepository.getRealStationWiseDataFromDate(graphRequest.getPlantId(),param[i],graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
 			}
 
-			List<String> distinctTime = realPollutantLevelInfoRepository.getDistinctTime(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
-			List<String> distinctMonth = realPollutantLevelInfoRepository.getDistinctMonth(graphRequest.getPlantId(),graphRequest.getParameter(),graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
+			List<String> distinctTime = realPollutantLevelInfoRepository.getDistinctTime(graphRequest.getPlantId(),param[i],graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
+			List<String> distinctMonth = realPollutantLevelInfoRepository.getDistinctMonth(graphRequest.getPlantId(),param[i],graphRequest.getStationId(),sdf.parse(graphRequest.getFromDate()),sdf.parse(graphRequest.getToDate()));
 
 			RealPollutantLevelGraphHelper pollutantLevelGraphHelper = new RealPollutantLevelGraphHelper();
-
+			
 			List<String> recordedTime = new ArrayList<String>();
 			List<String> recordedLevel = new ArrayList<String>();
 			List<String> thresholdLevel = new ArrayList<String>();
@@ -356,8 +361,13 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			pollutantLevelGraphHelper.setEvents(recordedLevel);
 			pollutantLevelGraphHelper.setThresholdLevel(thresholdLevel);
 			pollutantLevelGraphHelper.setAggregation(aggregation);
+			pollutantLevelGraphHelper.setParameter(param[i]);
+			
+			pollutantGraphList.add(pollutantLevelGraphHelper);
+			
+		    }
 
-			return new ResponseObject(pollutantLevelGraphHelper,successApiStatus);
+			return new ResponseObject(pollutantGraphList,successApiStatus);
 
 		}catch(Exception e) {
 

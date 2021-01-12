@@ -19,6 +19,7 @@ public class RealPollutantLevelGraphHelper {
 	 public List<String> events;
 	 public List<String> thresholdLevel; 
 	 public List<String> aggregation;
+	 public String parameter;
 	 
 	public RealPollutantLevelGraphHelper() {
 		super();
@@ -26,12 +27,13 @@ public class RealPollutantLevelGraphHelper {
 
 
 	public RealPollutantLevelGraphHelper(List<String> labels, List<String> events,
-			List<String> thresholdLevel, List<String> aggregation) {
+			List<String> thresholdLevel, List<String> aggregation, String parameter) {
 		super();
 		this.labels = labels;
 		this.events = events;
 		this.thresholdLevel = thresholdLevel;
 		this.aggregation = aggregation;
+		this.parameter = parameter;
 	}
 	
 	
@@ -59,13 +61,18 @@ public class RealPollutantLevelGraphHelper {
 	public void setAggregation(List<String> aggregation) {
 		this.aggregation = aggregation;
 	}
-	
+	public String getParameter() {
+		return parameter;
+	}
+	public void setParameter(String parameter) {
+		this.parameter = parameter;
+	}
+
+
 	@Override
 	public String toString() {
-		return "RealPollutantLevelGraphHelper [recordedTime=" + labels + ", recordedLevel=" + events
-				+ ", thresholdLevel=" + thresholdLevel + ", aggregation=" + aggregation + "]";
+		return "RealPollutantLevelGraphHelper [labels=" + labels + ", events=" + events + ", thresholdLevel="
+				+ thresholdLevel + ", aggregation=" + aggregation + ", parameter=" + parameter + "]";
 	}
-	 
-	 
-
+	
 }
