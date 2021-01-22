@@ -80,6 +80,8 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				StationInfo stationInfo = stationInfoRepository.getStationInfo(plantInfo.getPid(),data.getStationId());
 				ParameterInfo parameterInfo = parameterInfoRepository.getParamterInfo(data.getParameterCode(),data.getPlantId(),stationInfo.getSid());
 
+				if(parameterInfo!=null && stationInfo!=null) {
+					
 				RealParameterInfoHelper parameterInfoHelper = new RealParameterInfoHelper();
 				parameterInfoHelper.setUnit(parameterInfo.getUnit());
 				parameterInfoHelper.setLimit(data.getThresholdLevel());
@@ -94,6 +96,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 				parameterInfoHelper.setAggregation(data.getAggregation());
 				listParameterInfo.add(parameterInfoHelper);
 
+			 }
 			}
 
 
