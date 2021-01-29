@@ -9,9 +9,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dom4j.DocumentException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -44,7 +44,7 @@ import com.rest.dataservice.util.ResponseObject;
 @RequestMapping("/industry")
 public class IndustryCategoryController extends AbstractMapper{
 
-
+	private static final Logger logger = LogManager.getLogger(IndustryCategoryController.class);
 
 	@Autowired
 	IndustryCategoryService industryCategoryService;
@@ -65,7 +65,6 @@ public class IndustryCategoryController extends AbstractMapper{
 
 	@GetMapping(value ="/{category}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseObject getindustrydtlsByCategory(@PathVariable("category")String category) {
-		System.out.println(category);
 
 		return industryCategoryService.getIndustryDetailsByCategory(category); 
 
