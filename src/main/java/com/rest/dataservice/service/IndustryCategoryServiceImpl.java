@@ -83,7 +83,7 @@ public class IndustryCategoryServiceImpl implements IndustryCategoryService{
 	    List<SMSReport> smsReport = null;
 		smsReport = smsReportRepository.getReportInRange(sdf.parse(from),sdf.parse(to));
 
-	    ByteArrayInputStream in = ExcelUtil.tutorialsToExcel(smsReport);
+	    ByteArrayInputStream in = ExcelUtil.smsReportToExcel(smsReport);
 	    return in;
 		
 	  }

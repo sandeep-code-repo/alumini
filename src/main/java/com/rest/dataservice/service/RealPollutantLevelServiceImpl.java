@@ -1,6 +1,8 @@
 package com.rest.dataservice.service;
 
+import java.io.ByteArrayInputStream;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -16,11 +18,13 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rest.dataservice.constants.ApplicationConstants;
 import com.rest.dataservice.entity.ParameterInfo;
 import com.rest.dataservice.entity.PlantInfo;
 import com.rest.dataservice.entity.RealPollutantLevelInfos;
+import com.rest.dataservice.entity.SMSReport;
 import com.rest.dataservice.entity.StationInfo;
 import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.RealParameterInfoHelper;
@@ -36,6 +40,7 @@ import com.rest.dataservice.repository.StationInfoRepository;
 import com.rest.dataservice.repository.UserRepository;
 import com.rest.dataservice.util.CommonApiStatus;
 import com.rest.dataservice.util.DateFormatUtil;
+import com.rest.dataservice.util.ExcelUtil;
 import com.rest.dataservice.util.ResponseObject;
 
 @Service
@@ -381,6 +386,21 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 
 		}	
 	}
+	
+	public ByteArrayInputStream getRealTimeReportInExcel(StationDateLevelGraphRequest graphRequest) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
+		List<RealPollutantLevelGraphHelper> pollutantGraphList = new ArrayList<RealPollutantLevelGraphHelper>();
+		
+		pollutantGraphList = (List<RealPollutantLevelGraphHelper>) getRealPoulltantStationDateLevelGraphData(graphRequest).getData();
+		
+		UserInfo userInfo = userRepository.findByUsername(graphRequest.getPlantId());
+		PlantInfo plantInfo= plantInfoRepository.getByPlantUser(userInfo.getUid());
+		StationInfo stationInfo = stationInfoRepository.getStationInfo(plantInfo.getPid(),graphRequest.getStationId());
+
+	    ByteArrayInputStream in = ExcelUtil.realPollutantReportToExcel(pollutantGraphList,graphRequest,stationInfo,plantInfo);
+	    return in;
+		
+	  }
 
 
 	@Override

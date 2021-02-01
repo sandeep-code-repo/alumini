@@ -1,10 +1,18 @@
 package com.rest.dataservice.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.dataservice.constants.ApplicationConstants;
@@ -66,6 +74,27 @@ public class RealPollutantLevelController {
 		ResponseObject data = realPollutantLevelService.getRealPoulltantStationDateLevelGraphData(request);
 
 		return data;
+	}
+	
+	@GetMapping("/getRelPollutantReport/download")
+	public ResponseEntity<Resource> getFile(@RequestParam String frequency,@RequestParam String from,
+			@RequestParam String to,@RequestParam String plantId,@RequestParam String stationId,
+			@RequestParam String parameter) throws ParseException {
+		String filename = "RealPollutantReport.xlsx";
+		
+		StationDateLevelGraphRequest graphRequest = new StationDateLevelGraphRequest();
+		graphRequest.setFrequency(frequency);
+		graphRequest.setFromDate(from);
+		graphRequest.setToDate(to);
+		graphRequest.setPlantId(plantId);
+		graphRequest.setStationId(stationId);
+		graphRequest.setParameter(parameter);
+
+		InputStreamResource file = new InputStreamResource(realPollutantLevelService.getRealTimeReportInExcel(graphRequest));
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);
 	}
 
 }
