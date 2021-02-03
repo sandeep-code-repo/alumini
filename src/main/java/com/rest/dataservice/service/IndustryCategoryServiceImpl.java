@@ -31,9 +31,6 @@ public class IndustryCategoryServiceImpl implements IndustryCategoryService{
 	@Autowired
 	DropdownIndustryCategoryRepository dropdownIndustryCategoryRepository;
 	
-	@Autowired
-	SMSReportRepository smsReportRepository;
-	
 	CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
 			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
 
@@ -72,21 +69,6 @@ public class IndustryCategoryServiceImpl implements IndustryCategoryService{
 		return new ResponseObject(dropdownIndustryCategoryRepository.findAll(),SuccessApiStatus);
 	}
 
-	@Override
-	public ResponseObject getSMSReport() {
-		
-		return new ResponseObject(smsReportRepository.findAll(),SuccessApiStatus);
-	}
-
-	public ByteArrayInputStream getSMSReportInExcel(String from, String to) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
-	    List<SMSReport> smsReport = null;
-		smsReport = smsReportRepository.getReportInRange(sdf.parse(from),sdf.parse(to));
-
-	    ByteArrayInputStream in = ExcelUtil.smsReportToExcel(smsReport);
-	    return in;
-		
-	  }
 
 
 }

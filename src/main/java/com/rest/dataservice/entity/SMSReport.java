@@ -62,8 +62,8 @@ public class SMSReport {
 	@Column(name = "created_by")
 	private String  createdBy;
 	
-	@Column(name = "created_dt", columnDefinition="TIMESTAMP")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@Column(name = "created_dt", columnDefinition="TIMESTAMP")
 	private Date  createdDt;
 	
 	@Column(name = "last_modified_by")

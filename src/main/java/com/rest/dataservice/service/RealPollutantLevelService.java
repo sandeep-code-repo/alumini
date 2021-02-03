@@ -22,5 +22,11 @@ public interface RealPollutantLevelService {
 	ResponseObject getRealPoulltantLevelAllData();
 	
 	ByteArrayInputStream getRealTimeReportInExcel( StationDateLevelGraphRequest graphRequest) throws ParseException;
+	
+	ResponseObject getSMSReport(StationDateLevelGraphRequest request);
+
+	ByteArrayInputStream getSMSReportInExcel(String from, String to) throws ParseException;
+
+	ResponseObject getSMSAllReport();
 
 }

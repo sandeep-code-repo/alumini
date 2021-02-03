@@ -22,8 +22,5 @@ public interface IndustryCategoryService {
 	
 	ResponseObject getDropdownIndustryCategoryList();
 
-	ResponseObject getSMSReport();
-
-	ByteArrayInputStream getSMSReportInExcel(String from, String to) throws ParseException;
 
 }

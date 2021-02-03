@@ -36,6 +36,7 @@ import com.rest.dataservice.model.StationDateLevelGraphRequest;
 import com.rest.dataservice.repository.ParameterInfoRepository;
 import com.rest.dataservice.repository.PlantInfoRepository;
 import com.rest.dataservice.repository.RealPollutantLevelInfosRepository;
+import com.rest.dataservice.repository.SMSReportRepository;
 import com.rest.dataservice.repository.StationInfoRepository;
 import com.rest.dataservice.repository.UserRepository;
 import com.rest.dataservice.util.CommonApiStatus;
@@ -66,6 +67,15 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 
 	@Autowired
 	RealPollutantLevelInfosRepository realPollutantLevelInfoRepository;
+	
+	@Autowired
+	SMSReportRepository smsReportRepository;
+	
+	CommonApiStatus SuccessApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
+			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
+	
+	SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
+	SimpleDateFormat sdf_date = new SimpleDateFormat(ApplicationConstants.DATE_FORMATTER);
 
 	@Override
 	public ResponseObject getRealPoulltantLevelData(RealPollutantLevelInfos info) {
@@ -253,8 +263,6 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 
 		try {
 
-			SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
-			SimpleDateFormat sdf_date = new SimpleDateFormat(ApplicationConstants.DATE_FORMATTER);
 
 			List<RealPollutantLevelInfos> listData = new ArrayList<RealPollutantLevelInfos>();
 			List<RealPollutantLevelGraphHelper> pollutantGraphList = new ArrayList<RealPollutantLevelGraphHelper>();
@@ -407,6 +415,49 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 	public ResponseObject getRealPoulltantLevelAllData() {
 		return new ResponseObject(realPollutantLevelInfoRepository.findAll(),successApiStatus);
 	}
+	
+	@Override
+	public ResponseObject getSMSReport(StationDateLevelGraphRequest request) {
+		
+		try {
+		String[] param=request.getParameter().split(",");
+		String[] station=request.getStationId().split(",");
+		
+		java.util.List<String> params = new ArrayList<>();
+		java.util.List<String> stations = new ArrayList<>();
+		
+		for (int i=0; i < param.length; i++){
+			params.add(param[i]);
+		}
+		for (int i=0; i < station.length; i++){
+			stations.add(station[i]);
+		}
+		
+			List<SMSReport> listSmsReportData = smsReportRepository.getSMSReportDataFromDate(request.getPlantId(),params,stations,sdf.parse(request.getFromDate()),sdf.parse(request.getToDate()));
+		
+			return new ResponseObject(listSmsReportData,SuccessApiStatus);
+		} catch (ParseException e) {
+			return new ResponseObject("Error in fetching SMS Report data : "+e.getMessage(),errorApiStatus);
+		}
+		
+		
+	}
 
+	public ByteArrayInputStream getSMSReportInExcel(String from, String to) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_TIME_FORMATTER); 
+	    List<SMSReport> smsReport = null;
+		smsReport = smsReportRepository.getReportInRange(sdf.parse(from),sdf.parse(to));
+
+	    ByteArrayInputStream in = ExcelUtil.smsReportToExcel(smsReport);
+	    return in;
+		
+	  }
+
+
+	@Override
+	public ResponseObject getSMSAllReport() {
+		List<SMSReport> listSmsReportData = smsReportRepository.findAll();
+		return new ResponseObject(listSmsReportData,SuccessApiStatus);
+	}
 
 }

@@ -17,5 +17,9 @@ public interface SMSReportRepository extends JpaRepository<SMSReport, Integer> {
 	@Query(value = "SELECT * FROM alumini.sms_report WHERE created_dt between :fromDate AND :toDate ORDER BY created_dt",
 			 nativeQuery = true)
 	List<SMSReport> getReportInRange(Date fromDate, Date toDate);
+
+	@Query(value = "SELECT * FROM alumini.sms_report WHERE created_dt between :fromDate AND :toDate and industry_code=:plantId and parameter in (:params) AND station_name in (:stations);",
+			 nativeQuery = true)
+	List<SMSReport> getSMSReportDataFromDate(String plantId, List<String> params, List<String> stations, Date fromDate, Date toDate);
 	
 }

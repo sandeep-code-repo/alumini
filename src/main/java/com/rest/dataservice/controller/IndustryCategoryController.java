@@ -48,10 +48,6 @@ public class IndustryCategoryController extends AbstractMapper{
 
 	@Autowired
 	IndustryCategoryService industryCategoryService;
-	
-	@Autowired
-	SMSReportRepository smsReportRepository;
-
 
 	/**
 	 * @return ResponseObject
@@ -98,39 +94,5 @@ public class IndustryCategoryController extends AbstractMapper{
 		return obj;
 	}
 
-
-	@GetMapping(value ="/getSMSReport", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseObject getSMSReport() {
-		ResponseObject obj= industryCategoryService.getSMSReport();
-		return obj;
-	}
-
-	@GetMapping("/getSMSReport/download")
-	public ResponseEntity<Resource> getFile(@RequestParam String from,@RequestParam String to) throws ParseException {
-		String filename = "smsReport.xlsx";
-
-		InputStreamResource file = new InputStreamResource(industryCategoryService.getSMSReportInExcel(from,to));
-
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
-				.contentType(MediaType.parseMediaType("application/vnd.ms-excel")).body(file);
-	}
-
-	@GetMapping("/getSMSReport/downloadpdf")
-    public void exportToPDF(HttpServletResponse response,@RequestParam String from,@RequestParam String to) throws DocumentException, IOException, ParseException {
-        response.setContentType("application/pdf");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-         
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=sms_report_" + currentDateTime + ".pdf";
-        response.setHeader(headerKey, headerValue);
-        List<SMSReport> smsReport = smsReportRepository.getReportInRange(sdf.parse(from),sdf.parse(to));
-         
-        ReportPDFExporter exporter = new ReportPDFExporter(smsReport);
-        exporter.export(response);
-         
-    }
 
 }
