@@ -433,7 +433,7 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			stations.add(station[i]);
 		}
 		
-			List<SMSReport> listSmsReportData = smsReportRepository.getSMSReportDataFromDate(request.getPlantId(),params,stations,sdf.parse(request.getFromDate()),sdf.parse(request.getToDate()));
+			List<SMSReport> listSmsReportData = smsReportRepository.getSMSReportDataFromDate(request.getPlantId(),params,stations,sdf_date.parse(request.getFromDate()),sdf_date.parse(request.getToDate()));
 		
 			return new ResponseObject(listSmsReportData,SuccessApiStatus);
 		} catch (ParseException e) {
