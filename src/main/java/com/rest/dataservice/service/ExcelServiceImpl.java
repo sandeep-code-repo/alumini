@@ -4,6 +4,8 @@ package com.rest.dataservice.service;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ import com.rest.dataservice.util.ResponseObject;
 @Service
 public class ExcelServiceImpl  implements ExcelService {
 	
-
+	private static final Logger logger = LoggerFactory.getLogger(ExcelServiceImpl.class);
 	  
 	  @Autowired
 	  UserRepository userRepository;
@@ -33,7 +35,12 @@ public class ExcelServiceImpl  implements ExcelService {
 	      List<UserInfo> info = ExcelUtil.parseExcelFile(file.getInputStream());
 	      return info.get(0);
 	    } catch (IOException e) {
-	      throw new RuntimeException("fail to store excel data: " + e.getMessage());
+	    	
+	    	
+	    	
+			logger.error("Error inside method  store Info :: "+e.getMessage());
+	 
+	    	 throw new RuntimeException("fail to store excel data: " + e.getMessage());
 	    }
 	  }
 

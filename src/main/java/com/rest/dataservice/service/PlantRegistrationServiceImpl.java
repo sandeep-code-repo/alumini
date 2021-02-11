@@ -147,10 +147,12 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		}catch (ConstraintViolationException e) {
 			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			logger.error("Error inside method insertPlantStationInfo :: "+e.getMessage());
 			return new ResponseObject("User Already Exist!", failedApiStatus);
 		}catch (Exception e) {
 			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			logger.error("Error inside method insertPlantStationInfo :: "+e.getMessage());
 			return new ResponseObject("Errors in Registration page", failedApiStatus);
 		}
 
@@ -168,6 +170,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		}
 		
 		}catch(Exception e){
+			logger.error("Error inside method checkDuplicateEntry :: "+e.getMessage());
 			return false;
 		}
 		
@@ -222,6 +225,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			
 			CommonApiStatus errorApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
 					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			logger.error("Error insisde method findByUserName :: "+e.getMessage());
 			return new ResponseObject("Failed to get user data", errorApiStatus);
 			
 		}
@@ -321,6 +325,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 	@Override
 	@Transactional
 	public ResponseObject updatePlantStationInfo(UserHelper user) {
+		
 		try {
 			UserHelper responseobj = new UserHelper();
 			Boolean checkRegStatus = false;
@@ -429,6 +434,8 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 		
 		}catch(Exception e) {
 			
+			logger.error("Error inside method  getParamDataFromStation :: "+e.getMessage());
+			
 			return new ResponseObject("Error in fetching parameter data : "+e.getMessage(),failedApiStatus);
 			
 		}
@@ -473,6 +480,8 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 			return new ResponseObject(industryList,successApiStatus);
 			
 			}catch(Exception e) {
+				
+				logger.error("Error inside method  findByCategory :: "+e.getMessage());	 
 				
 				return new ResponseObject("Error in fetching plant details data by category : "+e.getMessage(),failedApiStatus);
 				

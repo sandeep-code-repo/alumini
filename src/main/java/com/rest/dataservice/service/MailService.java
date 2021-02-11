@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -42,6 +44,8 @@ import java.time.format.DateTimeFormatter;
  */
 @Service
 public class MailService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MailService.class);
 
 
 	private static final String QUERY = "query";
@@ -142,6 +146,8 @@ public class MailService {
 			return new ResponseObject(MAIL_SENT_SUCCESSFULLY, SuccessApiStatus);
 
 		}catch(Exception e) {
+			
+			logger.error("Error inside method sendEmail :: "+e.getMessage());
 
 			return new ResponseObject(MAIL_SENDING_FAILED, failedApiStatus);
 
@@ -181,6 +187,8 @@ public class MailService {
 			return new ResponseObject(MAIL_SENT_SUCCESSFULLY, SuccessApiStatus);
 
 		}catch(Exception e) {
+			
+			logger.error("Error inside method sendFeedback :: "+e.getMessage());
 
 			return new ResponseObject(MAIL_SENDING_FAILED, failedApiStatus);
 

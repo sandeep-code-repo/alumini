@@ -5,6 +5,8 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rest.dataservice.repository.UserRepository;
@@ -16,7 +18,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class RSAUtil {
-
+	private static final Logger logger = LoggerFactory.getLogger(RSAUtil.class);
     //private static String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCB5efFlssoMNXxlWmmwPL75tVE56pIA8Q5yUGjV2F+Ntv2BkoxcnHIOQZdurG9UdVWtzGJOiLUjw84k7EFK0DT6WrKI1lP2bBW5vjfKo0VAE/OUwqq0PQhv7DBklkXuTqGKv5k1GPMR89cE1WpRS6cqNZKobjKj5+/+O2GKTLpYQIDAQAB";
     //private static String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIHl58WWyygw1fGVaabA8vvm1UTnqkgDxDnJQaNXYX422/YGSjFyccg5Bl26sb1R1Va3MYk6ItSPDziTsQUrQNPpasojWU/ZsFbm+N8qjRUAT85TCqrQ9CG/sMGSWRe5OoYq/mTUY8xHz1wTValFLpyo1kqhuMqPn7/47YYpMulhAgMBAAECgYBMRQFhMrj2UDZOMrxl/MSuw0pVuvBweEWu6Exx68yCnxNn0Sme/uNv/IuQXR4fWv04fTfIqynoRFdbkNxPfKYC8MtDhN+l5ujSkbhqijhcqj3emjMP114dB9eJCqMBJC4K2PdTtCQt9mi6twKCV7QcOij/GTKz6VJXovgxUk0cAQJBALnwgAaMSeO2+qkpS3ab6pbfvm5LmgAVxyI9STlZuBRAiagsmBcsGc2zxmoTo9Y2I3TbmXeeNbBqQShX8yMquekCQQCy17gs9Z0RqIFtUZIx9BmuxQ1/gZSGeij421q908JgpPGAJNlUbF+Xp6icLwMGFFX7NZnWo5hpOfWtq+YxlBC5AkEAubLDaca6FL4t4LvpLe/RfhS+7xB6IROe6Ucj1i8QdMlvsZG344ybyKB+zHoI6mrvRkn7H0fWfvXfVRdhMAH/4QJAdPUEWkqp1IF5Wu+MhySWoyf1AtzQL/21y8FQH3Jb3O4hjWcLxd01yqz3ZGSOOqyT6jwMhkToiHBCDbisSuIE6QJAIVc3bzQ1U5oD4g4Ushq7I3rXCmnqxGxt4PhV5lSEeG5H/ZwedLYQ4c+AHM6LixV4ms/9q33aGJponrP/8wn1sw==";
 
@@ -31,8 +33,13 @@ public class RSAUtil {
             publicKey = keyFactory.generatePublic(keySpec);
             return publicKey;
         } catch (NoSuchAlgorithmException e) {
+        	
+        	logger.error("Error inside method getPublicKey Info :: "+e.getMessage());
+        	
             e.printStackTrace();
         } catch (InvalidKeySpecException e) {
+        	
+        	logger.error("Error inside method getPublicKey Info :: "+e.getMessage());
             e.printStackTrace();
         }
         return publicKey;
@@ -50,7 +57,9 @@ public class RSAUtil {
         try {
             privateKey = keyFactory.generatePrivate(keySpec);
         } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
+        	
+			
+        	logger.error("Error inside method getPrivateKey Info :: "+e.getMessage());
         }
         return privateKey;
     }

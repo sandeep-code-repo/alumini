@@ -2,6 +2,8 @@ package com.rest.dataservice.service;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +26,7 @@ import com.rest.dataservice.util.ResponseObject;
 
 @Service
 public class UserServiceImpl implements UserService,UserDetailsService{
+	private static final Logger logger = LoggerFactory.getLogger(RealPollutantLevelServiceImpl.class);
 
 	private static CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
 			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
@@ -87,6 +90,9 @@ public class UserServiceImpl implements UserService,UserDetailsService{
 
 			return editUser;
 		}catch(Exception e){
+			
+			logger.error("Error inside method saveTempPassword  :: "+e.getMessage());
+			
 			return new UserInfo();
 		}
 	}

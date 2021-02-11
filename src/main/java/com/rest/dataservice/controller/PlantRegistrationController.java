@@ -93,7 +93,7 @@ public class PlantRegistrationController {
 		
 			ResponseObject entity = registrationService.updatePlantStationInfo(plantRegistration);
     	
-		//logger.info("REQUEST RECV : " + plantRegistration);
+		//logger.info("Inside Method  updateEmployeeData" + plantRegistration);
 			    		
 	    return entity;
 	}

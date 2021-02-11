@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,8 @@ import com.rest.dataservice.util.ResponseObject;
 
 @Service
 public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
+	
+	private static final Logger logger = LoggerFactory.getLogger(RealPollutantLevelServiceImpl.class);
 
 	private static CommonApiStatus successApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS, HttpStatus.OK,
 			ApplicationConstants.API_OVER_ALL_SUCCESS_STATUS);
@@ -123,7 +127,9 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			return new ResponseObject(pollutantLevelHelper,successApiStatus);
 
 		}catch(Exception e) {
-
+			logger.error("Error inside method getRealPoulltantLevelData :: "+e.getMessage());
+			
+			
 			return new ResponseObject("Error in fetching Real pollutant level data : "+e.getMessage(),errorApiStatus);
 
 		}
@@ -173,6 +179,8 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			return new ResponseObject(pollutantLevelGraphHelper,successApiStatus);
 
 		}catch(Exception e) {
+			
+			logger.error("Error inside method getRealPollutantLevelGraphData  :: "+e.getMessage());
 
 			return new ResponseObject("Error in fetching Real pollutant Graph level data : "+e.getMessage(),errorApiStatus);
 
@@ -252,6 +260,8 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			return new ResponseObject(realTimeStationParamLevelHelper,successApiStatus);
 
 		}catch(Exception e) {
+			
+			logger.error("Error inside method getRealPollutantStationParamLevelInfos  :: "+e.getMessage());
 
 			return new ResponseObject("Error in fetching Real Time Station Param Level data : "+e.getMessage(),errorApiStatus);
 
@@ -389,7 +399,9 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 			return new ResponseObject(pollutantGraphList,successApiStatus);
 
 		}catch(Exception e) {
-
+			
+			logger.error("Error inside method getRealPoulltantStationDateLevelGraphData  :: "+e.getMessage());
+					
 			return new ResponseObject("Error in fetching Real pollutant Graph level data : "+e.getMessage(),errorApiStatus);
 
 		}	
@@ -437,6 +449,10 @@ public class RealPollutantLevelServiceImpl implements RealPollutantLevelService{
 		
 			return new ResponseObject(listSmsReportData,SuccessApiStatus);
 		} catch (ParseException e) {
+			
+			
+			logger.error("Error inside method getRealTimeReportInExcel Info :: "+e.getMessage());
+			
 			return new ResponseObject("Error in fetching SMS Report data : "+e.getMessage(),errorApiStatus);
 		}
 		

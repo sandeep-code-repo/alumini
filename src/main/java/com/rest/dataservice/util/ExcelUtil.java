@@ -32,6 +32,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rest.dataservice.constants.ApplicationConstants;
@@ -42,12 +45,14 @@ import com.rest.dataservice.entity.UserInfo;
 import com.rest.dataservice.helper.RealPollutantLevelGraphHelper;
 import com.rest.dataservice.helper.UserInfoMapper;
 import com.rest.dataservice.model.StationDateLevelGraphRequest;
+import com.rest.dataservice.service.ExcelServiceImpl;
 
 /**
  * @author Kamal
  *
  */
 public class ExcelUtil {
+	private static final Logger logger = LoggerFactory.getLogger(ExcelUtil.class);
 
 	static String[] HEADERs = { "S.No", "Category", "Industry Code", "Industry Name","Full Address", "Contact In which SMSAlerts generated", "State", "Station Name", "Parameter Standard limit's", "Parameters", "Exceedence", "Total SMS","In Ganga Basin"  };
 	static String SHEET = "SMSReport";
@@ -158,6 +163,10 @@ public class ExcelUtil {
 
 			return lstUser;
 		} catch (IOException e) {
+			
+			
+			logger.error("Error inside method parseExcelFile Info :: "+e.getMessage());
+			
 			throw new RuntimeException("FAIL! -> message = " + e.getMessage());
 		}
 	}
@@ -209,6 +218,11 @@ public class ExcelUtil {
 			workbook.write(out);
 			return new ByteArrayInputStream(out.toByteArray());
 		} catch (IOException e) {
+			
+			CommonApiStatus failedApiStatus = new CommonApiStatus(ApplicationConstants.API_OVER_ALL_ERROR_STATUS,
+					HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+			logger.error("Error inside method smsReportToExcel Info :: "+e.getMessage());
+			
 			throw new RuntimeException("fail to import data to Excel file: " + e.getMessage());
 		}
 	}
@@ -331,6 +345,8 @@ public class ExcelUtil {
 			workbook.write(out);
 			return new ByteArrayInputStream(out.toByteArray());
 		} catch (IOException e) {
+			
+			logger.error("Error inside method realPollutantReportToExcel :: "+e.getMessage());
 			throw new RuntimeException("fail to import data to Excel file: " + e.getMessage());
 		}
 	}
