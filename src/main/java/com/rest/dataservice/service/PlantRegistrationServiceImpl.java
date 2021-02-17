@@ -113,6 +113,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				user.getPlantInfo().setCreatedBy(user.getUserInfoMapper().getUserInfo().getUserName());
 				PlantInfo plantSaveResult = plantInfoRepository.save(user.getPlantInfo());	
 				
+				if (user.getStationInfoMapper()!=null) {
 
 				    user.getStationInfoMapper().parallelStream().forEach(record -> {
 				    	record.getStationInfo().setPlantId(plantSaveResult.getPid());
@@ -132,6 +133,8 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 					
 
 				});
+				    
+				}
 
 			}
 
