@@ -121,7 +121,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 				    	record.getStationInfo().setCreatedBy(user.getUserInfoMapper().getUserInfo().getUserName());
 				    	stationInfoRepository.save(record.getStationInfo());
 				    	
-
+				 if (record.getParameterInfo()!=null) {
 				    	record.getParameterInfo().parallelStream().forEach(record1 -> {
 						record1.setSid(record.getStationInfo().getSid());
 						record1.setParameterStatus(record1.getParameterStatus() == null ? true : record1.getParameterStatus());
@@ -130,7 +130,7 @@ public class PlantRegistrationServiceImpl implements PlantRegistrationService {
 						parameterInfoRepository.save(record1);
 					});
 					
-					
+				 }
 
 				});
 				    
